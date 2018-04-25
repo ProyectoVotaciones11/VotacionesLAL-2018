@@ -1,0 +1,200 @@
+<div class="row page-titles">
+    <div class="col-md-5 col-8 align-self-center">
+        <h3 class="text-themecolor">Alumnos</h3>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
+            <li class="breadcrumb-item active">Alumnos</li>
+        </ol>
+    </div>
+    
+</div>
+
+<div class="row">
+    <!-- Column -->
+    <div class="col-lg-4 col-xlg-3 col-md-5">
+      
+        <div class="card">
+            <div class="card-block bg-info">
+                <h4 class="text-white card-title">Alumnos</h4>
+                 </div>
+            <div class="card-block">
+                <div class="message-box contact-box">
+                    <h2  class="add-ct-btn">
+                        <button type="button" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button>
+                    </h2>
+                    <div class="message-widget contact-widget">
+                        <!-- Message -->
+                        <a href="#">
+                            <div class="user-img"> <img src="images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                            <div class="mail-contnet">
+                                <h5>Kevin Eslava</h5> <span class="mail-desc">kedaesva</span></div>
+                        </a>
+                        <!-- Message -->
+                        <a href="#">
+                            <div class="user-img"> <img src="images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                            <div class="mail-contnet">
+                                <h5>Keinny Zuzette</h5> <span class="mail-desc">Keinny</span></div>
+                        </a>
+
+                        <a href="#">
+                            <div class="user-img"> <img src="images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                            <div class="mail-contnet">
+                                <h5>Jhan carlos</h5> <span class="mail-desc">JhanC118</span></div>
+                        </a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 col-xlg-9 col-md-7">
+        <div class="card" style="overflow: auto;">
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs profile-tab" role="tablist">
+                <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#Actualizaciones" role="tab">Actualizaciones</a> </li>
+                <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#Alumnos" role="tab">Alumnos</a> </li>
+                <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#settings" role="tab">Configuraciones</a> </li>
+            </ul>
+        
+            <div class="tab-content">
+                
+               
+                <div class="tab-pane active" id="Actualizaciones" role="tabpanel">
+                    <div class="card-block">
+                        <div class="row">
+                            
+
+            <div class="row">
+                    <!-- column -->
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-block">
+                                <h4 class="card-title"> Table Aspiraciones</h4>
+
+                                 <button ng-click="Crear_Aspiraciones()">Nueva Aspiracion</button>
+
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                           <tr>
+                                                <th>#</th>
+                                                <th>aspiracion</th>
+                                                <th>descripcion</th>
+                                                <th>modificar</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="aspi in Aspiraciones">
+                                                <td>{{$index + 1}}</td>
+                                                <td ng-show="!aspi.Mostrar_Aspiraciones">{{aspi.aspiracion}}</td>
+
+                                                <td ng-show="!aspi.Mostrar_Aspiraciones">{{aspi.descripcion}}</td>
+
+                                                    <td
+                                                     ng-show="aspi.Mostrar_Aspiraciones"> <input class="text-pequenio2" type="text" ng-model="aspi.aspiracion" name=""> 
+                                                    </td>
+                                                    <td
+                                                     ng-show="aspi.Mostrar_Aspiraciones"> <input class="text-pequenio2" type="text" ng-model="aspi.descripcion" name=""> 
+                                                    </td>
+
+                                                <td>
+                                                    <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Aspiraciones(aspi)">Cambiar</button>
+                                                    <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Aspiraciones(aspi)">X</button>
+                                                </td>  
+                                               
+                                               <tr ng-show="Mostrar_Crear_Aspiraciones" >
+
+                                                   <td>
+                                                       #  
+                                                    </td>
+
+                                                    <td > <input class="text-pequenio2" type="text" ng-value="aspiracion" ng-model="nueva_Aspiraciones.aspiracion" name=""> 
+                                                    </td>
+                                                    <td > <input class="text-pequenio2" type="text" ng-value="descripcion" ng-model="nueva_Aspiraciones.descripcion" name=""> 
+                                                    </td>
+ 
+                                                    <td ng-show="Mostrar_Crear_Aspiraciones">
+                                                        <button class="btn waves-effect waves-light btn-info " ng-click="Insert_Aspiraciones(nueva_Aspiraciones)">Guardar</button>
+                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Aspiraciones()">X</button>
+                                                        
+                                                    </td>
+
+                                               </tr>
+                                                
+                                            </tr>
+                                           
+                                                                                  
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                        </div>
+                        <hr>
+                        
+                    </div>
+                </div>
+                <div class="tab-pane " id="Alumnos" role="tabpanel">
+                    <div class="card-block">
+                        <div class="profiletimeline">
+                            <div class="sl-item">
+                                <div class="sl-left"> <img src="images/users/1.jpg" alt="user" class="img-circle"> </div>
+                                <div class="sl-right">
+                                    
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="sl-item">
+
+                                <div class="sl-right">
+                                    <div> <a href="#" class="link">Kevin Eslava</a> <span class="sl-date">Hace :V</span>
+                                        <p class="m-t-10">Calla Rata</p>
+                                        <div class="m-t-20 row">     
+                                        </div>
+                                        <div class="like-comm m-t-20"> <a href="javascript:void(0)" class="link m-r-10">3 comment</a> <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> 1 Love</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="sl-item">
+                                <div class="sl-left"> <img src="images/users/3.jpg" alt="user" class="img-circle"> </div>
+                                <div class="sl-right">
+                                    <div><a href="#" class="link">Keinny</a> <span class="sl-date">Hace :V</span>
+                                        <p class="m-t-10">//// </p>
+                                    </div>
+                                    <div class="like-comm m-t-20"> <a href="javascript:void(0)" class="link m-r-10">2 comment</a> <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> </div>
+                                </div>
+                            </div>
+                            <hr>
+                            <div class="sl-item">
+                                <div class="sl-left"> <img src="images/users/1.jpg" alt="user" class="img-circle"> </div>
+                                <div class="sl-right" >
+                                    <div> <a href="#" class="link">Jhan Carlos</a> <span class="sl-date">Hace :V</span>
+                                        <p class="m-t-10">Hola Llama</p>
+                                        <div class="m-t-20 row">     
+                                        </div>
+                                        <div class="like-comm m-t-20"> <a href="javascript:void(0)" class="link m-r-10">10 comment</a> <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> 0 Love</a> </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane" id="Configuraciones" role="tabpanel">
+                    <div class="card-block">
+                        <form class="form-horizontal form-material">
+                       
+                            <div class="form-group">
+                                
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,9 +1,9 @@
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
-        <h3 class="text-themecolor">Alumnos</h3>
+        <h3 class="text-themecolor">Votaciones</h3>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
-            <li class="breadcrumb-item active">Alumnos</li>
+            <li class="breadcrumb-item active">Votaciones</li>
         </ol>
     </div>
     
@@ -15,7 +15,7 @@
       
         <div class="card">
             <div class="card-block bg-info">
-                <h4 class="text-white card-title">Alumnos</h4>
+                <h4 class="text-white card-title">Votaciones</h4>
                  </div>
             <div class="card-block">
                 <div class="message-box contact-box">
@@ -52,7 +52,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs profile-tab" role="tablist">
                 <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#Actualizaciones" role="tab">Actualizaciones</a> </li>
-                <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#Alumnos" role="tab">Alumnos</a> </li>
+                <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#Alumnos" role="tab">Votaciones</a> </li>
                 <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#settings" role="tab">Configuraciones</a> </li>
             </ul>
         
@@ -69,86 +69,127 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-block">
-                                <h4 class="card-title"> Table Votaciones</h4>
+                                <h4 class="card-title"> Table de Votaciones</h4>
 
-                                 <button ng-click="Crear_Votaciones()">Nuevo Votacion</button>
+                                 <button ng-click="Mostrar_tabla_De_Crear()">Nueva Votacion</button>
 
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                            <tr>
                                                 <th>#</th>
-                                                <th>Nombres</th>
+                                                <th>Nombre</th>
                                                 <th>Alias</th>
-                                                <th>descripcion</th>
+                                                <th>Descripcion</th>
                                                 <th>Username</th>
                                                 <th>Password</th>
                                                 <th>Modificar</th>
 
-
                                             </tr>
                                         </thead>
                                         <tbody>
+
                                             <tr ng-repeat="vota in votaciones">
-                                                <td>{{$index + 1}}</td>
-                                                <td ng-show="!vota.Mostrar_Votaciones">{{vota.Nombres}}</td>
-                                                <td ng-show="!vota.Mostrar_Votaciones">{{vota.Alias}}</td>
-                                                <td ng-show="!vota.Mostrar_Votaciones">{{vota.descripcion}}</td>
-                                                <td ng-show="!vota.Mostrar_Votaciones">{{vota.Username}}</td>
-                                                <td ng-show="!vota.Mostrar_Votaciones">{{vota.Password}}</td>
 
+                                                <!-- Tabla de Votaciones  -->
 
+                                                    <td>
+                                                         {{$index + 1}}
+                                                    </td>
 
-                                                <td
-                                                 ng-show="vota.Mostrar_Votaciones"> <input class="text-pequenio2" type="text" ng-model="vota.Nombres" name=""> 
-                                                </td>
-                                                <td
-                                                 ng-show="vota.Mostrar_Votaciones"> <input class="text-pequenio2" type="text" ng-model="vota.Alias" name=""> 
-                                                </td>
-                                                <td
-                                                 ng-show="vota.Mostrar_Votaciones"> <input class="text-pequenio" type="text" ng-model="vota.descripcion" name=""> 
-                                                </td>
-                                                <td
-                                                 ng-show="vota.Mostrar_Votaciones"> <input class="text-pequenio" type="text" ng-model="vota.Username" name=""> 
-                                                </td>
-                                                <td
-                                                 ng-show="vota.Mostrar_Votaciones"> <input class="text-pequenio" type="text" ng-model="vota.Password" name=""> 
-                                                </td>
-                    
-                                                   <td>
-                                                    <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Votaciones(vota)">Cambiar</button>
-                                                    <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Votaciones(vota)">X</button>
-                                                </td>  
+                                                    <td ng-show="!vota.Mostrar_Votaciones">
+                                                         {{vota.Nombres}}
+                                                    </td>
+
+                                                    <td ng-show="!vota.Mostrar_Votaciones"> 
+                                                         {{vota.Alias}}
+                                                    </td>
+
+                                                    <td ng-show="!vota.Mostrar_Votaciones">
+                                                         {{vota.descripcion}}
+                                                    </td>
+
+                                                    <td ng-show="!vota.Mostrar_Votaciones">
+                                                         {{vota.Username}}
+                                                    </td>
+
+                                                    <td ng-show="!vota.Mostrar_Votaciones">
+                                                         {{vota.Password}}
+                                                    </td>
+
+                                                    <td ng-show="!vota.Mostrar_Votaciones">
+                                                        <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Votaciones(vota)">
+                                                        Editar</button>
+                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Votaciones(vota)">
+                                                        Eliminar</button>
+                                                    </td> 
+
+                                                    <!-- Tabla de editar votaciones  -->
+
+                                                    <td ng-show="vota.Mostrar_Votaciones"> 
+                                                         <input class="text-pequenio2" type="text" ng-model="vota.Nombres" name=""> 
+                                                    </td>
+
+                                                    <td ng-show="vota.Mostrar_Votaciones"> 
+                                                         <input class="text-pequenio2" type="text" ng-model="vota.Alias" name=""> 
+                                                    </td>
+
+                                                    <td ng-show="vota.Mostrar_Votaciones">
+                                                         <input class="text-pequenio2" type="text" ng-model="vota.descripcion" name=""> 
+                                                    </td>
+
+                                                    <td ng-show="vota.Mostrar_Votaciones"> 
+                                                         <input class="text-pequenio2" type="text" ng-model="vota.Username" name=""> 
+                                                    </td>
+
+                                                    <td ng-show="vota.Mostrar_Votaciones"> 
+                                                         <input class="text-pequenio2" type="text" ng-model="vota.Password" name=""> 
+                                                    </td>
+                        
+                                                    <td ng-show="vota.Mostrar_Votaciones">
+                                                        <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Votaciones(vota)">
+                                                        Guardar</button>
+                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Tabla_de_Editar(vota)">
+                                                        Cancelar</button>
+                                                    </td>  
+
+                                                <!-- Tabla de crear Votaciones  -->
                                                
-                                               <tr ng-show="Mostrar_Crear_Votaciones" >
+                                               <tr ng-show="Mostrar_tabla_crear" >
 
                                                    <td>
                                                        #  
                                                     </td>
 
-                                                    <td > <input class="text-pequenio2" type="text" ng-value="Nombres" ng-model="Votaciones_nuevo.Nombres" name=""> 
+                                                    <td > 
+                                                        <input class="text-pequenio2" type="text" ng-value="Nombres" ng-model="Votaciones_nuevo.Nombres" >
                                                     </td>
-                                                    <td > <input class="text-pequenio2" type="text" ng-value="Alias" ng-model="Votaciones_nuevo.Alias" name=""> 
-                                                    </td>
-                                                    <td > <input class="text-pequenio" type="text" ng-value="descripcion" ng-model="Votaciones_nuevo.descripcion" name=""> 
-                                                    </td>
-                                                    <td ng-show="Mostrar_Crear_Votaciones"> <input class="text-pequenio" type="text" ng-value="Username" ng-model="Votaciones_nuevo.Username" name=""> 
-                                                    </td>
-                                                    <td ng-show="Mostrar_Crear_Votaciones"> <input class="text-pequenio" type="text" ng-value="Password" ng-model="Votaciones_nuevo.Password" name=""> 
-                                                    </td>
-                                                    
-                                                    
 
-                                                    <td ng-show="Mostrar_Crear_Votaciones">
+                                                    <td > 
+                                                        <input class="text-pequenio2" type="text" ng-value="Alias" ng-model="Votaciones_nuevo.Alias" > 
+                                                    </td>
+
+                                                    <td > 
+                                                        <input class="text-pequenio2" type="text" ng-value="descripcion" ng-model="Votaciones_nuevo.descripcion"> 
+                                                    </td>
+
+                                                    <td >
+                                                         <input class="text-pequenio2" type="text" ng-value="Username" ng-model="Votaciones_nuevo.Username" > 
+                                                    </td>
+
+                                                    <td > 
+                                                        <input class="text-pequenio2" type="text" ng-value="Password" ng-model="Votaciones_nuevo.Password"> 
+                                                    </td>
+
+                                                    <td >
                                                         <button class="btn waves-effect waves-light btn-info " ng-click="Insert_Votaciones(Votaciones_nuevo)">Guardar</button>
-                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Votaciones()">X</button>
-                                                        
+                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Votaciones()">
+                                                        Cancelar</button>
                                                     </td>
 
                                                </tr>
                                                 
                                             </tr>
-                                           
                                                                                   
                                         </tbody>
                                     </table>

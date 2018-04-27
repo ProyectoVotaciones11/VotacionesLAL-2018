@@ -1,10 +1,10 @@
 
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
-        <h3 class="text-themecolor">Alumnos</h3>
+        <h3 class="text-themecolor">Participantes</h3>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
-            <li class="breadcrumb-item active">Alumnos</li>
+            <li class="breadcrumb-item active">Participantes</li>
         </ol>
     </div>
     
@@ -16,7 +16,7 @@
       
         <div class="card">
             <div class="card-block bg-info">
-                <h4 class="text-white card-title">Alumnos</h4>
+                <h4 class="text-white card-title">Participantes</h4>
                  </div>
             <div class="card-block">
                 <div class="message-box contact-box">
@@ -53,7 +53,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs profile-tab" role="tablist">
                 <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#Actualizaciones" role="tab">Actualizaciones</a> </li>
-                <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#Alumnos" role="tab">Alumnos</a> </li>
+                <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#Alumnos" role="tab">Participantes</a> </li>
                 <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#settings" role="tab">Configuraciones</a> </li>
             </ul>
         
@@ -70,9 +70,9 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-block">
-                                <h4 class="card-title"> Table Participantes</h4>
+                                <h4 class="card-title"> Table de Participantes</h4>
 
-                                 <button ng-click="Crear_participante()">Nuevo Participante</button>
+                                 <button ng-click="Mostrar_tabla_De_Crear()">Nuevo Participante</button>
 
                                 <div class="table-responsive">
                                     <table class="table">
@@ -82,94 +82,149 @@
                                                 <th>Nombres</th>
                                                 <th>Apellido</th>
                                                 <th>Sexo</th>
-                                                <th>Grupo_id</th>
-                                                <th>Votacion_id</th>
+                                                <th>Grupo</th>
+                                                <th>Votacion</th>
                                                 <th>Tipo</th>
                                                 <th>Modificar</th>
 
-
                                             </tr>
+
                                         </thead>
+
                                         <tbody>
+
                                             <tr ng-repeat="parti in Participantes">
-                                                <td>{{$index + 1}}</td>
-                                                <td ng-show="!parti.Mostrar_Participante">{{parti.Nombres}}</td>
-                                                <td ng-show="!parti.Mostrar_Participante">{{parti.Apellido}}</td>
-                                                <td ng-show="!parti.Mostrar_Participante">{{parti.Sexo}}</td>
-                                                <td ng-show="!parti.Mostrar_Participante">{{parti.Grupo_id}}</td>
-                                                <td ng-show="!parti.Mostrar_Participante">{{parti.Votacion_id}}</td>
-                                                <td ng-show="!parti.Mostrar_Participante">{{parti.Tipo}}</td>
 
+                                                <!--Tabla de Participantes-->
 
-                                                <td
-                                                 ng-show="parti.Mostrar_Participante"> <input class="text-pequenio2" type="text" ng-model="parti.Nombres" name=""> 
+                                                <td>
+                                                     {{$index + 1}}
                                                 </td>
-                                                <td
-                                                 ng-show="parti.Mostrar_Participante"> <input class="text-pequenio2" type="text" ng-model="parti.Apellido" name=""> 
+
+                                                <td ng-show="!parti.Mostrar_Participante">
+                                                     {{parti.Nombre}}
                                                 </td>
-                                                <td
-                                                 ng-show="parti.Mostrar_Participante"> <input class="text-pequenio" type="text" ng-model="parti.Sexo" name=""> 
+
+                                                <td ng-show="!parti.Mostrar_Participante">
+                                                     {{parti.Apellido}}
                                                 </td>
-                                                <td
-                                                 ng-show="parti.Mostrar_Participante"> <input class="text-pequenio" type="text" ng-model="parti.Grupo_id" name=""> 
+
+                                                <td ng-show="!parti.Mostrar_Participante">
+                                                     {{parti.Sexo}}
                                                 </td>
+
+                                                <td ng-show="!parti.Mostrar_Participante">
+                                                    {{parti.Grupo_id}}
+                                                </td>
+
+                                                <td ng-show="!parti.Mostrar_Participante">
+                                                   {{parti.Nombres}}
+                                                </td>
+
+                                                <td ng-show="!parti.Mostrar_Participante">
+                                                   {{parti.Tipo}}
+                                                </td>
+
+                                                <td ng-show="!parti.Mostrar_Participante">
+                                                    <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Participante(parti)"
+                                                    >Editar</button>
+                                                    <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Participantes(parti)"
+                                                    >Eliminar</button>
+                                                </td>
+ 
+                                                <!--Tabla de editar Participante-->
+
+                                                <td ng-show="parti.Mostrar_Participante"> 
+                                                    <input class="text-pequenio2" type="text" ng-model="parti.Nombre" name=""> 
+                                                </td>
+
+                                                <td ng-show="parti.Mostrar_Participante"> 
+                                                    <input class="text-pequenio2" type="text" ng-model="parti.Apellido" name=""> 
+                                                </td>
+
+                                                <td ng-show="parti.Mostrar_Participante"> 
+                                                    <input class="text-pequenio" type="text" ng-model="parti.Sexo" name=""> 
+                                                </td>
+
+                                                <td ng-show="parti.Mostrar_Participante">
+                                                    <input class="text-pequenio" type="text" ng-model="parti.Grupo_id" name=""> 
+                                                </td>
+
                                                 <td ng-show="parti.Mostrar_Participante">
 
-                                                  <div  class="col-sm-4 form-control text-pequenio2" >
+                                                    <div  class="col-sm-4 form-control text-pequenio2" >
                                                             
-                                                            <select ng-model="parti.Votacion_id"  >
+                                                        <select ng-model="parti.Votacion_id"  >
 
-                                                              <option ng-repeat="vota in votaciones">{{vota.rowid}}</option>
+                                                          <option  ng-repeat="vota in votaciones" value="{{vota.rowid}}">
+                                                          {{vota.Nombres}}
+                                                         </option>
 
-                                                             </select>
+                                                        </select>
 
-                                                        </div>
+                                                    </div>
 
                                                 </td>
-                                                <td 
-                                                 ng-show="parti.Mostrar_Participante"> <input class="text-pequenio" type="text" ng-model="parti.Tipo" name=""> 
+
+                                                <td ng-show="parti.Mostrar_Participante"> 
+                                                    <input class="text-pequenio" type="text" ng-model="parti.Tipo" name=""> 
                                                 </td>
 
-                                                   <td>
-                                                    <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Participante(parti)">Cambiar</button>
-                                                    <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Participantes(parti)">X</button>
-                                                </td>  
+                                                <td ng-show="parti.Mostrar_Participante">
+                                                    <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Participante(parti)"
+                                                    >Guardar</button>
+                                                    <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Tabla_de_Editar(parti)"
+                                                    >Cancelar</button>
+                                                </td>
+
+                                                <!--Tabla de crear Participante-->  
                                                
-                                               <tr ng-show="Mostrar_Crear_participante" >
+                                               <tr ng-show="Mostrar_tabla_crear" >
 
                                                    <td>
                                                        #  
                                                     </td>
 
-                                                    <td > <input class="text-pequenio2" type="text" ng-value="Nombres" ng-model="Participante_nuevo.Nombres" name=""> 
+                                                    <td >
+                                                     <input class="text-pequenio2" type="text" ng-value="Nombre" ng-model="Participante_nuevo.Nombre"> 
                                                     </td>
-                                                    <td > <input class="text-pequenio2" type="text" ng-value="Apellido" ng-model="Participante_nuevo.Apellido" name=""> 
+
+                                                    <td > 
+                                                        <input class="text-pequenio2" type="text" ng-value="Apellido" ng-model="Participante_nuevo.Apellido"> 
                                                     </td>
-                                                    <td > <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Sexo" name=""> 
+
+                                                    <td > 
+                                                        <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Sexo" > 
                                                     </td>
-                                                    <td ng-show="Mostrar_Crear_participante"> <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Grupo_id" name=""> 
+
+                                                    <td > 
+                                                        <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Grupo_id" > 
                                                     </td>
-                                                    <td ng-show="Mostrar_Crear_participante"> 
+
+                                                    <td > 
 
                                                         <div  class="col-sm-4 form-control text-pequenio2" >
                                                             
                                                             <select ng-model="Participante_nuevo.Votacion_id"  >
 
-                                                              <option ng-repeat="vota in votaciones">{{vota.rowid}}</option>
+                                                              <option ng-repeat="vota in votaciones" value="{{vota.rowid}}">
+                                                              {{vota.Nombres}}
+                                                              </option>
 
-                                                             </select>
+                                                            </select>
 
                                                         </div>
                                                 
-
                                                     </td>
-                                                    <td ng-show="Mostrar_Crear_participante"> <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Tipo" name=""> 
-                                                    
 
-                                                    <td ng-show="Mostrar_Crear_participante">
-                                                        <button class="btn waves-effect waves-light btn-info " ng-click="Insert_Participantes(Participante_nuevo)">Guardar</button>
-                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_participantes()">X</button>
-                                                        
+                                                    <td> 
+                                                        <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Tipo" >  
+                                                    </td>
+
+                                                    <td>
+                                                        <button class="btn waves-effect waves-light btn-info" ng-click="Insert_Participantes(Participante_nuevo)">Craer</button>
+                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_participantes()"
+                                                        >Cancelar</button> 
                                                     </td>
 
                                                </tr>

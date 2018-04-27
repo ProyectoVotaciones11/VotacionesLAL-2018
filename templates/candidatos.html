@@ -1,21 +1,22 @@
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
-        <h3 class="text-themecolor">Alumnos</h3>
+        <h3 class="text-themecolor">Candidatos</h3>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
-            <li class="breadcrumb-item active">Alumnos</li>
+            <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio
+            </a></li>
+            <li class="breadcrumb-item active">Candidatos</li>
         </ol>
     </div>
     
 </div>
 
-<div class="row">
+<div class="row">   
     <!-- Column -->
     <div class="col-lg-4 col-xlg-3 col-md-5">
       
         <div class="card">
             <div class="card-block bg-info">
-                <h4 class="text-white card-title">Alumnos</h4>
+                <h4 class="text-white card-title">Candidatos</h4>
                  </div>
             <div class="card-block">
                 <div class="message-box contact-box">
@@ -69,121 +70,169 @@
                     <div class="col-lg-12">
                         <div class="card">
                             <div class="card-block">
-                                <h4 class="card-title"> Table Participantes</h4>
+                                <h4 class="card-title"> Tabla de Candidatos</h4>
 
-                                 <button ng-click="Crear_Candidatos()">Nuevo Participante</button>
+                                 <button ng-click="Mostrar_tabla_De_Crear()">Nuevo Candidato</button>
 
                                 <div class="table-responsive">
                                     <table class="table">
                                         <thead>
                                            <tr>
                                                 <th>#</th>
-                                                <th>Nombres</th>
+                                                <th>Nombre</th>
                                                 <th>Apellido</th>
                                                 <th>Sexo</th>
-                                                <th>Grupo_id</th>
+                                                <th>Grupo</th>
                                                 <th>Foto</th>
-                                                <th>aspiracion_id</th>
-                                                <th>modificar</th>
-
+                                                <th>Aspiracion</th>
+                                                <th>Modificar</th>
 
                                             </tr>
+
                                         </thead>
+
                                         <tbody>
+
                                             <tr ng-repeat="candi in Candidatos">
-                                                <td>{{$index + 1}}</td>
-                                                <td ng-show="!candi.Mostrar_Candidatos">{{candi.Nombres}}</td>
 
-                                                <td ng-show="!candi.Mostrar_Candidatos">{{candi.Apellido}}</td>
+                                                <!--Tabla de candidatos-->
 
-                                                <td ng-show="!candi.Mostrar_Candidatos">{{candi.Sexo}}</td>
-
-                                                <td ng-show="!candi.Mostrar_Candidatos">{{candi.Grupo_id}}</td>
-
-                                                <td ng-show="!candi.Mostrar_Candidatos">{{candi.Foto}}</td>
-
-                                                <td ng-show="!candi.Mostrar_Candidatos">{{candi.aspiracion_id}}</td>
-
-
-
-                                                <td
-                                                 ng-show="candi.Mostrar_Candidatos"> <input class="text-pequenio2" type="text" ng-model="candi.Nombres" name=""> 
-                                                </td>
-                                                <td
-                                                 ng-show="candi.Mostrar_Candidatos"> <input class="text-pequenio2" type="text" ng-model="candi.Apellido" name=""> 
-                                                </td>
-                                                <td
-                                                 ng-show="candi.Mostrar_Candidatos"> <input class="text-pequenio" type="text" ng-model="candi.Sexo" name=""> 
-                                                </td>
-                                                <td
-                                                 ng-show="candi.Mostrar_Candidatos"> <input class="text-pequenio" type="text" ng-model="candi.Grupo_id" name=""> 
-                                                </td>
-                                                <td ng-show="candi.Mostrar_Candidatos">
-
-                                                  <div  class="col-sm-4 form-control text-pequenio2" >
-                                                            
-                                                            <select ng-model="candi.Foto"  >
-
-                                                              <option ng-repeat="vota in votaciones">{{vota.rowid}}</option>
-
-                                                             </select>
-
-                                                        </div>
-
-                                                </td>
-                                                <td 
-                                                 ng-show="candi.Mostrar_Candidatos"> <input class="text-pequenio" type="text" ng-model="candi.aspiracion_id" name=""> 
+                                                <td>
+                                                    {{$index + 1}}
                                                 </td>
 
-                                    
+                                                <td ng-show="!candi.Mostrar_Candidatos">
+                                                     {{candi.Nombres}}
+                                                </td>
 
-                                                   <td>
-                                                    <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Candidatos(candi)">Cambiar</button>
-                                                    <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Candidatos(candi)">X</button>
-                                                </td>  
+                                                <td ng-show="!candi.Mostrar_Candidatos">
+                                                     {{candi.Apellidos}}
+                                                </td>
+
+                                                <td ng-show="!candi.Mostrar_Candidatos">
+                                                     {{candi.Sexo}}
+                                                </td>
+
+                                                <td ng-show="!candi.Mostrar_Candidatos">
+                                                     {{candi.Grupo_id}}
+                                                </td>
+
+                                                <td ng-show="!candi.Mostrar_Candidatos">
+                                                     {{candi.Foto}}
+                                                </td>
+
+                                                <td ng-show="!candi.Mostrar_Candidatos">
+                                                     {{candi.aspiracion}}
+                                                </td>
+
+                                                <td ng-show="!candi.Mostrar_Candidatos">
+
+                                                    <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Candidatos(candi)">
+                                                    Editar</button>
+                                                    <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Candidatos(candi)">
+                                                    Eliminar</button>
+
+                                                </td>
+
+                                                <!--Tabla de editar candidato-->
+
+                                                    <td ng-show="candi.Mostrar_Candidatos"> 
+                                                        <input class="text-pequenio2" type="text" ng-model="candi.Nombres" name=""> 
+                                                    </td>
+
+                                                    <td ng-show="candi.Mostrar_Candidatos"> 
+                                                        <input class="text-pequenio2" type="text" ng-model="candi.Apellidos" name=""> 
+                                                    </td>
+
+                                                    <td ng-show="candi.Mostrar_Candidatos">
+                                                     <input class="text-pequenio" type="text" ng-model="candi.Sexo" name=""> 
+                                                    </td>
+
+                                                    <td ng-show="candi.Mostrar_Candidatos"> 
+                                                        <input class="text-pequenio" type="text" ng-model="candi.Grupo_id" name=""> 
+                                                    </td>
+
+                                                    <td ng-show="candi.Mostrar_Candidatos"> 
+                                                        <input class="text-pequenio" type="text" ng-model="candi.Foto" name=""> 
+                                                    </td>
+
+                                                    <td ng-show="candi.Mostrar_Candidatos">
+
+                                                        <div class="col-sm-4 form-control text-pequenio2" >
+                                                                
+                                                                <select ng-model="candi.aspiracion_id"  >
+                                                                      <option ng-repeat="aspi in Aspiraciones" value="{{aspi.rowid}}">
+                                                                      {{aspi.aspiracion}}
+                                                                      </option>
+                                                                </select>
+
+                                                         </div>
+
+                                                    </td>
+
+                                                    <td ng-show="candi.Mostrar_Candidatos">
+
+                                                        <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Candidatos(candi)">
+                                                        Guardar</button>
+                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Tabla_de_Editar(candi)">
+                                                        Cancelar</button>
+
+                                                    </td>
+
+                                                  <!--Tabla de nuevo candidato-->
                                                
-                                               <tr ng-show="Mostrar_Candiatos_nuevo" >
+                                               <tr ng-show="Mostrar_tabla_crear" >
 
-                                                   <td>
-                                                       #  
-                                                    </td>
+                                                        <td>
+                                                           #  
+                                                        </td>
 
-                                                    <td > <input class="text-pequenio2" type="text" ng-value="Nombres" ng-model="Candidatos_nuevo.Nombres" name=""> 
-                                                    </td>
-                                                    <td > <input class="text-pequenio2" type="text" ng-value="Apellido" ng-model="Candidatos_nuevo.Apellido" name=""> 
-                                                    </td>
-                                                    <td > <input class="text-pequenio" type="text" ng-value="" ng-model="Candidatos_nuevo.Sexo" name=""> 
-                                                    </td>
-                                                    <td ng-show="Mostrar_Candiatos_nuevo"> <input class="text-pequenio" type="text" ng-value="" ng-model="Candidatos_nuevo.Grupo_id" name=""> 
-                                                    </td>
-                                                    <td ng-show="Mostrar_Candiatos_nuevo"> 
+                                                        <td > 
+                                                            <input class="text-pequenio2" type="text" ng-value="Nombres" ng-model="Candidatos_nuevo.Nombres"> 
+                                                        </td>
 
-                                                        <div  class="col-sm-4 form-control text-pequenio2" >
+                                                        <td > 
+                                                            <input class="text-pequenio2" type="text" ng-value="Apellidos" ng-model="Candidatos_nuevo.Apellidos"> 
+                                                        </td>
+
+                                                        <td > 
+                                                            <input class="text-pequenio" type="text" ng-value="" ng-model="Candidatos_nuevo.Sexo"> 
+                                                        </td>
+
+                                                        <td> 
+                                                            <input class="text-pequenio" type="text" ng-value="" ng-model="Candidatos_nuevo.Grupo_id" > 
+                                                        </td>
+
+                                                       <td > 
+                                                            <input class="text-pequenio" type="text" ng-model="Candidatos_nuevo.Foto" name=""> 
+                                                        </td>
+
+                                                        <td >
+
+                                                            <div class="col-sm-4 form-control text-pequenio2" >
+                                                                    
+                                                                    <select ng-model="Candidatos_nuevo.aspiracion_id"  >
+                                                                      <option ng-repeat="aspi in Aspiraciones" value="{{aspi.rowid}}">
+                                                                      {{aspi.aspiracion}}
+                                                                      </option>
+                                                                     </select>
+
+                                                             </div>
+
+                                                        </td>
+
+                                                        <td >
+
+                                                            <button class="btn waves-effect waves-light btn-info " ng-click="Insert_Candidatos(Candidatos_nuevo)">Crear</button>
+                                                            <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Candidatos()"
+                                                            >Cancelar</button>
                                                             
-                                                            <select ng-model="Candidatos_nuevo.Foto"  >
-
-                                                              <option ng-repeat="vota in votaciones">{{vota.rowid}}</option>
-
-                                                             </select>
-
-                                                        </div>
-                                                
-
-                                                    </td>
-                                                    <td ng-show="Mostrar_Candiatos_nuevo"> <input class="text-pequenio" type="text" ng-value="" ng-model="Candidatos_nuevo.aspiracion_id" name=""> 
-                                                    
-
-                                                    <td ng-show="Mostrar_Candiatos_nuevo">
-                                                        <button class="btn waves-effect waves-light btn-info " ng-click="Insert_Candidatos(Candidatos_nuevo)">Guardar</button>
-                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Candidatos()">X</button>
-                                                        
-                                                    </td>
+                                                        </td>
 
                                                </tr>
                                                 
                                             </tr>
-                                           
-                                                                                  
+                                                                                
                                         </tbody>
                                     </table>
                                 </div>

@@ -10,7 +10,7 @@ angular.module('votacioneslive')
     
 
      sqlParticipantes = "CREATE TABLE IF NOT EXISTS Participantes (id integer," +
-                    "Nombres varchar(100)  NOT NULL collate nocase," +
+                    "Nombre varchar(100)  NOT NULL collate nocase," +
                     "Apellido varchar(100)  NOT NULL collate nocase," +
                     "Sexo varchar(1)  DEFAULT NULL collate nocase," +
                     "Grupo_id integer (100)  DEFAULT NULL collate nocase," +
@@ -19,7 +19,7 @@ angular.module('votacioneslive')
      
      sqlCandidatos = "CREATE TABLE IF NOT EXISTS Candidatos (id integer," +
                     "Nombres varchar(100)  NOT NULL collate nocase," +
-                    "Apellido varchar(100)  NOT NULL collate nocase," +
+                    "Apellidos varchar(100)  NOT NULL collate nocase," +
                     "Sexo varchar(1)  DEFAULT NULL collate nocase," +
                     "Grupo_id integer (100)  DEFAULT NULL collate nocase," +
                     "Foto integer(1)  DEFAULT NULL collate nocase," +

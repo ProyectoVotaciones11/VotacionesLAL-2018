@@ -5,6 +5,10 @@ angular.module('votacioneslive')
 	$scope.Mostrar_Votaciones = false;
 	$scope.Votaciones_nuevo = {};
 	$scope.Mostrar_tabla_crear = false;
+	$scope.Cambiar_contrasena = false;
+	$scope.Primera_password = false;
+	$scope.Comfirmar_Primera_password = false;
+
 
 		ConexionServ.createTables();
 
@@ -33,7 +37,7 @@ angular.module('votacioneslive')
 			return;
 		}
 
-			ConexionServ.query("INSERT INTO votaciones( Nombres,  Alias, descripcion, Username, Password ) VALUES( ?, ?, ?, ?, ?)", [crear.Nombres, crear.Alias, crear.descripcion, crear.Username, crear.Password]).then(function(result){
+			ConexionServ.query("INSERT INTO votaciones( Nombres,  Alias, descripcion, Username, Password ) VALUES( ?, ?, ?, ?, ?)", [crear.Nombres, crear.Alias, crear.descripcion, crear.Username, "123"]).then(function(result){
 			
 					console.log(' Participantes creado ', result);
 
@@ -105,5 +109,42 @@ angular.module('votacioneslive')
 		$scope.Mostrar_tabla_crear = false;
 
 		}
+
+	$scope.Mostrar_Cambiar_contrasena = function(modificar, Primera_password, Comfirmar_Primera_password){
+
+		if(modificar.Cambiar_contrasena == true){
+			modificar.Cambiar_contrasena = false;
+
+			if (modificar.Primera_password == modificar.Comfirmar_Primera_password) {
+
+				ConexionServ.query("UPDATE Votaciones  SET  Password=? WHERE rowid=? ", [ modificar.Primera_password,  modificar.rowid]).then(function(result){
+				console.log("hola")
+
+						$scope.Tabla_Votaciones();	
+
+					}, function(tx){
+						console.log('error', tx);
+					});
+
+			}else{
+				console.log("nulo")
+			}
+
+			return
+		}
+
+			for (var i = 0; i < $scope.votaciones.length; i++) {
+			$scope.votaciones[i].Cambiar_contrasena = false;
+		}
+		modificar.Cambiar_contrasena = true;
+
+
+		}
+
+	$scope.ocultar_Cambiar_contrasena = function(modificar){
+		
+		modificar.Cambiar_contrasena = false;
+
+	}
 
 })

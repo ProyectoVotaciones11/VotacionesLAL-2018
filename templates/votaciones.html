@@ -82,7 +82,6 @@
                                                 <th>Alias</th>
                                                 <th>Descripcion</th>
                                                 <th>Username</th>
-                                                <th>Password</th>
                                                 <th>Modificar</th>
 
                                             </tr>
@@ -113,15 +112,13 @@
                                                          {{vota.Username}}
                                                     </td>
 
-                                                    <td ng-show="!vota.Mostrar_Votaciones">
-                                                         {{vota.Password}}
-                                                    </td>
-
+                                                    
                                                     <td ng-show="!vota.Mostrar_Votaciones">
                                                         <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Votaciones(vota)">
                                                         Editar</button>
                                                         <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Votaciones(vota)">
                                                         Eliminar</button>
+                                                        
                                                     </td> 
 
                                                     <!-- Tabla de editar votaciones  -->
@@ -142,15 +139,14 @@
                                                          <input class="text-pequenio2" type="text" ng-model="vota.Username" name=""> 
                                                     </td>
 
-                                                    <td ng-show="vota.Mostrar_Votaciones"> 
-                                                         <input class="text-pequenio2" type="text" ng-model="vota.Password" name=""> 
-                                                    </td>
                         
                                                     <td ng-show="vota.Mostrar_Votaciones">
                                                         <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Votaciones(vota)">
                                                         Guardar</button>
                                                         <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Tabla_de_Editar(vota)">
                                                         Cancelar</button>
+                                                         <button class="btn waves-effect waves-light btn-warming " ng-click="Mostrar_Cambiar_contrasena(vota)">
+                                                        Cambiar Contraseña</button>
                                                     </td>  
 
                                                 <!-- Tabla de crear Votaciones  -->
@@ -160,6 +156,7 @@
                                                    <td>
                                                        #  
                                                     </td>
+
 
                                                     <td > 
                                                         <input class="text-pequenio2" type="text" ng-value="Nombres" ng-model="Votaciones_nuevo.Nombres" >
@@ -177,22 +174,35 @@
                                                          <input class="text-pequenio2" type="text" ng-value="Username" ng-model="Votaciones_nuevo.Username" > 
                                                     </td>
 
-                                                    <td > 
-                                                        <input class="text-pequenio2" type="text" ng-value="Password" ng-model="Votaciones_nuevo.Password"> 
-                                                    </td>
-
                                                     <td >
                                                         <button class="btn waves-effect waves-light btn-info " ng-click="Insert_Votaciones(Votaciones_nuevo)">Guardar</button>
-                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Votaciones()">
+                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Votacion()">
                                                         Cancelar</button>
                                                     </td>
 
                                                </tr>
-                                                
-                                            </tr>
-                                                                                  
+   
+                                            </tr>                                      
                                         </tbody>
                                     </table>
+
+                                             <div ng-repeat="vota in votaciones">
+                                                            
+                                                     <div ng-show="vota.Cambiar_contrasena"> 
+
+                                                        <label>Password</label>
+                                                             <input  type="text" ng-model="vota.Primera_password" name="">
+
+                                                         <label>Confimar Password</label>
+                                                             <input  type="text" ng-model="vota.Comfirmar_Primera_password" name=""> 
+
+                                                         <button ng-click="ocultar_Cambiar_contrasena(vota)">cancelar</button>
+
+                                                         <button ng-click="Mostrar_Cambiar_contrasena(vota, Primera_password, Comfirmar_Primera_password)">Cambiar</button>
+
+                                                    </div>
+
+                                             </div>
                                 </div>
                             </div>
                         </div>

@@ -4,17 +4,34 @@ angular.module('votacioneslive')
 
 	$scope.Mostrar_Candidatos = false;
 	$scope.Candidatos_nuevo = {};
-	$scope.Mostrar_Candiatos_nuevo = false;
+	$scope.Mostrar_tabla_crear = false;
 
 	ConexionServ.createTables();
 
-	ConexionServ.query("SELECT rowid, id,  Nombres, Apellido, Sexo, Grupo_id,  Foto, aspiracion_id from Candidatos", []).then(function(result){
+	$scope.Tabla_candidatos = function(){
+
+		ConexionServ.query("SELECT C.*, C.rowid, a.aspiracion from Candidatos C INNER JOIN Aspiraciones a ON C.aspiracion_id = a.rowid ", []).then(function(result){
 			$scope.Candidatos = result;
 			console.log(' tabla Candidatos ', result);
 
 		}, function(tx){
 			console.log('error', tx);
 		});
+
+	}
+
+	$scope.Tabla_candidatos();
+
+	ConexionServ.query("SELECT *, rowid from Aspiraciones", []).then(function(result){
+			$scope.Aspiraciones = result;
+			console.log(' tabla Aspiraciones ', result);
+
+		}, function(tx){
+			console.log('error', tx);
+		});
+
+
+
 
 	$scope.Insert_Candidatos = function(crear){
 
@@ -27,73 +44,86 @@ angular.module('votacioneslive')
 			return;
 		}
 
-		ConexionServ.query("INSERT INTO Candidatos( Nombres, Apellido, Sexo, Grupo_id,  Foto, aspiracion_id ) VALUES( ?, ?, ?, ?, ?, ?)", [crear.Nombres, crear.Apellido, crear.Sexo, crear.Grupo_id, crear.Foto, crear.aspiracion_id]).then(function(result){
+		ConexionServ.query("INSERT INTO Candidatos( Nombres, Apellidos, Sexo, Grupo_id,  Foto, aspiracion_id ) VALUES( ?, ?, ?, ?, ?, ?)", [crear.Nombres, crear.Apellidos, crear.Sexo, crear.Grupo_id, crear.Foto, crear.aspiracion_id]).then(function(result){
 		
 			console.log(' Participantes creado ', result);
 
-			$scope.Mostrar_Candiatos_nuevo = false;
+					$scope.Tabla_candidatos();
 
-			$scope.Candidatos_nuevo = {};
+					$scope.Mostrar_tabla_crear = false;
+
+					$scope.Candidatos_nuevo = {};
 
 
-		}, function(tx){
-			console.log('error', tx);
-		});
+				}, function(tx){
+					console.log('error', tx);
+				});
 
 		}
 
 	$scope.Delete_Candidatos = function(candidatos){
 
 		ConexionServ.query("DELETE FROM Candidatos WHERE rowid=? ", [candidatos.rowid]).then(function(result){
-		
-		 $scope.Candidatos = $filter('filter') ($scope.Candidatos, {rowid: '!' + candidatos.rowid})
+				
+				 $scope.Candidatos = $filter('filter') ($scope.Candidatos, {rowid: '!' + candidatos.rowid})
 
-		}, function(tx){
-			console.log('error', tx);
-		});
+				 $scope.Tabla_candidatos();
+
+			}, function(tx){
+				console.log('error', tx);
+			});
 
 		}
 
 	$scope.Modificar_Candidatos = function(modificar){
+
 		if(modificar.Mostrar_Candidatos == true){
 			modificar.Mostrar_Candidatos = false;
 
-			ConexionServ.query("UPDATE Candidatos  SET  Nombres=? , Apellido=? , Sexo=? , Grupo_id=? , Foto=?, aspiracion_id=? WHERE rowid=? ", [modificar.Nombres, modificar.Apellido, modificar.Sexo, modificar.Grupo_id, modificar.Foto , modificar.aspiracion_id, modificar.rowid]).then(function(result){
-				console.log("hola")
+				ConexionServ.query("UPDATE Candidatos  SET  Nombres=? , Apellidos=? , Sexo=? , Grupo_id=? , Foto=?, aspiracion_id=? WHERE rowid=? ", [modificar.Nombres, modificar.Apellidos, modificar.Sexo, modificar.Grupo_id, modificar.Foto , modificar.aspiracion_id, modificar.rowid]).then(function(result){
+								
+								$scope.Tabla_candidatos();
 
-				}, function(tx){
-					console.log('error', tx);
-				});
-			return
+								console.log("hola")
+
+						}, function(tx){
+							console.log('error', tx);
+					});
+		return
+
 		}
+
 		
-		for (var i = 0; i < $scope.Candidatos.length; i++) {
-			$scope.Candidatos[i].Mostrar_Candidatos = false;
+				for (var i = 0; i < $scope.Candidatos.length; i++) {
+					$scope.Candidatos[i].Mostrar_Candidatos = false;
+
+				}
 
 
-		}
+				modificar.Mostrar_Candidatos = true;
 
-		modificar.Mostrar_Candidatos = true;
-
-			
 
 	}
 
-	$scope.Crear_Candidatos = function(){
+	$scope.Ocultar_Tabla_de_Editar = function(modificar){
 		
-		$scope.Mostrar_Candiatos_nuevo = true;
+		if(modificar.Mostrar_Candidatos == true){
+			modificar.Mostrar_Candidatos = false;
 
-	}
-
-
-	$scope.Ocultar_Candidatos = function(){
-			
-		$scope.Mostrar_Candiatos_nuevo = false;
+				};
 
 		}
 
-	
+	$scope.Mostrar_tabla_De_Crear = function(){
+		
+		$scope.Mostrar_tabla_crear = true;
 
+		}
 
+	$scope.Ocultar_Candidato = function(){
+			
+		$scope.Mostrar_tabla_crear = false;
+
+		}
 
 })

@@ -4,29 +4,35 @@ angular.module('votacioneslive')
 
 	$scope.Mostrar_Participantes = false;
 	$scope.Participante_nuevo = {};
-	$scope.Mostrar_Crear_participante = false;
+	$scope.Mostrar_tabla_crear = false;
 
 	ConexionServ.createTables();
 
-	ConexionServ.query("SELECT rowid, id,  Nombres, Apellido, Sexo, Grupo_id, Votacion_id, Tipo from Participantes", []).then(function(result){
+	$scope.Tabla_Participantes = function(){
+		ConexionServ.query("SELECT P.*, P.rowid, V.Nombres from Participantes P INNER JOIN votaciones V ON P.Votacion_id = V.rowid", []).then(function(result){
+
 			$scope.Participantes = result;
 			console.log(' tabla Participantes ', result);
 
 		}, function(tx){
 			console.log('error', tx);
 		});
+	}
+
+		$scope.Tabla_Participantes();
 
 		ConexionServ.query("SELECT rowid, id,  Nombres,  Alias, descripcion, Username, Password from votaciones", []).then(function(result){
-			$scope.votaciones = result;
-			console.log(' tabla votaciones ', result);
 
-		}, function(tx){
-			console.log('error', tx);
-		});
+				$scope.votaciones = result;
+				console.log(' tabla votaciones ', result);
+
+			}, function(tx){
+				console.log('error', tx);
+			});
 
 	$scope.Insert_Participantes = function(crear){
 
-		if (crear.Nombres == undefined) {
+		if (crear.Nombre == undefined) {
 			console.log("esta nulo");
 			return;
 		}
@@ -35,47 +41,46 @@ angular.module('votacioneslive')
 			return;
 		}
 
-		
-		ConexionServ.query("INSERT INTO Participantes( Nombres, Apellido, Sexo, Grupo_id, Votacion_id, Tipo ) VALUES( ?, ?, ?, ?, ?, ?)", [crear.Nombres, crear.Apellido, crear.Sexo, crear.Grupo_id, crear.Votacion_id, crear.Tipo]).then(function(result){
-		
-			console.log(' Participantes creado ', result);
+			ConexionServ.query("INSERT INTO Participantes( Nombre, Apellido, Sexo, Grupo_id, Votacion_id, Tipo ) VALUES( ?, ?, ?, ?, ?, ?)", [crear.Nombre, crear.Apellido, crear.Sexo, crear.Grupo_id, crear.Votacion_id, crear.Tipo]).then(function(result){
+			
+					console.log(' Participantes creado ', result);
 
-			$scope.Mostrar_Crear_participante = false;
+					$scope.Mostrar_tabla_crear = false;
 
-			$scope.Participante_nuevo = {};
+					$scope.Participante_nuevo = {};
 
-		}, function(tx){
-			console.log('error', tx);
-		});
+					$scope.Tabla_Participantes();
 
-
+				}, function(tx){
+					console.log('error', tx);
+				});
 
 		}
 
 	$scope.Delete_Participantes = function(participantes){
 
+		ConexionServ.query("DELETE FROM Participantes WHERE rowid=? ", [participantes.rowid]).then(function(result){
 		
+				 $scope.Participantes = $filter('filter') ($scope.Participantes, {rowid: '!' + participantes.rowid})
 
-			ConexionServ.query("DELETE FROM Participantes WHERE rowid=? ", [participantes.rowid]).then(function(result){
-		
-		 $scope.Participantes = $filter('filter') ($scope.Participantes, {rowid: '!' + participantes.rowid})
+				 $scope.Tabla_Participantes();
 
-		}, function(tx){
-			console.log('error', tx);
-		});
-
-		
-
-		
+			}, function(tx){
+				console.log('error', tx);
+			});
 
 		}
 
 	$scope.Modificar_Participante = function(modificar){
+
 		if(modificar.Mostrar_Participante == true){
 			modificar.Mostrar_Participante = false;
 
-			ConexionServ.query("UPDATE Participantes  SET  Nombres=? , Apellido=? , Sexo=? , Grupo_id=? , Votacion_id=? , Tipo=? WHERE rowid=? ", [modificar.Nombres, modificar.Apellido, modificar.Sexo, modificar.Grupo_id, modificar.Votacion_id, modificar.Tipo , modificar.rowid]).then(function(result){
-				console.log("hola")
+			ConexionServ.query("UPDATE Participantes  SET  Nombre=? , Apellido=? , Sexo=? , Grupo_id=? , Votacion_id=? , Tipo=? WHERE rowid=? ", [modificar.Nombre, modificar.Apellido, modificar.Sexo, modificar.Grupo_id, modificar.Votacion_id, modificar.Tipo , modificar.rowid]).then(function(result){
+					
+					console.log("hola")
+
+					$scope.Tabla_Participantes();
 
 				}, function(tx){
 					console.log('error', tx);
@@ -95,18 +100,26 @@ angular.module('votacioneslive')
 
 	}
 
-	$scope.Crear_participante = function(){
+	$scope.Ocultar_Tabla_de_Editar = function(modificar){
 		
-		$scope.Mostrar_Crear_participante = true;
+		if(modificar.Mostrar_Participante == true){
+			modificar.Mostrar_Participante = false;
+
+				};
 
 		}
 
-	$scope.Ocultar_participantes = function(){
+	$scope.Mostrar_tabla_De_Crear = function(){
+		
+		$scope.Mostrar_tabla_crear = true;
+
+		}
+
+	$scope.Ocultar_Candidato = function(){
 			
-		$scope.Mostrar_Crear_participante = false;
+		$scope.Mostrar_tabla_crear = false;
 
 		}
-	
 
 
 

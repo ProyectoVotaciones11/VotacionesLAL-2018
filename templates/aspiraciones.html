@@ -1,9 +1,9 @@
 <div class="row page-titles">
     <div class="col-md-5 col-8 align-self-center">
-        <h3 class="text-themecolor">Alumnos</h3>
+        <h3 class="text-themecolor">Aspiraciones</h3>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
-            <li class="breadcrumb-item active">Alumnos</li>
+            <li class="breadcrumb-item active">Aspiraciones</li>
         </ol>
     </div>
     
@@ -15,7 +15,7 @@
       
         <div class="card">
             <div class="card-block bg-info">
-                <h4 class="text-white card-title">Alumnos</h4>
+                <h4 class="text-white card-title">Aspiraciones</h4>
                  </div>
             <div class="card-block">
                 <div class="message-box contact-box">
@@ -52,7 +52,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs profile-tab" role="tablist">
                 <li class="nav-item"> <a class="nav-link active" data-toggle="tab" href="#Actualizaciones" role="tab">Actualizaciones</a> </li>
-                <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#Alumnos" role="tab">Alumnos</a> </li>
+                <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#Alumnos" role="tab">Aspiraciones</a> </li>
                 <li class="nav-item"> <a class="nav-link " data-toggle="tab" href="#settings" role="tab">Configuraciones</a> </li>
             </ul>
         
@@ -71,44 +71,45 @@
                             <div class="card-block">
                                 <h4 class="card-title"> Table Aspiraciones</h4>
 
-                                 <button ng-click="Crear_Aspiraciones()">Nueva Aspiracion</button>
+                                 <button ng-click="Mostrar_tabla_De_Crear()">Nueva Aspiracion</button>
 
                                 <div class="table-responsive">
                                     <table class="table">
-                                        <thead>
-                                           <tr>
-                                                <th>#</th>
-                                                <th>aspiracion</th>
-                                                <th>descripcion</th>
-                                                <th>modificar</th>
-
-                                            </tr>
-                                        </thead>
+                                            <thead>
+                                               <tr>
+                                                    <th>#</th>
+                                                    <th>Aspiracion</th>
+                                                    <th>Descripcion</th>
+                                                    <th>Modificar</th>
+                                                </tr>
+                                            </thead>
                                         <tbody>
                                             <tr ng-repeat="aspi in Aspiraciones">
-                                                <td>{{$index + 1}}</td>
-                                                <td ng-show="!aspi.Mostrar_Aspiraciones">{{aspi.aspiracion}}</td>
 
-                                                <td ng-show="!aspi.Mostrar_Aspiraciones">{{aspi.descripcion}}</td>
+                                                <!-- Tabla Aspiraciones  -->
 
-                                                    <td
-                                                     ng-show="aspi.Mostrar_Aspiraciones"> <input class="text-pequenio2" type="text" ng-model="aspi.aspiracion" name=""> 
+                                                    <td>
+                                                    {{$index + 1}}
                                                     </td>
+<<<<<<< HEAD
                                                     <td
                                                      ng-show="aspi.Mostrar_Aspiraciones"> <input class="text-Grande" type="text" ng-model="aspi.descripcion" name=""> 
+=======
+
+                                                    <td ng-show="!aspi.Mostrar_Aspiraciones">
+                                                    {{aspi.aspiracion}}
+>>>>>>> 64f224c33458e2c1c78276a79416c5487f50f848
                                                     </td>
 
-                                                <td>
-                                                    <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Aspiraciones(aspi)">Cambiar</button>
-                                                    <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Aspiraciones(aspi)">X</button>
-                                                </td>  
-                                               
-                                               <tr ng-show="Mostrar_Crear_Aspiraciones" >
+                                                    <td ng-show="!aspi.Mostrar_Aspiraciones">
+                                                        {{aspi.descripcion}}
+                                                    </td >
 
-                                                   <td>
-                                                       #  
-                                                    </td>
+                                                    <td ng-show="!aspi.Mostrar_Aspiraciones">
+                                                         <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Aspiraciones(aspi)"
+                                                         >Editar</button>
 
+<<<<<<< HEAD
                                                     <td > <input class="text-pequenio2" type="text" ng-value="aspiracion" ng-model="nueva_Aspiraciones.aspiracion" name=""> 
                                                     </td>
                                                     <td > <input class="text-Grande" type="text" ng-value="descripcion" ng-model="nueva_Aspiraciones.descripcion" name=""> 
@@ -118,7 +119,52 @@
                                                         <button class="btn waves-effect waves-light btn-info " ng-click="Insert_Aspiraciones(nueva_Aspiraciones)">Guardar</button>
                                                         <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Aspiraciones()">X</button>
                                                         
+=======
+                                                         <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Aspiraciones(aspi)"
+                                                         >Eliminar</button>
+>>>>>>> 64f224c33458e2c1c78276a79416c5487f50f848
                                                     </td>
+
+                                                <!-- Tabla de editar -->
+
+                                                        <td ng-show="aspi.Mostrar_Aspiraciones"> 
+                                                         <input class="text-pequenio2" type="text" ng-model="aspi.aspiracion" name=""> 
+                                                        </td>
+
+                                                        <td ng-show="aspi.Mostrar_Aspiraciones"> 
+                                                         <input class="text-pequenio2" type="text" ng-model="aspi.descripcion" name=""> 
+                                                        </td>
+
+                                                        <td ng-show="aspi.Mostrar_Aspiraciones">
+                                                            <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Aspiraciones(aspi)"
+                                                            >Guardar</button>
+
+                                                            <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Tabla_de_Editar(aspi)"
+                                                            >Cancelar</button>
+                                                        </td> 
+
+                                               <!-- Tabla de crear -->
+
+                                                    <tr ng-show="Mostrar_tabla_crear" >
+
+                                                        <td>
+                                                           #  
+                                                        </td>
+
+                                                        <td > 
+                                                            <input class="text-pequenio2" type="text" ng-value="aspiracion" ng-model="nueva_Aspiraciones.aspiracion" name=""> 
+                                                        </td>
+
+                                                        <td > 
+                                                            <input class="text-pequenio2" type="text" ng-value="descripcion" ng-model="nueva_Aspiraciones.descripcion" name=""> 
+                                                        </td>
+
+                                                        <td >
+                                                            <button class="btn waves-effect waves-light btn-info " ng-click="Insert_Aspiraciones(nueva_Aspiraciones)">Guardar</button>
+
+                                                            <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Aspiraciones()">Cancelar</button>
+
+                                                        </td>
 
                                                </tr>
                                                 

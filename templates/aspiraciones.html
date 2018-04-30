@@ -91,14 +91,14 @@
                                                     <td>
                                                     {{$index + 1}}
                                                     </td>
-<<<<<<< HEAD
+
                                                     <td
                                                      ng-show="aspi.Mostrar_Aspiraciones"> <input class="text-Grande" type="text" ng-model="aspi.descripcion" name=""> 
-=======
+
 
                                                     <td ng-show="!aspi.Mostrar_Aspiraciones">
                                                     {{aspi.aspiracion}}
->>>>>>> 64f224c33458e2c1c78276a79416c5487f50f848
+
                                                     </td>
 
                                                     <td ng-show="!aspi.Mostrar_Aspiraciones">
@@ -109,20 +109,17 @@
                                                          <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Aspiraciones(aspi)"
                                                          >Editar</button>
 
-<<<<<<< HEAD
-                                                    <td > <input class="text-pequenio2" type="text" ng-value="aspiracion" ng-model="nueva_Aspiraciones.aspiracion" name=""> 
-                                                    </td>
-                                                    <td > <input class="text-Grande" type="text" ng-value="descripcion" ng-model="nueva_Aspiraciones.descripcion" name=""> 
-                                                    </td>
+                                                         <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Aspiraciones(aspi)"
+                                                         >Eliminar</button>
+
  
                                                     <td ng-show="Mostrar_Crear_Aspiraciones">
                                                         <button class="btn waves-effect waves-light btn-info " ng-click="Insert_Aspiraciones(nueva_Aspiraciones)">Guardar</button>
                                                         <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Aspiraciones()">X</button>
                                                         
-=======
-                                                         <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Aspiraciones(aspi)"
-                                                         >Eliminar</button>
->>>>>>> 64f224c33458e2c1c78276a79416c5487f50f848
+
+                                                         
+
                                                     </td>
 
                                                 <!-- Tabla de editar -->

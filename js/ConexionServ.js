@@ -15,6 +15,8 @@ angular.module('votacioneslive')
                     "Sexo varchar(1)  DEFAULT NULL collate nocase," +
                     "Grupo_id integer (100)  DEFAULT NULL collate nocase," +
                     "Votacion_id integer(100)  DEFAULT NULL collate nocase," +
+                    "Username varchar (100)  DEFAULT NULL collate nocase," +
+                    "Password varchar(100)  NOT NULL,"+
                     "Tipo varchar(100)  NOT NULL)";
      
      sqlCandidatos = "CREATE TABLE IF NOT EXISTS Candidatos (id integer," +

@@ -1,6 +1,6 @@
 angular.module('votacioneslive')
 
-.controller('AspiracionesCtrl', function($scope,ConexionServ,$filter){
+.controller('AspiracionesCtrl', function($scope,ConexionServ,$filter, $uibModal){
 
 	$scope.Mostrar_Aspiraciones = false;
 	$scope.nueva_Aspiraciones = {};
@@ -114,6 +114,26 @@ angular.module('votacioneslive')
 		$scope.Mostrar_tabla_crear = false;
 
 		}
+
+	$scope.open = function (size, parentSelector) {
+
+    var parentElem = parentSelector ? 
+      angular.element($document[0].querySelector('.modal-demo ' + parentSelector)) : undefined;
+    var modalInstance = $uibModal.open({
+     
+      ariaLabelledBy: 'modal-title',
+      ariaDescribedBy: 'modal-body',
+      size: size,
+      appendTo: parentElem,
+      resolve: {
+        items: function () {
+          return ;
+        }
+      }
+    });
+
+  }
+
 	
 
 

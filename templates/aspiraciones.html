@@ -62,6 +62,10 @@
                 <div class="tab-pane active" id="Actualizaciones" role="tabpanel">
                     <div class="card-block">
                         <div class="row">
+
+        <div >
+            <button type="button" class="btn btn-default" ng-click="open()">Open me!</button>
+        </div>
                             
 
             <div class="row">
@@ -91,11 +95,7 @@
                                                     <td>
                                                     {{$index + 1}}
                                                     </td>
-
-                                                    <td
-                                                     ng-show="aspi.Mostrar_Aspiraciones"> <input class="text-Grande" type="text" ng-model="aspi.descripcion" name=""> 
-
-
+                                                    
                                                     <td ng-show="!aspi.Mostrar_Aspiraciones">
                                                     {{aspi.aspiracion}}
 
@@ -115,10 +115,7 @@
  
                                                     <td ng-show="Mostrar_Crear_Aspiraciones">
                                                         <button class="btn waves-effect waves-light btn-info " ng-click="Insert_Aspiraciones(nueva_Aspiraciones)">Guardar</button>
-                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Aspiraciones()">X</button>
-                                                        
-
-                                                         
+                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Aspiraciones()">X</button>            
 
                                                     </td>
 

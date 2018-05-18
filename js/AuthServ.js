@@ -41,14 +41,13 @@ angular.module('votacioneslive')
         loguear: function(datos){
             var defered = $q.defer();
             
-            ar consulta_user = 'SELECT p.rowid, p.id, p.Nombres, p.Apellidos, p.Tipo, p.Username, p.Sexo, p.distrito_id, p.iglesia_id, p.celular,  '+
-                'd.nombre as distrito_nombre, d.alias as distrito_alias, i.nombre as iglesia_nombre, i.alias as iglesia_alias '+
+            var consulta_user = 'SELECT p.rowid, p.id, p.Nombre, p.Apellido, p.Tipo, p.Username, p.Sexo, p.Grupo_id, p.Votacion_id, ' +
+                'v.Nombre as Nombre_votacion, v.alias, v.descripcion, v.Username as Username_votacion, v.Password '+
             'FROM Participantes p '+
-            'LEFT JOIN distritos d ON d.rowid=p.distrito_id '+
-            'LEFT JOIN iglesias i ON i.rowid=p.iglesia_id '+
+            'LEFT JOIN Votaciones v ON v.rowid=p.Votacion_id '+
             'WHERE  ';
 
-            ConexionServ.query(consulta_user+' username=? and password=? ', [datos.username, datos.password]).then(function(result){
+            ConexionServ.query(consulta_user+' p.username=? and p.password=? ', [datos.username, datos.password]).then(function(result){
                 
                 if (result.length > 0) {
                     localStorage.logueado   = true

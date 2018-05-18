@@ -22,6 +22,8 @@ angular.module('votacioneslive')
    		ConexionServ.query(consulta, []).then(function(result) {
 			if (result.length == 0) {
 				
+				//Candidatos
+
 				consulta = "INSERT INTO Participantes(Nombre, Apellido, Username, Password, Tipo, Sexo) VALUES(?,?,?,?,?,?) ";
 				ConexionServ.query(consulta, ['JORGE', 'CELEDON', 'jorge',  '123', 'Admin', 'M']).then(function(result) {
 		
@@ -53,8 +55,9 @@ angular.module('votacioneslive')
 					console.log("Dato original no insertado", tx);
 				});
 
+				//Candidatos
 
-				consulta = "INSERT INTO Candidatos( Nombres, Apellidos,  Foto, aspiracion_id, Sexo ) VALUES( ?, ?, ?, ?, ?, ?) ";
+				consulta = "INSERT INTO Candidatos( Nombres, Apellidos,  Foto, aspiracion_id, Sexo ) VALUES( ?, ?, ?, ?, ?) ";
 				ConexionServ.query(consulta, ['JORGE', 'CELEDON', '2', '3', 'M']).then(function(result) {
 		
 				}, function(tx) {
@@ -85,69 +88,16 @@ angular.module('votacioneslive')
 					console.log("Dato original no insertado", tx);
 				});
 
-				
-				
-				// Distritos
-				
-				consulta = "INSERT INTO distritos(nombre, alias, zona, pastor_id) VALUES(?,?,?,?) ";
-				ConexionServ.query(consulta, ['TAME ORIENTAL', 'TAM-ORI', 'TAME',  1]).then(function(result) {
+				// VOTACIONES
+
+				consulta = "INSERT INTO Votaciones( Nombre, Alias, Descripcion, Password) VALUES( ?, ?, ?, ?) ";
+				ConexionServ.query(consulta, ['VOTACIONES ESTUDIANTILES 2019', 'VOT19', 'Para eligir personero y demás.', 123]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 				
-				ConexionServ.query(consulta, ['TAME CENTRAL', 'TAM-CEN', 'TAME',  3]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-				
-				ConexionServ.query(consulta, ['EMMANUEL TAME', 'EMM-TAME', 'TAME',  5]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-				
-				
-				// Iglesias
-				
-				consulta = "INSERT INTO iglesias(nombre, alias, distrito_id) VALUES(?,?,?) ";
-				ConexionServ.query(consulta, ['EMAUS', 'EMAUS', 2]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-				
-				ConexionServ.query(consulta, ['HEBRÓN', 'HEBRÓN', 2]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-				
-				ConexionServ.query(consulta, ['LAS BRISAS DE SATENA', 'BRISAS', 2]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-				
-				ConexionServ.query(consulta, ['EMMANUEL', 'EMMANUEL', 3]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-				
-				ConexionServ.query(consulta, ['EFESO', 'EFESO', 1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-				
-				ConexionServ.query(consulta, ['EBENEZER', 'EBENEZER', 1]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-				
+
 			}
 			
         }, function(tx) {
@@ -158,6 +108,5 @@ angular.module('votacioneslive')
 	
 	$scope.insertar_datos_iniciales();
 	
-	
-    
+ 
 })

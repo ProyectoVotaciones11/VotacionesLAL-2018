@@ -27,8 +27,8 @@ angular.module('votacioneslive')
                     "Foto integer(1)  DEFAULT NULL collate nocase," +
                     "aspiracion_id varchar(100)  NOT NULL)";
      
-     sqlVotaciones = "CREATE TABLE IF NOT EXISTS votaciones (id integer," +
-                    "Nombres varchar(100)  NOT NULL collate nocase," +
+     sqlVotaciones = "CREATE TABLE IF NOT EXISTS Votaciones (id integer," +
+                    "Nombre varchar(100)  NOT NULL collate nocase," +
                     "Alias varchar(100)  NOT NULL collate nocase," +
                     "descripcion varchar(100)  DEFAULT NULL collate nocase," +
                     "Username varchar (100)  DEFAULT NULL collate nocase," +

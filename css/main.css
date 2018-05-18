@@ -71,42 +71,8 @@ ul, li {
 
 
 /*---------------------------------------------*/
-input {
-	outline: none;
-	border: none;
-}
 
-textarea {
-  outline: none;
-  border: none;
-}
-
-textarea:focus, input:focus {
-  border-color: transparent !important;
-}
-
-input::-webkit-input-placeholder { color: #8f8fa1;}
-input:-moz-placeholder { color: #8f8fa1;}
-input::-moz-placeholder { color: #8f8fa1;}
-input:-ms-input-placeholder { color: #8f8fa1;}
-
-textarea::-webkit-input-placeholder { color: #8f8fa1;}
-textarea:-moz-placeholder { color: #8f8fa1;}
-textarea::-moz-placeholder { color: #8f8fa1;}
-textarea:-ms-input-placeholder { color: #8f8fa1;}
-
-label {
-  display: block;
-  margin: 0;
-}
-
-/*---------------------------------------------*/
-button {
-	outline: none !important;
-	border: none;
-	background: transparent;
-}
-
+tex
 button:hover {
 	cursor: pointer;
 }

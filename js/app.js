@@ -23,7 +23,13 @@ angular.module('votacioneslive', [
 	var panel = {
 		name: 'panel',
 		url: '/panel',
-		templateUrl: 'templates/panel.html'
+		templateUrl: 'templates/panel.html',
+		controller: 'PanelCtrl',
+		resolve: {
+			USER: ['AuthServ', function(AuthServ){
+				return AuthServ.verificar_user_logueado();
+			}]
+		}
 	}
 
 	var Login = {

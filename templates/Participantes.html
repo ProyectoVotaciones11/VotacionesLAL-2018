@@ -11,44 +11,8 @@
 </div>
 
 <div class="row">
-    <!-- Column -->
-    <div class="col-lg-4 col-xlg-3 col-md-5">
-      
-        <div class="card">
-            <div class="card-block bg-info">
-                <h4 class="text-white card-title">Participantes</h4>
-                 </div>
-            <div class="card-block">
-                <div class="message-box contact-box">
-                    <h2  class="add-ct-btn">
-                        <button type="button" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button>
-                    </h2>
-                    <div class="message-widget contact-widget">
-                        <!-- Message -->
-                        <a href="#">
-                            <div class="user-img"> <img src="images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                            <div class="mail-contnet">
-                                <h5>Kevin Eslava</h5> <span class="mail-desc">kedaesva</span></div>
-                        </a>
-                        <!-- Message -->
-                        <a href="#">
-                            <div class="user-img"> <img src="images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-                            <div class="mail-contnet">
-                                <h5>Keinny Zuzette</h5> <span class="mail-desc">Keinny</span></div>
-                        </a>
-
-                        <a href="#">
-                            <div class="user-img"> <img src="images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                            <div class="mail-contnet">
-                                <h5>Jhan carlos</h5> <span class="mail-desc">JhanC118</span></div>
-                        </a>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-8 col-xlg-9 col-md-7">
+   
+    <div class="col-md-12">
         <div class="card" style="overflow: auto;">
 
             <uib-tabset active="active" >
@@ -78,6 +42,8 @@
                                                                 <th>#</th>
                                                                 <th>Nombres</th>
                                                                 <th>Apellido</th>
+                                                                <th>Usuario</th>
+                                                                <th>Contraseña</th>
                                                                 <th>Sexo</th>
                                                                 <th>Grupo</th>
                                                                 <th>Votacion</th>
@@ -99,11 +65,19 @@
                                                                 </td>
 
                                                                 <td ng-show="!parti.Mostrar_Participante">
-                                                                     {{parti.Nombre}}
+                                                                     {{parti.Nombres}}
                                                                 </td>
 
                                                                 <td ng-show="!parti.Mostrar_Participante">
-                                                                     {{parti.Apellido}}
+                                                                     {{parti.Apellidos}}
+                                                                </td>
+
+                                                                <td ng-show="!parti.Mostrar_Participante">
+                                                                     {{parti.Username}}
+                                                                </td>
+
+                                                                <td ng-show="!parti.Mostrar_Participante">
+                                                                     {{parti.Password}}
                                                                 </td>
 
                                                                 <td ng-show="!parti.Mostrar_Participante">
@@ -115,7 +89,7 @@
                                                                 </td>
 
                                                                 <td ng-show="!parti.Mostrar_Participante">
-                                                                   {{parti.Nombres}}
+                                                                   {{parti.Alias}}
                                                                 </td>
 
                                                                 <td ng-show="!parti.Mostrar_Participante">
@@ -132,11 +106,19 @@
                                                                 <!--Tabla de editar Participante-->
 
                                                                 <td ng-show="parti.Mostrar_Participante"> 
-                                                                    <input class="text-pequenio2" type="text" ng-model="parti.Nombre" name=""> 
+                                                                    <input class="text-pequenio2" type="text" ng-model="parti.Nombres" name=""> 
                                                                 </td>
 
                                                                 <td ng-show="parti.Mostrar_Participante"> 
-                                                                    <input class="text-pequenio2" type="text" ng-model="parti.Apellido" name=""> 
+                                                                    <input class="text-pequenio2" type="text" ng-model="parti.Apellidos" name=""> 
+                                                                </td>
+
+                                                                 <td ng-show="parti.Mostrar_Participante"> 
+                                                                    <input class="text-pequenio2" type="text" ng-model="parti.Username" name=""> 
+                                                                </td>
+
+                                                                <td ng-show="parti.Mostrar_Participante"> 
+                                                                    <input class="text-pequenio2" type="text" ng-model="parti.Password" name=""> 
                                                                 </td>
 
                                                                 <td ng-show="parti.Mostrar_Participante"> 
@@ -154,7 +136,7 @@
                                                                         <select ng-model="parti.Votacion_id"  >
 
                                                                           <option  ng-repeat="vota in votaciones" value="{{vota.rowid}}">
-                                                                          {{vota.Nombres}}
+                                                                          {{vota.Nombre}}
                                                                          </option>
 
                                                                         </select>
@@ -183,11 +165,19 @@
                                                                     </td>
 
                                                                     <td >
-                                                                     <input class="text-pequenio2" type="text" ng-value="Nombre" ng-model="Participante_nuevo.Nombre"> 
+                                                                     <input class="text-pequenio2" type="text" ng-value="Nombres" ng-model="Participante_nuevo.Nombres"> 
                                                                     </td>
 
                                                                     <td > 
-                                                                        <input class="text-pequenio2" type="text" ng-value="Apellido" ng-model="Participante_nuevo.Apellido"> 
+                                                                        <input class="text-pequenio2" type="text" ng-value="Apellidos" ng-model="Participante_nuevo.Apellidos"> 
+                                                                    </td>
+
+                                                                    <td > 
+                                                                        <input class="text-pequenio2" type="text" ng-value="Username" ng-model="Participante_nuevo.Username"> 
+                                                                    </td>
+
+                                                                    <td > 
+                                                                        <input class="text-pequenio2" type="text" ng-value="Password" ng-model="Participante_nuevo.Password"> 
                                                                     </td>
 
                                                                     <td > 
@@ -205,7 +195,7 @@
                                                                             <select ng-model="Participante_nuevo.Votacion_id"  >
 
                                                                               <option ng-repeat="vota in votaciones" value="{{vota.rowid}}">
-                                                                              {{vota.Nombres}}
+                                                                              {{vota.Nombre}}
                                                                               </option>
 
                                                                             </select>
@@ -236,7 +226,44 @@
                                         </div>
                                     </div>
 
+                                     <!-- Column -->
+                                        <div class="col-lg-4 col-xlg-3 col-md-5">
+                                          
+                                            <div class="card">
+                                                <div class="card-block bg-info">
+                                                    <h4 class="text-white card-title">Participantes</h4>
+                                                     </div>
+                                                <div class="card-block">
+                                                    <div class="message-box contact-box">
+                                                        <h2  class="add-ct-btn">
+                                                            <button type="button" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button>
+                                                        </h2>
+                                                        <div class="message-widget contact-widget">
+                                                            <!-- Message -->
+                                                            <a href="#">
+                                                                <div class="user-img"> <img src="images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                                                <div class="mail-contnet">
+                                                                    <h5>Kevin Eslava</h5> <span class="mail-desc">kedaesva</span></div>
+                                                            </a>
+                                                            <!-- Message -->
+                                                            <a href="#">
+                                                                <div class="user-img"> <img src="images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
+                                                                <div class="mail-contnet">
+                                                                    <h5>Keinny Zuzette</h5> <span class="mail-desc">Keinny</span></div>
+                                                            </a>
 
+                                                            <a href="#">
+                                                                <div class="user-img"> <img src="images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
+                                                                <div class="mail-contnet">
+                                                                    <h5>Jhan carlos</h5> <span class="mail-desc">JhanC118</span></div>
+                                                            </a>
+                                                            
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        
                                 </div>
                                 <hr>
                                 

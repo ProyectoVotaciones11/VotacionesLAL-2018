@@ -39,10 +39,17 @@ angular.module('votacioneslive', [
 		controller:'LoginCtrl'
 	}
 
-	var alumnos = {
-		name: 'panel.alumnos',
+	var Votar = {
+		name: 'panel.Votar',
+		url: '/Votar',
+		templateUrl: 'templates/Votar.html',
+		controller:'VotarCtrl'
+	}
+
+	var Participantes = {
+		name: 'panel.Participantes',
 		url: '/alumnos',
-		templateUrl: 'templates/alumnos.html',
+		templateUrl: 'templates/Participantes.html',
 		controller:'ParticipantesCtrl'
 	}
 	var candidatos = {
@@ -74,7 +81,8 @@ angular.module('votacioneslive', [
 
   $stateProvider.state(panel);
   $stateProvider.state(Login);
-  $stateProvider.state(alumnos);
+  $stateProvider.state(Votar);
+  $stateProvider.state(Participantes);
   $stateProvider.state(candidatos);
   $stateProvider.state(Votaciones);
   $stateProvider.state(Aspiraciones);

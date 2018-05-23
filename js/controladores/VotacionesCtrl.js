@@ -14,7 +14,7 @@ angular.module('votacioneslive')
 
 		$scope.Tabla_Votaciones = function(){
 
-			ConexionServ.query("SELECT rowid, id,  Nombres,  Alias, descripcion, Username, Password from votaciones", []).then(function(result){
+			ConexionServ.query("SELECT rowid, id,  Nombre,  Alias, descripcion, Username, Password from votaciones", []).then(function(result){
 					$scope.votaciones = result;
 					console.log(' tabla votaciones ', result);
 
@@ -37,7 +37,7 @@ angular.module('votacioneslive')
 			return;
 		}
 
-			ConexionServ.query("INSERT INTO votaciones( Nombres,  Alias, descripcion, Username, Password ) VALUES( ?, ?, ?, ?, ?)", [crear.Nombres, crear.Alias, crear.descripcion, crear.Username, "123"]).then(function(result){
+			ConexionServ.query("INSERT INTO votaciones( Nombre,  Alias, descripcion, Username, Password ) VALUES( ?, ?, ?, ?, ?)", [crear.Nombre, crear.Alias, crear.descripcion, crear.Username, "123"]).then(function(result){
 			
 					console.log(' Participantes creado ', result);
 
@@ -72,7 +72,7 @@ angular.module('votacioneslive')
 		if(modificar.Mostrar_Votaciones == true){
 			modificar.Mostrar_Votaciones = false;
 
-			ConexionServ.query("UPDATE Votaciones  SET  Nombres=? , Alias=? , descripcion=? , Username=? , Password=? WHERE rowid=? ", [modificar.Nombres, modificar.Alias, modificar.descripcion, modificar.Username, modificar.Password,  modificar.rowid]).then(function(result){
+			ConexionServ.query("UPDATE Votaciones  SET  Nombre=? , Alias=? , descripcion=? , Username=? , Password=? WHERE rowid=? ", [modificar.Nombre, modificar.Alias, modificar.descripcion, modificar.Username, modificar.Password,  modificar.rowid]).then(function(result){
 				console.log("hola")
 
 				$scope.Tabla_Votaciones();	

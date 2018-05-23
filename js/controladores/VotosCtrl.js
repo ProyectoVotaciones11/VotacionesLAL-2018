@@ -10,7 +10,7 @@ angular.module('votacioneslive')
 
 	$scope.Tabla_Votos = function(){
 
-		ConexionServ.query("SELECT V.*, V.rowid, a.aspiracion, C.Nombres, C.Apellidos, P.Nombre, P.Apellido from Votos V INNER JOIN Aspiraciones a ON V.aspiracion_id = a.rowid INNER JOIN Candidatos C ON V.candidato_id = C.rowid INNER JOIN Participantes P ON V.Participantes_id = P.rowid ", []).then(function(result){
+		ConexionServ.query("SELECT V.*, V.rowid, a.aspiracion, C.Nombres, C.Apellidos, P.Nombres as Participantes_Nombres, P.Apellidos as Participantes_Apellidos from Votos V INNER JOIN Aspiraciones a ON V.aspiracion_id = a.rowid INNER JOIN Candidatos C ON V.candidato_id = C.rowid INNER JOIN Participantes P ON V.Participantes_id = P.rowid ", []).then(function(result){
 			$scope.Votos = result;
 			console.log(' tabla Candidatos ', result);
 

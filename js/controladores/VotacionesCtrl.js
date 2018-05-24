@@ -54,18 +54,23 @@ angular.module('votacioneslive')
 		}
 
 	$scope.Delete_Votaciones = function(votaciones){
+		
+		var res = confirm('Seguro que dese');
 
+		if (res) {
 			ConexionServ.query("DELETE FROM Votaciones WHERE rowid=? ", [votaciones.rowid]).then(function(result){
 		
-					 $scope.votaciones = $filter('filter') ($scope.votaciones, {rowid: '!' + votaciones.rowid})
+				$scope.votaciones = $filter('filter') ($scope.votaciones, {rowid: '!' + votaciones.rowid})
 
-					 $scope.Tabla_Votaciones();	
+				$scope.Tabla_Votaciones();	
 
-				}, function(tx){
-					console.log('error', tx);
-				});
+		   }, function(tx){
+			   console.log('error', tx);
+		   });
 
 		}
+			
+	}
 
 	$scope.Modificar_Votaciones = function(modificar){
 
@@ -89,6 +94,20 @@ angular.module('votacioneslive')
 		modificar.Mostrar_Votaciones = true;
 
 	}
+	
+	
+	$scope.ver_aspiraciones = function(votacion){
+		
+		ConexionServ.query("SELECT a.rowid, a.*  FROM Aspiraciones a WHERE votacion_id=?", [votacion.rowid]).then(function(result){
+			$scope.Aspiraciones = result;
+			console.log(' tabla Aspiraciones ', result);
+
+		}, function(tx){
+			console.log('error', tx);
+		});
+			
+	}
+
 
 	$scope.Ocultar_Tabla_de_Editar = function(modificar){
 		

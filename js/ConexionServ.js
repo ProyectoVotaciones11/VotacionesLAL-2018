@@ -42,7 +42,8 @@ angular.module('votacioneslive')
 
     sqlAspiracion = "CREATE TABLE IF NOT EXISTS Aspiraciones (id integer," +
                     "aspiracion varchar(100)  NOT NULL collate nocase," +
-                    "descripcion varchar(100)  NOT NULL)";
+                    "votacion_id integer(100)  NOT NULL," +
+                    "descripcion varchar(100)  DEFAULT NULL)";
 
 
                 

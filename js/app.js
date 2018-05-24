@@ -91,4 +91,12 @@ angular.module('votacioneslive', [
 
    $urlRouterProvider.otherwise('/Login');
 
-}]);
+}])
+
+
+.run(function($state){
+	$state.defaultErrorHandler(function(error) {
+
+	   $state.go('Login', { errorMessage: error }); 
+	});
+});

@@ -99,20 +99,20 @@ angular.module('votacioneslive')
 
 				// VOTACIONES
 
-				consulta = "INSERT INTO Aspiraciones( aspiracion, descripcion) VALUES( ?, ? )";
-				ConexionServ.query(consulta, ['Personero', 'Representa al colegio']).then(function(result) {
+				consulta = "INSERT INTO Aspiraciones( aspiracion, descripcion, votacion_id) VALUES( ?,?,? )";
+				ConexionServ.query(consulta, ['Personero', 'Representa al colegio', 1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Representante', 'Representa a los estudiantes']).then(function(result) {
+				ConexionServ.query(consulta, ['Representante', 'Representa a los estudiantes', 1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Contralor', 'Se encarga del dinero.']).then(function(result) {
+				ConexionServ.query(consulta, ['Contralor', 'Se encarga del dinero.', 1]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);

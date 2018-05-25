@@ -22,7 +22,7 @@ angular.module('votacioneslive')
 	$scope.Tabla_Participantes = function(){
 		ConexionServ.query("SELECT *, rowid from Participantes", []).then(function(result){
 
-			$scope.Participantes = result;
+			$scope.pART = result;
 			console.log(' tabla Participantes ', result);
 
 		}, function(tx){

@@ -43,20 +43,28 @@
                             <div class="col-sm-12">
                                
                                  <div>
+
+                                    <button ng-show="!Moatrar_Contralos" ng-click="ver_Representante()" class="btn btn-primary"> siguiente </button>
+                                    <button ng-show="Moatrar_Contralos" ng-click="ver_Contralor()" class="btn btn-primary"> siguiente </button>
+
                                       <div  ng-repeat="Aspi in Aspiraciones">
 
                                         <h1>{{Aspi.aspiracion}}</h1>
 
                                         <div ng-repeat="candidato in Aspi.Candidatos">
-                                            
-                                            <img src="images/users/1.jpg" style="margin:auto;" >
-                                           
+                                          
                                               
-                                              <div  ng-repeat="candidato in Aspi.Candidatos">
+                                              <div class="col-sm-6" >
 
                                                 <h2>{{candidato.Nombres}}</h2>
 
+
+                                                     <img src="{{candidato.Foto }}" style="height: auto;" class="img img-thumbnail" >
+                                            
+
                                               </div>
+
+
                                             
                                            </div>
 

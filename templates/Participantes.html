@@ -10,335 +10,233 @@
     
 </div>
 
+
+
 <div class="row">
-   
+
     <div class="col-md-12">
+        
         <div class="card" style="overflow: auto;">
-
+            
             <uib-tabset active="active" >
-                <uib-tab index="0" classes="profile-tab" heading="Static title">
-
-                  
-
-                    <div class="tab-content">
+                <uib-tab index="0" classes="profile-tab" heading="Votaciones">
+                    
+                    <div class="card-block">
                         
-                       
-                        <div class="tab-pane active" id="Actualizaciones" role="tabpanel">
-                            <div class="card-block">
-                                <div class="row">
-                                    
-                            <!-- column -->
-                                    <div class="col-lg-12">
-                                        <div class="card">
-                                            <div class="card-block">
-                                                <h4 class="card-title" uib-tooltip="Participantes"> Table de Participantes</h4>
+                        <div class="row">
 
-                                                 <button ng-click="Mostrar_tabla_De_Crear()" class="btn btn-primary">Nuevo Participante</button>
+                             <div class="col-md-12">
 
-                                                <div class="table-responsive">
-                                                    <table class="table">
-                                                        <thead>
-                                                           <tr>
-                                                                <th>#</th>
-                                                                <th>Nombres</th>
-                                                                <th>Apellido</th>
-                                                                <th>Usuario</th>
-                                                                <th>Contraseña</th>
-                                                                <th>Sexo</th>
-                                                                <th>Grupo</th>
-                                                                <th>Votacion</th>
-                                                                <th>Tipo</th>
-                                                                <th>Modificar</th>
+                                    <h4 class="card-title" uib-tooltip="Participantes"> Table de Participantes</h4>
 
-                                                            </tr>
+                                     <button ng-click="Mostrar_tabla_De_Crear()" class="btn btn-primary">Nuevo Participante</button>
 
-                                                        </thead>
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                               <tr>
+                                                    <th>#</th>
+                                                    <th>Nombres</th>
+                                                    <th>Apellido</th>
+                                                    <th>Usuario</th>
+                                                    <th>Contraseña</th>
+                                                    <th>Sexo</th>
+                                                    <th>Grupo</th>
+                                                    <th>Votacion</th>
+                                                    <th>Tipo</th>
+                                                    <th>Modificar</th>
 
-                                                        <tbody>
+                                                </tr>
 
-                                                            <tr ng-repeat="parti in Participantes">
+                                            </thead>
 
-                                                                <!--Tabla de Participantes-->
+                                            <tbody>
 
-                                                                <td>
-                                                                     {{$index + 1}}
-                                                                </td>
+                                                <tr ng-repeat="parti in Participantes">
 
-                                                                <td ng-show="!parti.Mostrar_Participante">
-                                                                     {{parti.Nombres}}
-                                                                </td>
+                                                    <!--Tabla de Participantes-->
 
-                                                                <td ng-show="!parti.Mostrar_Participante">
-                                                                     {{parti.Apellidos}}
-                                                                </td>
+                                                    <td>
+                                                         {{$index + 1}}
+                                                    </td>
 
-                                                                <td ng-show="!parti.Mostrar_Participante">
-                                                                     {{parti.Username}}
-                                                                </td>
+                                                    <td ng-show="!parti.Mostrar_Participante">
+                                                         {{parti.Nombres}}
+                                                    </td>
 
-                                                                <td ng-show="!parti.Mostrar_Participante">
-                                                                     {{parti.Password}}
-                                                                </td>
+                                                    <td ng-show="!parti.Mostrar_Participante">
+                                                         {{parti.Apellidos}}
+                                                    </td>
 
-                                                                <td ng-show="!parti.Mostrar_Participante">
-                                                                     {{parti.Sexo}}
-                                                                </td>
+                                                    <td ng-show="!parti.Mostrar_Participante">
+                                                         {{parti.Username}}
+                                                    </td>
 
-                                                                <td ng-show="!parti.Mostrar_Participante">
-                                                                    {{parti.Grupo_id}}
-                                                                </td>
+                                                    <td ng-show="!parti.Mostrar_Participante">
+                                                         {{parti.Password}}
+                                                    </td>
 
-                                                                <td ng-show="!parti.Mostrar_Participante">
-                                                                   {{parti.Alias}}
-                                                                </td>
+                                                    <td ng-show="!parti.Mostrar_Participante">
+                                                         {{parti.Sexo}}
+                                                    </td>
 
-                                                                <td ng-show="!parti.Mostrar_Participante">
-                                                                   {{parti.Tipo}}
-                                                                </td>
+                                                    <td ng-show="!parti.Mostrar_Participante">
+                                                        {{parti.Grupo_id}}
+                                                    </td>
 
-                                                                <td ng-show="!parti.Mostrar_Participante">
-                                                                    <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Participante(parti)"
-                                                                    >Editar</button>
-                                                                    <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Participantes(parti)"
-                                                                    >Eliminar</button>
-                                                                </td>
-                 
-                                                                <!--Tabla de editar Participante-->
+                                                     <td ng-show="!parti.Mostrar_Participante">
+                                                        {{parti.Nombre}}
+                                                    </td>
 
-                                                                <td ng-show="parti.Mostrar_Participante"> 
-                                                                    <input class="text-pequenio2" type="text" ng-model="parti.Nombres" name=""> 
-                                                                </td>
+                                                    <td ng-show="!parti.Mostrar_Participante">
+                                                       {{parti.Tipo}}
+                                                    </td>
 
-                                                                <td ng-show="parti.Mostrar_Participante"> 
-                                                                    <input class="text-pequenio2" type="text" ng-model="parti.Apellidos" name=""> 
-                                                                </td>
+                                                    <td ng-show="!parti.Mostrar_Participante">
+                                                        <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Participante(parti)"
+                                                        >Editar</button>
+                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Participantes(parti)"
+                                                        >Eliminar</button>
+                                                    </td>
+     
+                                                    <!--Tabla de editar Participante-->
 
-                                                                 <td ng-show="parti.Mostrar_Participante"> 
-                                                                    <input class="text-pequenio2" type="text" ng-model="parti.Username" name=""> 
-                                                                </td>
+                                                    <td ng-show="parti.Mostrar_Participante"> 
+                                                        <input class="text-pequenio2" type="text" ng-model="parti.Nombres" name=""> 
+                                                    </td>
 
-                                                                <td ng-show="parti.Mostrar_Participante"> 
-                                                                    <input class="text-pequenio2" type="text" ng-model="parti.Password" name=""> 
-                                                                </td>
+                                                    <td ng-show="parti.Mostrar_Participante"> 
+                                                        <input class="text-pequenio2" type="text" ng-model="parti.Apellidos" name=""> 
+                                                    </td>
 
-                                                                <td ng-show="parti.Mostrar_Participante"> 
-                                                                    <input class="text-pequenio" type="text" ng-model="parti.Sexo" name=""> 
-                                                                </td>
+                                                     <td ng-show="parti.Mostrar_Participante"> 
+                                                        <input class="text-pequenio2" type="text" ng-model="parti.Username" name=""> 
+                                                    </td>
 
-                                                                <td ng-show="parti.Mostrar_Participante">
-                                                                    <input class="text-pequenio" type="text" ng-model="parti.Grupo_id" name=""> 
-                                                                </td>
+                                                    <td ng-show="parti.Mostrar_Participante"> 
+                                                        <input class="text-pequenio2" type="text" ng-model="parti.Password" name=""> 
+                                                    </td>
 
-                                                                <td ng-show="parti.Mostrar_Participante">
+                                                    <td ng-show="parti.Mostrar_Participante"> 
+                                                        <input class="text-pequenio" type="text" ng-model="parti.Sexo" name=""> 
+                                                    </td>
 
-                                                                    <div  class="col-sm-4 form-control text-pequenio2" >
-                                                                            
-                                                                        <select ng-model="parti.Votacion_id"  >
+                                                    <td ng-show="parti.Mostrar_Participante">
+                                                        <input class="text-pequenio" type="text" ng-model="parti.Grupo_id" name=""> 
+                                                    </td>
 
-                                                                          <option  ng-repeat="vota in votaciones" value="{{vota.rowid}}">
-                                                                          {{vota.Nombre}}
-                                                                         </option>
+                                                    <td ng-show="parti.Mostrar_Participante">
 
-                                                                        </select>
-
-                                                                    </div>
-
-                                                                </td>
-
-                                                                <td ng-show="parti.Mostrar_Participante"> 
-                                                                    <input class="text-pequenio" type="text" ng-model="parti.Tipo" name=""> 
-                                                                </td>
-
-                                                                <td ng-show="parti.Mostrar_Participante">
-                                                                    <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Participante(parti)"
-                                                                    >Guardar</button>
-                                                                    <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Tabla_de_Editar(parti)"
-                                                                    >Cancelar</button>
-                                                                </td>
-
-                                                                <!--Tabla de crear Participante-->  
-                                                               
-                                                               <tr ng-show="Mostrar_tabla_crear" >
-
-                                                                   <td>
-                                                                       #  
-                                                                    </td>
-
-                                                                    <td >
-                                                                     <input class="text-pequenio2" type="text" ng-value="Nombres" ng-model="Participante_nuevo.Nombres"> 
-                                                                    </td>
-
-                                                                    <td > 
-                                                                        <input class="text-pequenio2" type="text" ng-value="Apellidos" ng-model="Participante_nuevo.Apellidos"> 
-                                                                    </td>
-
-                                                                    <td > 
-                                                                        <input class="text-pequenio2" type="text" ng-value="Username" ng-model="Participante_nuevo.Username"> 
-                                                                    </td>
-
-                                                                    <td > 
-                                                                        <input class="text-pequenio2" type="text" ng-value="Password" ng-model="Participante_nuevo.Password"> 
-                                                                    </td>
-
-                                                                    <td > 
-                                                                        <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Sexo" > 
-                                                                    </td>
-
-                                                                    <td > 
-                                                                        <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Grupo_id" > 
-                                                                    </td>
-
-                                                                    <td > 
-
-                                                                        <div  class="col-sm-4 form-control text-pequenio2" >
-                                                                            
-                                                                            <select ng-model="Participante_nuevo.Votacion_id"  >
-
-                                                                              <option ng-repeat="vota in votaciones" value="{{vota.rowid}}">
-                                                                              {{vota.Nombre}}
-                                                                              </option>
-
-                                                                            </select>
-
-                                                                        </div>
+                                                        <div  class="col-sm-4 " >
                                                                 
-                                                                    </td>
+                                                            <select ng-model="parti.Votacion_id"  >
 
-                                                                    <td> 
-                                                                        <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Tipo" >  
-                                                                    </td>
+                                                              <option  ng-repeat="vota in votaciones" value="{{vota.rowid}}">
+                                                              {{vota.Nombre}}
+                                                             </option>
 
-                                                                    <td>
-                                                                        <button class="btn waves-effect waves-light btn-info" ng-click="Insert_Participantes(Participante_nuevo)">Craer</button>
-                                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_participantes()"
-                                                                        >Cancelar</button> 
-                                                                    </td>
+                                                            </select>
 
-                                                               </tr>
-                                                                
-                                                            </tr>
-                                                           
-                                                                                                  
-                                                        </tbody>
-                                                    </table>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                     <!-- Column -->
-                                        <div class="col-lg-4 col-xlg-3 col-md-5">
-                                          
-                                            <div class="card">
-                                                <div class="card-block bg-info">
-                                                    <h4 class="text-white card-title">Participantes</h4>
-                                                     </div>
-                                                <div class="card-block">
-                                                    <div class="message-box contact-box">
-                                                        <h2  class="add-ct-btn">
-                                                            <button type="button" class="btn btn-circle btn-lg btn-success waves-effect waves-dark">+</button>
-                                                        </h2>
-                                                        <div class="message-widget contact-widget">
-                                                            <!-- Message -->
-                                                            <a href="#">
-                                                                <div class="user-img"> <img src="images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                                                <div class="mail-contnet">
-                                                                    <h5>Kevin Eslava</h5> <span class="mail-desc">kedaesva</span></div>
-                                                            </a>
-                                                            <!-- Message -->
-                                                            <a href="#">
-                                                                <div class="user-img"> <img src="images/users/2.jpg" alt="user" class="img-circle"> <span class="profile-status busy pull-right"></span> </div>
-                                                                <div class="mail-contnet">
-                                                                    <h5>Keinny Zuzette</h5> <span class="mail-desc">Keinny</span></div>
-                                                            </a>
-
-                                                            <a href="#">
-                                                                <div class="user-img"> <img src="images/users/1.jpg" alt="user" class="img-circle"> <span class="profile-status online pull-right"></span> </div>
-                                                                <div class="mail-contnet">
-                                                                    <h5>Jhan carlos</h5> <span class="mail-desc">JhanC118</span></div>
-                                                            </a>
-                                                            
                                                         </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        
-                                </div>
-                                <hr>
-                                
-                            </div>
-                        </div>
-                        <div class="tab-pane " id="Alumnos" role="tabpanel">
-                            <div class="card-block">
-                                <div class="profiletimeline">
-                                    <div class="sl-item">
-                                        <div class="sl-left"> <img src="images/users/1.jpg" alt="user" class="img-circle"> </div>
-                                        <div class="sl-right">
-                                            
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="sl-item">
 
-                                        <div class="sl-right">
-                                            <div> <a href="#" class="link">Kevin Eslava</a> <span class="sl-date">Hace :V</span>
-                                                <p class="m-t-10">Calla Rata</p>
-                                                <div class="m-t-20 row">     
-                                                </div>
-                                                <div class="like-comm m-t-20"> <a href="javascript:void(0)" class="link m-r-10">3 comment</a> <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> 1 Love</a> </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="sl-item">
-                                        <div class="sl-left"> <img src="images/users/3.jpg" alt="user" class="img-circle"> </div>
-                                        <div class="sl-right">
-                                            <div><a href="#" class="link">Keinny</a> <span class="sl-date">Hace :V</span>
-                                                <p class="m-t-10">//// </p>
-                                            </div>
-                                            <div class="like-comm m-t-20"> <a href="javascript:void(0)" class="link m-r-10">2 comment</a> <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> 5 Love</a> </div>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="sl-item">
-                                        <div class="sl-left"> <img src="images/users/1.jpg" alt="user" class="img-circle"> </div>
-                                        <div class="sl-right" >
-                                            <div> <a href="#" class="link">Jhan Carlos</a> <span class="sl-date">Hace :V</span>
-                                                <p class="m-t-10">Hola Llama</p>
-                                                <div class="m-t-20 row">     
-                                                </div>
-                                                <div class="like-comm m-t-20"> <a href="javascript:void(0)" class="link m-r-10">10 comment</a> <a href="javascript:void(0)" class="link m-r-10"><i class="fa fa-heart text-danger"></i> 0 Love</a> </div>
-                                            </div>
-                                        </div>
+                                                    </td>
+
+                                                    <td ng-show="parti.Mostrar_Participante"> 
+                                                        <input class="text-pequenio2" type="text" ng-model="parti.Tipo" name=""> 
+                                                    </td>
+
+                                                    <td ng-show="parti.Mostrar_Participante">
+                                                        <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Participante(parti)"
+                                                        >Guardar</button>
+                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Tabla_de_Editar(parti)"
+                                                        >Cancelar</button>
+                                                    </td>
+
+                                                    <!--Tabla de crear Participante-->  
+                                                   
+                                                   <tr ng-show="Mostrar_tabla_crear" >
+
+                                                       <td>
+                                                           #  
+                                                        </td>
+
+                                                        <td >
+                                                         <input class="text-pequenio2" type="text" ng-value="Nombres" ng-model="Participante_nuevo.Nombres"> 
+                                                        </td>
+
+                                                        <td > 
+                                                            <input class="text-pequenio2" type="text" ng-value="Apellidos" ng-model="Participante_nuevo.Apellidos"> 
+                                                        </td>
+
+                                                        <td > 
+                                                            <input class="text-pequenio2" type="text" ng-value="Username" ng-model="Participante_nuevo.Username"> 
+                                                        </td>
+
+                                                        <td > 
+                                                            <input class="text-pequenio2" type="text" ng-value="Password" ng-model="Participante_nuevo.Password"> 
+                                                        </td>
+
+                                                        <td > 
+                                                            <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Sexo" > 
+                                                        </td>
+
+                                                        <td > 
+                                                            <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Grupo_id" > 
+                                                        </td>
+
+                                                        <td > 
+
+                                                            <div  class="col-sm-4 form-control text-pequenio2" >
+                                                                
+                                                                <select ng-model="Participante_nuevo.Votacion_id"  >
+
+                                                                  <option ng-repeat="vota in votaciones" value="{{vota.rowid}}">
+                                                                  {{vota.Nombre}}
+                                                                  </option>
+
+                                                                </select>
+
+                                                            </div>
+                                                    
+                                                        </td>
+
+                                                        <td> 
+                                                            <input class="text-pequenio" type="text" ng-value="" ng-model="Participante_nuevo.Tipo" >  
+                                                        </td>
+
+                                                        <td>
+                                                            <button class="btn waves-effect waves-light btn-info" ng-click="Insert_Participantes(Participante_nuevo)">Craer</button>
+                                                            <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_participantes()"
+                                                            >Cancelar</button> 
+                                                        </td>
+
+                                                   </tr>
+                                                    
+                                                </tr>
+                                               
+                                                                                      
+                                            </tbody>
+                                        </table>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="tab-pane" id="Configuraciones" role="tabpanel">
-                            <div class="card-block">
-                                <form class="form-horizontal form-material">
-                               
-                                    <div class="form-group">
-                                        
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
+
+                                    
+                        
                     </div>
-
-                </uib-tab>
-
-                <uib-tab index="1" classes="profile-tab" heading="Configuraciones">
-                  Algunas configuraciones
-                </uib-tab>
-                
-              </uib-tabset>
-
-
+                    
+              
+                        
+                        
+                    </uib-tab>
+            </uib-tabset>
+            
         </div>
-    </div>
+        
+    </div>      
 </div>
+
 <!-- ============================================================== -->
 <!-- End PAge Content -->
 <!-- ============================================================== -->

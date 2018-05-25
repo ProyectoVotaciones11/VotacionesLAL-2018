@@ -22,34 +22,34 @@ angular.module('votacioneslive')
    		ConexionServ.query(consulta, []).then(function(result) {
 			if (result.length == 0) {
 				
-				//Candidatos
+				//Participantes
 
-				consulta = "INSERT INTO Participantes(Nombres, Apellidos, Username, Password, Tipo, Sexo) VALUES(?,?,?,?,?,?) ";
+				consulta = "INSERT INTO Participantes(Nombres, Apellidos, Username, Password, Tipo, Sexo, Votacion_id, Grupo_id) VALUES(?,?,?,?,?,?,?,?) ";
 				ConexionServ.query(consulta, ['jorge', 'cardenas', 'jorge',  '123', 'Admin', 'M']).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 				
-				ConexionServ.query(consulta, ['pedro', 'romero', 'juan',  '123', 'Participante', 'M']).then(function(result) {
+				ConexionServ.query(consulta, ['pedro', 'romero', 'juan',  '123', 'Participante', 'M', '2', 11]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 					
-				ConexionServ.query(consulta, ['Kevin', 'Eslava', 'kedaesva',  '123', 'admin', 'M']).then(function(result) {
+				ConexionServ.query(consulta, ['Kevin', 'Eslava', 'kedaesva',  '123', 'admin', 'M', '1', 11]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 					
-				ConexionServ.query(consulta, ['Marques', 'Gutieere<', 'maquez',  '123', 'Participante', 'M']).then(function(result) {
+				ConexionServ.query(consulta, ['Marques', 'Gutieere<', 'maquez',  '123', 'Participante', 'M', '1', 11 ]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 					
-				ConexionServ.query(consulta, ['jhan', 'ruda', 'jhan0018',  '123', 'admin', 'M']).then(function(result) {
+				ConexionServ.query(consulta, ['jhan', 'ruda', 'jhan0018',  '123', 'admin', 'M', '2', 10]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
@@ -57,53 +57,53 @@ angular.module('votacioneslive')
 
 				//Candidatos
 
-				consulta = "INSERT INTO Candidatos( Nombres, Apellidos,  Foto, aspiracion_id, Sexo ) VALUES( ?, ?, ?, ?, ?) ";
-				ConexionServ.query(consulta, ['pedro', 'romero', '2', '3', 'M']).then(function(result) {
+				consulta = "INSERT INTO Candidatos( Nombres, Apellidos,  Foto, aspiracion_id, Sexo, Grupo_id ) VALUES( ?, ?, ?, ?, ?,?) ";
+				ConexionServ.query(consulta, ['pedro', 'romero', 'images/users/1.jpg', '3', 'M', 11]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 				
-				ConexionServ.query(consulta, ['jhan', 'ruda','2', '1', 'M']).then(function(result) {
+				ConexionServ.query(consulta, ['jhan', 'ruda','images/users/2.jpg', '1', 'M', 10]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 					
-				ConexionServ.query(consulta, ['toloza', 'calvo', '3',  '2',  'M']).then(function(result) {
+				ConexionServ.query(consulta, ['toloza', 'calvo', 'images/users/3.jpg',  '2',  'M', 9]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 					
-				ConexionServ.query(consulta, ['marta', 'prada', '4',  '3', 'M']).then(function(result) {
+				ConexionServ.query(consulta, ['marta', 'prada', 'images/users/4.jpg',  '3', 'M', 10]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 					
-				ConexionServ.query(consulta, ['kevin', 'eslava', '1',  '2',  'M']).then(function(result) {
+				ConexionServ.query(consulta, ['kevin', 'eslava', 'images/users/5.jpg',  '2',  'M', 10]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				// VOTACIONES
+				// Votaciones
 
-				consulta = "INSERT INTO Votaciones( Nombre, Alias, Descripcion, Password) VALUES( ?, ?, ?, ?) ";
-				ConexionServ.query(consulta, ['VOTACIONES ESTUDIANTILES 2019', 'VOT19', 'Para eligir personero y demás.', 123]).then(function(result) {
+				consulta = "INSERT INTO Votaciones( Nombre, Alias, Descripcion, Password, Username) VALUES( ?, ?, ?, ?, ?) ";
+				ConexionServ.query(consulta, ['VOTACIONES ESTUDIANTILES 2019', 'VOT19', 'Para eligir personero y demás.', 123, 'VOTA32']).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['VOTACIONES 2017', 'VOT17', 'Para eligir notas.', 123]).then(function(result) {
+				ConexionServ.query(consulta, ['VOTACIONES 2017', 'VOT17', 'Para eligir notas.', 123, 'VOTA23']).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				// VOTACIONES
+				// Aspiraciones
 
 				consulta = "INSERT INTO Aspiraciones( aspiracion, descripcion, votacion_id) VALUES( ?,?,? )";
 				ConexionServ.query(consulta, ['Personero', 'Representa al colegio', 1]).then(function(result) {
@@ -123,6 +123,10 @@ angular.module('votacioneslive')
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
+
+
+
+				// Votos
 
 
 				consulta = "INSERT INTO Votos( Participantes_id, candidato_id, aspiracion_id, fecha_hora) VALUES( ?, ?, ?, ?) ";

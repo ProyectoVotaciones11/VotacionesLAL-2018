@@ -55,14 +55,12 @@ angular.module('votacioneslive')
             db.transaction(function (tx) {
 
                  tx.executeSql(sqlParticipantes, [], function (tx, result) {
-                    console.log('');
                     defered.resolve(' ');
                 }, function(tx,error){
                     console.log("Tabla  NO se pudo crear", error.message);
                 })
             
                 tx.executeSql(sqlVotaciones, [], function (tx, result) {
-                    console.log('');
                     defered.resolve('');
                 }, function(tx,error){
                     console.log("Tabla  NO se pudo crear", error.message);
@@ -71,21 +69,18 @@ angular.module('votacioneslive')
                
 
                 tx.executeSql(sqlCandidatos, [], function (tx, result) {
-                    console.log(' ');
                     defered.resolve(' ');
                 }, function(tx,error){
                     console.log("Tabla motos NO se pudo crear", error.message);
                 })
 
                  tx.executeSql(sqlVotos, [], function (tx, result) {
-                    console.log(' '); 
                     defered.resolve(' ');
                 }, function(tx,error){
                     console.log("", error.message);
                 })
 
                 tx.executeSql(sqlAspiracion, [], function (tx, result) {
-                    console.log(' ');
                     defered.resolve(' ');
                 }, function(tx,error){
                     console.log("Tabla  NO se pudo crear", error.message);

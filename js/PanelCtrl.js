@@ -4,7 +4,6 @@ angular.module('votacioneslive')
     
     $scope.USER = USER;
     
-    console.log('USER en Panel', $scope.USER);
     
     ConexionServ.createTables();
     

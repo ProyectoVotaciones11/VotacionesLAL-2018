@@ -44,23 +44,24 @@
                                
                                  <div>
 
-                                    <button ng-show="!Moatrar_Contralos" ng-click="ver_Representante()" class="btn btn-primary"> siguiente </button>
-                                    <button ng-show="Moatrar_Contralos" ng-click="ver_Contralor()" class="btn btn-primary"> siguiente </button>
+                                    
 
+                                    <div>
+                                        <h1 ng-repeat="Aspi in Aspiraciones" class="btn-aspiracion" ng-class="{'asp-activa': Aspi.activa}">{{Aspi.aspiracion}}</h1>  
+                                          
+                                    </div>
+                                        
                                       <div  ng-repeat="Aspi in Aspiraciones">
 
-                                        <h1>{{Aspi.aspiracion}}</h1>
 
-                                        <div ng-repeat="candidato in Aspi.Candidatos">
+                                        <div ng-repeat="candidato in Aspi.Candidatos" ng-show="Aspi.activa">
                                           
                                               
-                                              <div class="col-sm-6" >
+                                            <div class="col-sm-6" style="text-align: center;">
 
-                                                <h2>{{candidato.Nombres}}</h2>
-
-
-                                                     <img src="{{candidato.Foto }}" style="height: auto;" class="img img-thumbnail" >
-                                            
+                                                <img ng-click="Cambiar_active($parent.$index , candidato)" src="{{candidato.Foto }}" class="foto-candidato img img-thumbnail" >
+                                                
+                                                <h2 class="  form-control datos-candidato" >{{candidato.Nombres}}</h2>
 
                                               </div>
 

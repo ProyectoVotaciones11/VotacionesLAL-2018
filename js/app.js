@@ -14,7 +14,8 @@ angular.module('votacioneslive', [
 	'ui.grid.autoResize',
 	'ui.grid.pinning',
 	'ui.grid.expandable',
-	'ui.grid.moveColumns'
+	'ui.grid.moveColumns',
+	'toastr'
 ])
 
 .config(['$stateProvider','$urlRouterProvider', function ($stateProvider, $urlRouterProvider ){

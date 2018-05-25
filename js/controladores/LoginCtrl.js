@@ -97,6 +97,12 @@ angular.module('votacioneslive')
 					console.log("Dato original no insertado", tx);
 				});
 
+				ConexionServ.query(consulta, ['VOTACIONES 2017', 'VOT17', 'Para eligir notas.', 123]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
 				// VOTACIONES
 
 				consulta = "INSERT INTO Aspiraciones( aspiracion, descripcion, votacion_id) VALUES( ?,?,? )";
@@ -112,7 +118,7 @@ angular.module('votacioneslive')
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Contralor', 'Se encarga del dinero.', 1]).then(function(result) {
+				ConexionServ.query(consulta, ['Contralor', 'Se encarga del dinero.', 2]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);

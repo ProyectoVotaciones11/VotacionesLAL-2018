@@ -1,6 +1,6 @@
 angular.module('votacioneslive')
 
-.controller('VotacionesCtrl', function($scope,ConexionServ,$filter){
+.controller('VotacionesCtrl', function($scope,ConexionServ,$filter, $uibModal, toastr){
 
 	$scope.Mostrar_Votaciones = false;
 	$scope.Votaciones_nuevo = {};
@@ -19,7 +19,7 @@ angular.module('votacioneslive')
 					console.log(' tabla votaciones ', result);
 
 				}, function(tx){
-					console.log('error', tx);
+					toastr.error('Error trayendo votaciones');
 				});
 
 		}
@@ -28,7 +28,7 @@ angular.module('votacioneslive')
 
 	$scope.Insert_Votaciones = function(crear){
 
-		if (crear.Nombres == undefined) {
+		if (crear.Nombre == undefined) {
 			console.log("esta nulo");
 			return;
 		}
@@ -107,6 +107,38 @@ angular.module('votacioneslive')
 		});
 			
 	}
+	$scope.copiar_votaciones = function(){
+		
+
+	    var modalInstance = $uibModal.open({
+	        templateUrl: 'templates/CopiarAspiracionesModal.html',
+	        resolve: {
+		        votaciones: function () {
+		        	return $scope.votaciones;
+		        }
+		    },
+	        controller: 'CopiarAspiracionesModalCtrl' // En LibroMesModales.js 
+	    });
+
+	    modalInstance.result.then(function (result) {
+			console.log(result);
+	    }, function(r2){
+	    	$scope.traerDatos();
+	    });
+			
+	}
+
+	$scope.Anadir_Aspiraciones = function(modificar){
+
+		ConexionServ.query("UPDATE Aspiraciones  SET votacion_id=? WHERE rowid=? ", [modificar, modificar.rowid]).then(function(result){
+					console.log("hola")
+
+				}, function(tx){
+					console.log('error en modificar', tx);
+				});
+
+
+	}
 
 
 	$scope.Ocultar_Tabla_de_Editar = function(modificar){
@@ -167,3 +199,38 @@ angular.module('votacioneslive')
 	}
 
 })
+
+
+
+
+.controller("CopiarAspiracionesModalCtrl", function($uibModalInstance, $scope, votaciones, ConexionServ, toastr, $filter) {
+    $scope.votaciones = votaciones;
+
+
+    $scope.ok = function () {
+        $uibModalInstance.close('Cerrado');
+    };
+
+
+    $scope.copiar = function(votacion) {
+
+        consulta 	= 'UPDATE lib_semanales SET ' + columna + '=? WHERE rowid=?';
+        colum 		= columna.charAt(0).toUpperCase() + columna.slice(1);
+        
+        ConexionServ.query(consulta, [libro[columna], libro.rowid]).then(function(){
+
+            
+        }, function(){
+            toastr.error(colum + ' NO guardado');
+        });
+
+    }
+    
+
+
+    return ;
+})
+
+
+
+

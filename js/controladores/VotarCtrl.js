@@ -53,18 +53,42 @@ angular.module('votacioneslive')
 	}
 
 	$scope.Cambiar_active = function(numero, candidato){
+
+	
+
+
 		console.log(numero+1, candidato);
-		if ((numero+1) == $scope.Aspiraciones.length) {
-			toastr.success('Has votado');
-			console.log('khbkhj');
-			return
-		}
 
-		for (var i = 0; i < $scope.Aspiraciones.length; i++) {
-			$scope.Aspiraciones[i].activa = false;
-		}
+		ConexionServ.query("INSERT INTO Votos( Participantes_id, candidato_id, aspiracion_id,  fecha_hora ) VALUES( ?, ?, ?, ?)", [ $scope.USER.rowid, candidato.rowid, candidato.aspiracion_id, '12/04/2018-3:30pm']).then(function(result){
+				
+			console.log(result);
 
-		$scope.Aspiraciones[numero + 1].activa  = true;
+					if ((numero+1) == $scope.Aspiraciones.length) {
+
+						toastr.success('Has votado');
+ 
+						$state.go('Login');
+
+
+					return
+					}
+
+					for (var i = 0; i < $scope.Aspiraciones.length; i++) {
+
+						
+						$scope.Aspiraciones[i].activa = false;
+					}
+
+					$scope.Aspiraciones[numero + 1].activa  = true;
+
+			
+		}, function(tx){
+			console.log('error', tx);
+			
+		});
+
+
+		
 
 
 		

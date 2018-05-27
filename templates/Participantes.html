@@ -44,7 +44,7 @@
                                                     <th>Grupo</th>
                                                     <th>Votacion</th>
                                                     <th>Tipo</th>
-                                                    <th>Modificar</th>
+                                                    <th style="min-width: 60px;">Modificar</th>
 
                                                 </tr>
 
@@ -94,11 +94,11 @@
 
                                                     <td ng-show="!parti.Mostrar_Participante">
 
-                                                        <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Participante(parti)"uib-tooltip="Editar">
+                                                        <button class="btn waves-effect waves-light btn-info btn-sm" ng-click="Modificar_Participante(parti)"uib-tooltip="Editar">
                                                                 <i class="mdi mdi-pen"></i>
                                                             </button>
 
-                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Participantes(parti)"uib-tooltip="Eliminar">
+                                                        <button class="btn waves-effect waves-light btn-danger btn-sm" ng-click="Delete_Participantes(parti)"uib-tooltip="Eliminar">
                                                                 <i class="mdi mdi-window-close"></i>
                                                             </button>
                                                     </td>

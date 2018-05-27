@@ -54,48 +54,47 @@ angular.module('votacioneslive')
 
 	$scope.Cambiar_active = function(numero, candidato){
 
-	
+		var res = confirm('Quieres votar por'+' '+ candidato.Nombres );
 
+		if (res) {
 
-		console.log(numero+1, candidato);
+			console.log(numero+1, candidato);
+			consulta = "INSERT INTO Votos( Participante_id, candidato_id, aspiracion_id,  fecha_hora ) VALUES( ?, ?, ?, ?)";
+			fecha = '12/04/2018 3:30pm';
 
-		ConexionServ.query("INSERT INTO Votos( Participantes_id, candidato_id, aspiracion_id,  fecha_hora ) VALUES( ?, ?, ?, ?)", [ $scope.USER.rowid, candidato.rowid, candidato.aspiracion_id, '12/04/2018-3:30pm']).then(function(result){
-				
-			console.log(result);
+			ConexionServ.query(consulta, [ $scope.USER.rowid, candidato.rowid, candidato.aspiracion_id, fecha]).then(function(result){
+					
+				console.log(result);
 
-					if ((numero+1) == $scope.Aspiraciones.length) {
+				if ((numero+1) == $scope.Aspiraciones.length) {
 
-						toastr.success('Has votado');
+					toastr.success('Gracias por tu voto');
 
-						 localStorage.logueado   = false
-						 
-           				 delete localStorage.USER;
- 
-						$state.go('Login');
+					 localStorage.logueado   = false
+					 
+	   				 delete localStorage.USER;
 
-
+					$state.go('Login');
 					return
-					}
+				}
 
-					for (var i = 0; i < $scope.Aspiraciones.length; i++) {
+				for (var i = 0; i < $scope.Aspiraciones.length; i++) {
 
-						
-						$scope.Aspiraciones[i].activa = false;
-					}
+					
+					$scope.Aspiraciones[i].activa = false;
+				}
 
-					$scope.Aspiraciones[numero + 1].activa  = true;
+				$scope.Aspiraciones[numero + 1].activa  = true;
 
-			
-		}, function(tx){
-			console.log('error', tx);
-			
-		});
+					
+				}, function(tx){
+					console.log('error', tx);
+					
+				});
+
+		}
 
 
-		
-
-
-		
 	}
 
 	

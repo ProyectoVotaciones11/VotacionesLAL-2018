@@ -48,18 +48,18 @@ angular.module('votacioneslive')
 		
 			console.log(' Participantes creado ', result);
 
-					$scope.Tabla_candidatos();
+			$scope.Tabla_candidatos();
 
-					$scope.Mostrar_tabla_crear = false;
+			$scope.Mostrar_tabla_crear = false;
 
-					$scope.Candidatos_nuevo = {};
+			$scope.Candidatos_nuevo = {};
 
 
-				}, function(tx){
-					console.log('error', tx);
-				});
+		}, function(tx){
+			console.log('error', tx);
+		});
 
-		}
+	}
 
 	$scope.Delete_Candidatos = function(candidatos){
 

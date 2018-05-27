@@ -35,7 +35,7 @@ angular.module('votacioneslive')
                     "Password varchar(100)  NOT NULL)";
 
     sqlVotos = "CREATE TABLE IF NOT EXISTS Votos (id integer," +
-                    "Participantes_id integer(100)  NOT NULL collate nocase," +
+                    "Participante_id integer(100)  NOT NULL collate nocase," +
                     "candidato_id integer(100)  NOT NULL collate nocase," +
                     "aspiracion_id integer(100)  DEFAULT NULL collate nocase," +
                     "fecha_hora date(100)  NOT NULL)";

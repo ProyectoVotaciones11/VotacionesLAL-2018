@@ -206,6 +206,8 @@ angular.module('votacioneslive')
 .controller("CopiarAspiracionesModalCtrl", function($uibModalInstance, $scope, votaciones, ConexionServ, toastr, $filter) {
     $scope.votaciones = votaciones;
 
+    
+
 
     $scope.ok = function () {
         $uibModalInstance.close('Cerrado');

@@ -3,9 +3,30 @@ angular.module('votacioneslive')
 .controller('PanelCtrl', function($scope, ConexionServ, $uibModal, USER, AuthServ){
     
     $scope.USER = USER;
+
+     $scope.Admin = false;
+
+
+
+    console.log(USER.Tipo)
     
     
     ConexionServ.createTables();
+
+    $scope.Mostrar_solo_admin = function(){
+
+        if (USER.Tipo == 'Admin') {
+
+            $scope.Admin = true;
+
+        }else{
+
+            console.log('usted no es admin')
+        }
+
+    }
+
+     $scope.Mostrar_solo_admin();
     
     
     

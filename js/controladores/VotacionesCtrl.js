@@ -14,7 +14,7 @@ angular.module('votacioneslive')
 
 		$scope.Tabla_Votaciones = function(){
 
-			ConexionServ.query("SELECT rowid, id,  Nombre,  Alias, descripcion, Username, Password from votaciones", []).then(function(result){
+			ConexionServ.query("SELECT *, rowid FROM votaciones", []).then(function(result){
 					$scope.votaciones = result;
 					console.log(' tabla votaciones ', result);
 

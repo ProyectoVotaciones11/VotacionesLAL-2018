@@ -37,7 +37,7 @@ angular.module('votacioneslive')
 					console.log("Dato original no insertado", tx);
 				});
 					
-				ConexionServ.query(consulta, ['Kevin', 'Eslava', 'kedaesva',  '123', 'admin', 'M', '1', 11]).then(function(result) {
+				ConexionServ.query(consulta, ['Kevin', 'Eslava', 'kedaesva',  '123', 'Admin', 'M', '1', 11]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
@@ -49,7 +49,7 @@ angular.module('votacioneslive')
 					console.log("Dato original no insertado", tx);
 				});
 					
-				ConexionServ.query(consulta, ['jhan', 'ruda', 'jhan0018',  '123', 'admin', 'M', '2', 10]).then(function(result) {
+				ConexionServ.query(consulta, ['jhan', 'ruda', 'jhan0018',  '123', 'Admin', 'M', '2', 10]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);

@@ -17,12 +17,9 @@
                         <div class="card">
                             <div class="card-block">
                                 <center class="m-t-30"> <img src="images/users/5.jpg" class="img-circle" width="150" />
-                                    <h4 class="card-title m-t-10">Hanna Gover</h4>
-                                    <h6 class="card-subtitle">Accoubts Manager Amix corp</h6>
-                                    <div class="row text-center justify-content-md-center">
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-people"></i> <font class="font-medium">254</font></a></div>
-                                        <div class="col-4"><a href="javascript:void(0)" class="link"><i class="icon-picture"></i> <font class="font-medium">54</font></a></div>
-                                    </div>
+                                    <h4 class="card-title m-t-10">{{USER.Nombres}}</h4>
+                                    <h6 class="card-subtitle">{{USER.Apellidos}}</h6>
+                                    
                                 </center>
                             </div>
                         </div>
@@ -34,50 +31,46 @@
                             <div class="card-block">
                                 <form class="form-horizontal form-material">
                                     <div class="form-group">
-                                        <label class="col-md-12">Full Name</label>
+                                        <label class="col-md-12">Nombres</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="Johnathan Doe" class="form-control form-control-line">
+                                            <input type="text" ng-model="USER.Nombres" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label for="example-email" class="col-md-12">Email</label>
+                                        <label class="col-md-12">Apellidos</label>
                                         <div class="col-md-12">
-                                            <input type="email" placeholder="johnathan@admin.com" class="form-control form-control-line" name="example-email" id="example-email">
+                                            <input type="text" ng-model="USER.Apellidos" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">Password</label>
+                                        <label class="col-md-12">Sexo</label>
                                         <div class="col-md-12">
-                                            <input type="password" value="password" class="form-control form-control-line">
+                                            <input type="text" ng-model="USER.Sexo" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">Phone No</label>
+                                        <label  class="col-md-12">Usuario</label>
                                         <div class="col-md-12">
-                                            <input type="text" placeholder="123 456 7890" class="form-control form-control-line">
+                                            <input type="Text" ng-model="USER.Username" class="form-control form-control-line"  >
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="col-md-12">Message</label>
+                                        <label class="col-md-12">Contraseña</label>
                                         <div class="col-md-12">
-                                            <textarea rows="5" class="form-control form-control-line"></textarea>
+                                            <input type="password" ng-model="USER.Password1" class="form-control form-control-line">
                                         </div>
                                     </div>
+
                                     <div class="form-group">
-                                        <label class="col-sm-12">Select Country</label>
-                                        <div class="col-sm-12">
-                                            <select class="form-control form-control-line">
-                                                <option>London</option>
-                                                <option>India</option>
-                                                <option>Usa</option>
-                                                <option>Canada</option>
-                                                <option>Thailand</option>
-                                            </select>
+                                        <label class="col-md-12">Confirmar Contraseña</label>
+                                        <div class="col-md-12">
+                                            <input type="password" ng-model="USER.Password2" class="form-control form-control-line">
                                         </div>
                                     </div>
+
                                     <div class="form-group">
                                         <div class="col-sm-12">
-                                            <button class="btn btn-success">Update Profile</button>
+                                            <button ng-click="Modificar_perfil(USER)" class="btn btn-success">Actualizar</button>
                                         </div>
                                     </div>
                                 </form>

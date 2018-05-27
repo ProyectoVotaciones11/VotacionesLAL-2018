@@ -1,6 +1,6 @@
 angular.module('votacioneslive')
 
-.controller('PanelCtrl', function($scope, ConexionServ, $uibModal, USER, AuthServ){
+.controller('PanelCtrl', function($scope, ConexionServ, $uibModal, USER, AuthServ, toastr, $state){
     
     $scope.USER = USER;
 
@@ -8,7 +8,7 @@ angular.module('votacioneslive')
 
 
 
-    console.log(USER.Tipo)
+    console.log(USER)
     
     
     ConexionServ.createTables();
@@ -49,7 +49,14 @@ angular.module('votacioneslive')
     
     
     $scope.cerrar_sesion = function(){
-        AuthServ.cerrar_sesion();
+
+                     toastr.success('Has cerradi sesion con exito');
+
+                         localStorage.logueado   = false
+                         
+                         delete localStorage.USER;
+ 
+                 $state.go('Login');
     }
     
     

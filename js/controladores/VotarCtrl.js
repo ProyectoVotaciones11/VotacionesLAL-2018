@@ -66,6 +66,10 @@ angular.module('votacioneslive')
 					if ((numero+1) == $scope.Aspiraciones.length) {
 
 						toastr.success('Has votado');
+
+						 localStorage.logueado   = false
+						 
+           				 delete localStorage.USER;
  
 						$state.go('Login');
 

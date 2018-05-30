@@ -10,9 +10,8 @@ angular.module('votacioneslive')
 
 	$scope.Tabla_Votos = function(){
 
-		ConexionServ.query("SELECT V.*, V.rowid, a.aspiracion, C.Nombres, C.Apellidos, P.Nombres as Participantes_Nombres, P.Apellidos as Participantes_Apellidos from Votos V INNER JOIN Aspiraciones a ON V.aspiracion_id = a.rowid INNER JOIN Candidatos C ON V.candidato_id = C.rowid INNER JOIN Participantes P ON V.Participantes_id = P.rowid ", []).then(function(result){
+		ConexionServ.query("SELECT V.*, V.rowid, a.aspiracion, C.Nombres, C.Apellidos, P.Nombres as Participantes_Nombres, P.Apellidos as Participantes_Apellidos from Votos V INNER JOIN Aspiraciones a ON V.aspiracion_id = a.rowid INNER JOIN Candidatos C ON V.candidato_id = C.rowid INNER JOIN Participantes P ON V.Participante_id = P.rowid ", []).then(function(result){
 			$scope.Votos = result;
-			console.log(' tabla Candidatos ', result);
 
 		}, function(tx){
 			console.log('error', tx);
@@ -25,7 +24,7 @@ angular.module('votacioneslive')
 
 	ConexionServ.query("SELECT *, rowid from Aspiraciones", []).then(function(result){
 			$scope.Aspiraciones = result;
-			console.log(' tabla Aspiraciones ', result);
+			
 
 		}, function(tx){
 			console.log('error', tx);
@@ -33,7 +32,7 @@ angular.module('votacioneslive')
 
 	ConexionServ.query("SELECT *, rowid from Candidatos", []).then(function(result){
 			$scope.Candidatos = result;
-			console.log(' tabla Candidatos ', result);
+	
 
 		}, function(tx){
 			console.log('error', tx);
@@ -41,7 +40,7 @@ angular.module('votacioneslive')
 
 	ConexionServ.query("SELECT *, rowid from Participantes", []).then(function(result){
 			$scope.Participantes = result;
-			console.log(' tabla Participantes ', result);
+	
 
 		}, function(tx){
 			console.log('error', tx);
@@ -59,9 +58,9 @@ angular.module('votacioneslive')
 			return;
 		}
 
-			ConexionServ.query("INSERT INTO Votos( id, Participantes_id, candidato_id, aspiracion_id,  fecha_hora ) VALUES( ?, ?, ?, ?, ?)", [crear.id, crear.Participantes_id, crear.candidato_id, crear.aspiracion_id, crear.fecha_hora]).then(function(result){
+			ConexionServ.query("INSERT INTO Votos( id, Participante_id, candidato_id, aspiracion_id,  fecha_hora ) VALUES( ?, ?, ?, ?, ?)", [crear.id, crear.Participante_id, crear.candidato_id, crear.aspiracion_id, crear.fecha_hora]).then(function(result){
 			
-					console.log(' Participantes creado ', result);
+	
 
 					$scope.Tabla_Votos();
 
@@ -96,9 +95,9 @@ angular.module('votacioneslive')
 		if(modificar.Mostrar_Votos == true){
 			modificar.Mostrar_Votos = false;
 
-			ConexionServ.query("UPDATE Votos  SET  id=? , Participantes_id=? , candidato_id=? , aspiracion_id=? , fecha_hora=? WHERE rowid=? ", [modificar.id, modificar.Participantes_id, modificar.candidato_id, modificar.aspiracion_id, modificar.fecha_hora, modificar.rowid]).then(function(result){
+			ConexionServ.query("UPDATE Votos  SET  id=? , Participante_id=? , candidato_id=? , aspiracion_id=? , fecha_hora=? WHERE rowid=? ", [modificar.id, modificar.Participante_id, modificar.candidato_id, modificar.aspiracion_id, modificar.fecha_hora, modificar.rowid]).then(function(result){
 				
-				console.log("hola")
+
 
 				$scope.Tabla_Votos();
 

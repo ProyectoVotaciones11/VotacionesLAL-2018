@@ -118,7 +118,7 @@ angular.module('votacioneslive')
 
 		}
 
-	$scope.Ocultar_Candidato = function(){
+	$scope.Ocultar_participantes = function(){
 			
 		$scope.Mostrar_tabla_crear = false;
 

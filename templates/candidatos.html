@@ -25,7 +25,7 @@
 
                                         <h4 class="card-title"> Tabla de Candidatos</h4>
 
-                                         <button class="btn btn-success" ng-click="Mostrar_tabla_De_Crear() ">Nuevo Candidato</button>
+                                         <button class="btn btn-success" ng-click="Mostrar_tabla_De_Crear() "  uib-tooltip="Nuevo Candidato"> <i class="mdi mdi-account-plus"></i> Nuevo Candidato</button>
 
                             <div class="table-responsive">
 
@@ -33,13 +33,13 @@
                                                         <thead>
                                                            <tr>
                                                                 <th>#</th>
-                                                                <th>Nombre</th>
-                                                                <th>Apellido</th>
-                                                                <th>Sexo</th>
-                                                                <th>Grupo</th>
-                                                                <th>Foto</th>
-                                                                <th>Aspiracion</th>
-                                                                <th>Modificar</th>
+                                                                <th style="min-width: 60px;">Nombre</th>
+                                                                <th style="min-width: 60px;">Apellido</th>
+                                                                <th style="min-width: 60px;">Sexo</th>
+                                                                <th style="min-width: 60px;">Grupo</th>
+                                                                <th style="min-width: 60px;">Foto</th>
+                                                                <th style="min-width: 60px;">Aspiracion</th>
+                                                                <th style="min-width: 60px;">Modificar</th>
 
                                                             </tr>
 
@@ -81,10 +81,10 @@
 
                                                                 <td ng-show="!candi.Mostrar_Candidatos">
 
-                                                                    <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Candidatos(candi)" uib-tooltip="Editar">
-                                                                <i class="mdi mdi-pen"></i>
+                                                                    <button class="btn waves-effect waves-light btn-info btn-sm" ng-click="Modificar_Candidatos(candi)" uib-tooltip="Editar">
+                                                                <i class="mdi mdi-pencil"></i>
                                                                     </button>
-                                                                    <button class="btn waves-effect waves-light btn-danger " ng-click="Delete_Candidatos(candi)"uib-tooltip="Eliminar">
+                                                                    <button class="btn waves-effect waves-light btn-danger btn-sm" ng-click="Delete_Candidatos(candi)"uib-tooltip="Eliminar">
                                                                 <i class="mdi mdi-window-close"></i>
                                                                     </button>
 
@@ -101,11 +101,11 @@
                                                                     </td>
 
                                                                     <td ng-show="candi.Mostrar_Candidatos">
-                                                                     <input class="text-pequenio" type="text" ng-model="candi.Sexo" name=""> 
+                                                                     <input class="text-pequenioe" type="text" ng-model="candi.Sexo" name=""> 
                                                                     </td>
 
                                                                     <td ng-show="candi.Mostrar_Candidatos"> 
-                                                                        <input class="text-pequenio" type="text" ng-model="candi.Grupo_id" name=""> 
+                                                                        <input class="text-pequenioe" type="text" ng-model="candi.Grupo_id" name=""> 
                                                                     </td>
 
                                                                     <td ng-show="candi.Mostrar_Candidatos"> 
@@ -114,7 +114,7 @@
 
                                                                     <td ng-show="candi.Mostrar_Candidatos">
 
-                                                                        <div class="  text-pequenio2" >
+                                                                        <div  >
                                                                                 
                                                                                 <select ng-model="candi.aspiracion_id"  >
                                                                                       <option ng-repeat="aspi in Aspiraciones" value="{{aspi.rowid}}">
@@ -128,10 +128,12 @@
 
                                                                     <td ng-show="candi.Mostrar_Candidatos">
 
-                                                                        <button class="btn waves-effect waves-light btn-info " ng-click="Modificar_Candidatos(candi)">
-                                                                        Guardar</button>
-                                                                        <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Tabla_de_Editar(candi)">
-                                                                        Cancelar</button>
+                                                                        <button class="btn waves-effect waves-light btn-success btn-sm" ng-click="Modificar_Candidatos(candi)" uib-tooltip="Guardar">
+                                                                                <i class="mdi mdi-floppy"></i>
+                                                                            </button>
+                                                                        <button class="btn waves-effect waves-light btn-warning btn-sm" ng-click="Ocultar_Tabla_de_Editar(candi)" uib-tooltip="Cancelar">
+                                                                                <i class="mdi mdi-arrow-left"></i>
+                                                                            </button>
 
                                                                     </td>
 
@@ -152,20 +154,20 @@
                                                                         </td>
 
                                                                         <td > 
-                                                                            <input class="text-pequenio" type="text" ng-value="" ng-model="Candidatos_nuevo.Sexo"> 
+                                                                            <input class="text-pequenioe" type="text" ng-value="" ng-model="Candidatos_nuevo.Sexo"> 
                                                                         </td>
 
                                                                         <td> 
-                                                                            <input class="text-pequenio" type="text" ng-value="" ng-model="Candidatos_nuevo.Grupo_id" > 
+                                                                            <input class="text-pequenioe" type="text" ng-value="" ng-model="Candidatos_nuevo.Grupo_id" > 
                                                                         </td>
 
                                                                        <td > 
-                                                                            <input class="text-pequenio" type="text" ng-model="Candidatos_nuevo.Foto" name=""> 
+                                                                            <input class="text-pequenio2" type="text" ng-model="Candidatos_nuevo.Foto" name=""> 
                                                                         </td>
 
                                                                         <td >
 
-                                                                            <div class="col-sm-4 form-control text-pequenio2" >
+                                                                            
                                                                                     
                                                                                     <select ng-model="Candidatos_nuevo.aspiracion_id"  >
                                                                                       <option ng-repeat="aspi in Aspiraciones" value="{{aspi.rowid}}">
@@ -173,15 +175,18 @@
                                                                                       </option>
                                                                                      </select>
 
-                                                                             </div>
+                                                                            
 
                                                                         </td>
 
                                                                         <td >
 
-                                                                            <button class="btn waves-effect waves-light btn-info " ng-click="Insert_Candidatos(Candidatos_nuevo)">Crear</button>
-                                                                            <button class="btn waves-effect waves-light btn-danger " ng-click="Ocultar_Candidato()"
-                                                                            >Cancelar</button>
+                                                                            <button class="btn waves-effect waves-light btn-primary btn-sm" ng-click="Insert_Candidatos(Candidatos_nuevo)"uib-tooltip="Crear">
+                                                                                <i class="mdi mdi-content-save"></i>
+                                                                            </button>
+                                                                            <button class="btn waves-effect waves-light btn-warning btn-sm" ng-click="Ocultar_Candidato()"uib-tooltip="Cancelar">
+                                                                                <i class="mdi mdi-arrow-left"></i>
+                                                                            </button>
                                                                             
                                                                         </td>
 

@@ -1,11 +1,17 @@
 .text-pequenio{
 	width: 50px;
 }
+.text-pequenioe{
+    width: 25px;
+}
 .text-pequenio2{
 	width: 130px;
 }
+.text-mediano{
+    width: 230px;
+}
 .text-Grande{
-	width: 600px;
+	width: 500px;
 }
 .navbar {
     position: relative;
@@ -125,5 +131,5 @@ a.nav-link{
     cursor: pointer;
 }
 .opcion-candidato>div:hover{
-    background-color: #ccc;
+    background-color: blue;
 }

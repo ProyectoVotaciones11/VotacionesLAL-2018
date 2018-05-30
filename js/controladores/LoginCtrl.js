@@ -154,7 +154,7 @@ angular.module('votacioneslive')
 				// Votos
 
 
-				consulta = "INSERT INTO Votos( Participantes_id, candidato_id, aspiracion_id, fecha_hora) VALUES( ?, ?, ?, ?) ";
+				consulta = "INSERT INTO Votos( Participante_id, candidato_id, aspiracion_id, fecha_hora) VALUES( ?, ?, ?, ?) ";
 				ConexionServ.query(consulta, ['1', '1', '1.', 123]).then(function(result) {
 		
 				}, function(tx) {

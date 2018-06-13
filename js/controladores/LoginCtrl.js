@@ -25,6 +25,7 @@ angular.module('votacioneslive')
 				//Participantes
 
 				consulta = "INSERT INTO Participantes(Nombres, Apellidos, Username, Password, Tipo, Sexo, Votacion_id, Grupo_id) VALUES(?,?,?,?,?,?,?,?) ";
+				
 				ConexionServ.query(consulta, ['jorge', 'cardenas', 'jorge',  '123', 'Admin', 'M', '2', 11]).then(function(result) {
 		
 				}, function(tx) {
@@ -32,6 +33,12 @@ angular.module('votacioneslive')
 				});
 				
 				ConexionServ.query(consulta, ['pedro', 'romero', 'juan',  '123', 'Participante', 'M', '2', 11]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['memo', 'pina', 'juan',  '123', 'Participante', 'M', '2', 11]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
@@ -49,7 +56,7 @@ angular.module('votacioneslive')
 					console.log("Dato original no insertado", tx);
 				});
 					
-				ConexionServ.query(consulta, ['jhan', 'ruda', 'jhan0018',  '123', 'Admin', 'M', '2', 10]).then(function(result) {
+				ConexionServ.query(consulta, ['jhan', 'ruda', 'jhanC118',  '123', 'Admin', 'M', '2', 10]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
@@ -58,38 +65,147 @@ angular.module('votacioneslive')
 				//Candidatos
 
 				consulta = "INSERT INTO Candidatos( Nombres, Apellidos,  Foto, aspiracion_id, Sexo, Grupo_id ) VALUES( ?, ?, ?, ?, ?,?) ";
-				ConexionServ.query(consulta, ['pedro', 'romero', 'images/users/1.jpg', '2', 'M', 11]).then(function(result) {
+				
+				ConexionServ.query(consulta, ['keinny', 'ferrer', 'images/users/2.jpg', '1', 'M', 11]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+		        
+		        ConexionServ.query(consulta, ['marton', 'raton', 'images/users/1.jpg', '1', 'M', 11]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 				
-				ConexionServ.query(consulta, ['jhan', 'ruda','images/users/2.jpg', '1', 'M', 10]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-					
-				ConexionServ.query(consulta, ['toloza', 'calvo', 'images/users/3.jpg',  '3',  'M', 9]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-					
-				ConexionServ.query(consulta, ['marta', 'prada', 'images/users/4.jpg',  '4', 'M', 10]).then(function(result) {
-		
-				}, function(tx) {
-					console.log("Dato original no insertado", tx);
-				});
-					
-				ConexionServ.query(consulta, ['kevin', 'eslava', 'images/users/5.jpg',  '5',  'M', 10]).then(function(result) {
+				ConexionServ.query(consulta, ['marcos', 'picino','images/users/d2.jpg', '1', 'M', 10]).then(function(result) {
 		
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
 
-				ConexionServ.query(consulta, ['Martin', 'giz', 'images/users/6.jpg',  '6',  'M', 10]).then(function(result) {
+				ConexionServ.query(consulta, ['voto en ', 'blanco', 'images/users/img9.jpg', '1', 'M', 11]).then(function(result) {
 		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+		
+				ConexionServ.query(consulta, ['juancho', 'carrancho','images/users/d3.jpg', '2', 'M', 10]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+					
+				ConexionServ.query(consulta, ['memo', 'guillermo', 'images/users/4.jpg',  '2',  'M', 9]).then(function(result) {
+
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+	
+				ConexionServ.query(consulta, ['keda', 'rata', 'images/users/d4.jpg',  '2',  'M', 9]).then(function(result) {
+
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+				
+				ConexionServ.query(consulta, ['Voto en ', 'blanco', 'images/users/img9.jpg',  '2',  'M', 9]).then(function(result) {
+
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+				
+				ConexionServ.query(consulta, ['jhan', 'carlos', 'images/users/5.jpg',  '3',  'M', 9]).then(function(result) {
+
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['simon', 'bolivar', 'images/users/d1.jpg',  '3',  'M', 9]).then(function(result) {
+
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['gabo', 'garcia', 'images/users/d5.jpg',  '3',  'M', 9]).then(function(result) {
+
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Voto en ', 'blanco', 'images/users/img9.jpg',  '3',  'M', 9]).then(function(result) {
+
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+				
+				ConexionServ.query(consulta, ['marta', 'prada', 'images/users/7.jpg',  '4', 'M', 10]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['pedro', 'romero', 'images/users/5.jpg',  '4', 'M', 10]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['pablo', 'alfonso', 'images/users/d5.jpg',  '4', 'M', 10]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+					
+				ConexionServ.query(consulta, ['Voto en ', 'blanco', 'images/users/img9.jpg',  '4',  'M', 9]).then(function(result) {
+
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+				
+				ConexionServ.query(consulta, ['kevin', 'eslava', 'images/users/d4.jpg',  '5',  'M', 10]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+				
+				ConexionServ.query(consulta, ['erik', 'eslava', 'images/users/d1.jpg',  '5',  'M', 10]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['jeison', 'eslava', 'images/users/d2.jpg',  '5',  'M', 10]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Voto en ', 'blanco', 'images/users/img9.jpg',  '5',  'M', 9]).then(function(result) {
+
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Martin', 'giz', 'images/users/1.jpg',  '6',  'M', 10]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['silvia', 'giz', 'images/users/d3.jpg',  '6',  'M', 10]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['piolin', 'giz', 'images/users/d1.jpg',  '6',  'M', 10]).then(function(result) {
+		
+				}, function(tx) {
+					console.log("Dato original no insertado", tx);
+				});
+
+				ConexionServ.query(consulta, ['Voto en ', 'blanco', 'images/users/img9.jpg',  '6',  'M', 9]).then(function(result) {
+
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
@@ -148,8 +264,6 @@ angular.module('votacioneslive')
 				}, function(tx) {
 					console.log("Dato original no insertado", tx);
 				});
-
-
 
 				// Votos
 

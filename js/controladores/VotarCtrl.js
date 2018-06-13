@@ -54,7 +54,7 @@ angular.module('votacioneslive')
 
 	$scope.Cambiar_active = function(numero, candidato){
 
-		var res = confirm('Quieres votar por'+' '+ candidato.Nombres );
+		var res = confirm('Quieres votar por'+' '+ candidato.Nombres+' '+candidato.Apellidos );
 
 		if (res) {
 

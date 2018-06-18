@@ -1,6 +1,6 @@
 angular.module('votacioneslive')
 
-.controller('PanelCtrl', function($scope, ConexionServ, $uibModal, USER, AuthServ, toastr, $state){
+.controller('PanelCtrl', function($scope, ConexionServ, $uibModal, USER, AuthServ, toastr, $state, MySocket){
     
     $scope.USER = USER;
 
@@ -8,7 +8,19 @@ angular.module('votacioneslive')
 
 
 
-    console.log(USER)
+    
+    $scope.traer_puestos = function(){
+
+        MySocket.emit('necesito_puestos');  
+
+    }
+
+    MySocket.on('toma_los_puestos', function(datos){
+        console.log(datos);
+    })
+    
+
+
     
     
     ConexionServ.createTables();

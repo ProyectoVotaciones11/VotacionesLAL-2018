@@ -5,8 +5,9 @@
     <div class="container-login100">
         <div class="wrap-login100 p-t-50 p-b-90">
             <form ng-submit="entrar(user)" class="login100-form validate-form flex-sb flex-w">
+                
                 <span class="login100-form-title p-b-51" >
-                    Votaciones escolares
+                  votaciones escolares
                 </span>
 
                 
@@ -23,18 +24,7 @@
                 
                 <div class="flex-sb-m w-full p-t-3 p-b-24">
                     <div class="contact100-form-checkbox">
-                        <!--
-                        <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-                        <label class="label-checkbox100" for="ckb1">
-                            Remember me
-                        </label>
-                    -->
-                    </div>
-
-                    <div>
-                        <a href="#" class="txt1">
-                            Forgot?
-                        </a>
+                       
                     </div>
                 </div>
 
@@ -44,7 +34,23 @@
                     </button>
                 </div>
 
+
             </form>
+
+            <form ng-submit="cambiar_servidor(servidor)" style="margin-top: 100px">
+              
+                  <div class="form-group ">
+                    <a href="" ng-click="mostrarCambiarServ()">Cambiar servidor</a>
+                  </div>
+
+                  <div class="form-group " ng-show="mostrar_cambiar_serv">
+                    <input type="text" class="input100 form-control" placeholder="Contraseña" ng-model="servidor" >
+                    <span ></span>
+                    <input type="submit" class="btn btn-primary" name="" class="btn btn-primary" value="Guardar">
+                  </div>
+
+            </form>
+
         </div>
     </div>
 </div>

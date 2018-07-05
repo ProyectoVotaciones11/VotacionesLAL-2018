@@ -68,9 +68,13 @@
 
         <div class="page-wrapper">
 
-            <div>
-                <button>Puestos</button>
-            </div>
+           <button ng-click="Mostrar_Puestos()" class="btn btn-info">Puestos</button>
+
+           <div ng-show="Puestos" >
+               <div class="btn-aspiracion">Primero</div>
+               <div class="btn-aspiracion">Segundo</div>
+               <div class="btn-aspiracion">Tercero</div>
+           </div>
 
             <div class="container-fluid" ui-view>
                 

@@ -6,7 +6,13 @@ angular.module('votacioneslive')
 
      $scope.Admin = false;
 
+     $scope.Puestos = false;
 
+     $scope.Mostrar_Puestos = function(){
+
+     if ($scope.Puestos == false) { $scope.Puestos = true; }else{$scope.Puestos = false;}
+
+     }
 
     
     $scope.traer_puestos = function(){
@@ -18,9 +24,6 @@ angular.module('votacioneslive')
     MySocket.on('toma_los_puestos', function(datos){
         console.log(datos);
     })
-    
-
-
     
     
     ConexionServ.createTables();

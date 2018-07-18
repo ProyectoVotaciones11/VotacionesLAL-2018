@@ -1,9 +1,9 @@
 angular.module('votacioneslive')
 
 
-.controller('LoginCtrl', function($scope, $state, ConexionServ, AuthServ){
+.controller('LoginCtrl', function($scope, $state, ConexionServ, AuthServ,$http){
     
-    $scope.user = {}
+    $scope.user ={};
     
     if (localStorage.servidor) {
     	$scope.servidor = localStorage.servidor

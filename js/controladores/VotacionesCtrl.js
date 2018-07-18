@@ -1,6 +1,6 @@
 angular.module('votacioneslive')
 
-.controller('VotacionesCtrl', function($scope,ConexionServ,$filter, $uibModal, toastr){
+.controller('VotacionesCtrl', function($scope,ConexionServ,$filter, $uibModal, toastr, $http){
 
 	$scope.Mostrar_Votaciones = false;
 	$scope.Votaciones_nuevo = {};
@@ -10,13 +10,13 @@ angular.module('votacioneslive')
 	$scope.Comfirmar_Primera_password = false;
 
 
-		ConexionServ.createTables();
+	
 
 		$scope.Tabla_Votaciones = function(){
 
-			ConexionServ.query("SELECT *, rowid FROM votaciones", []).then(function(result){
-					$scope.votaciones = result;
-					console.log(' tabla votaciones ', result);
+			$http.get('::votaciones').then (function(result){
+			  $scope.votaciones = result.data ;
+					
 
 				}, function(tx){
 					toastr.error('Error trayendo votaciones');
@@ -37,9 +37,8 @@ angular.module('votacioneslive')
 			return;
 		}
 
-			ConexionServ.query("INSERT INTO votaciones( Nombre,  Alias, descripcion, Username, Password ) VALUES( ?, ?, ?, ?, ?)", [crear.Nombre, crear.Alias, crear.descripcion, crear.Username, "123"]).then(function(result){
+			$http.get('::votaciones/insertar',  {params: { Nombre: crear.Nombre, Alias: crear.Alias, descripcion: crear.descripcion, Username: crear.Username}}).then(function(result){
 			
-					console.log(' Participantes creado ', result);
 
 					$scope.Mostrar_tabla_crear = false;
 
@@ -55,12 +54,8 @@ angular.module('votacioneslive')
 
 	$scope.Delete_Votaciones = function(votaciones){
 		
-		var res = confirm('Seguro que dese');
+		$http.delete('::votaciones/eliminar', {params: { id: votaciones.rowid} }).then (function(result){
 
-		if (res) {
-			ConexionServ.query("DELETE FROM Votaciones WHERE rowid=? ", [votaciones.rowid]).then(function(result){
-		
-				$scope.votaciones = $filter('filter') ($scope.votaciones, {rowid: '!' + votaciones.rowid})
 
 				$scope.Tabla_Votaciones();	
 
@@ -69,16 +64,15 @@ angular.module('votacioneslive')
 		   });
 
 		}
-			
-	}
+
 
 	$scope.Modificar_Votaciones = function(modificar){
 
 		if(modificar.Mostrar_Votaciones == true){
 			modificar.Mostrar_Votaciones = false;
 
-			ConexionServ.query("UPDATE Votaciones  SET  Nombre=? , Alias=? , descripcion=? , Username=? , Password=? WHERE rowid=? ", [modificar.Nombre, modificar.Alias, modificar.descripcion, modificar.Username, modificar.Password,  modificar.rowid]).then(function(result){
-				console.log("hola")
+			$http.get('::votaciones/editar',  {params: { Nombre: modificar.Nombre, Alias: modificar.Alias, descripcion: modificar.descripcion, Username: modificar.Username, Password: modificar.Password, rowid: modificar.rowid}}).then(function(result){
+				
 
 				$scope.Tabla_Votaciones();	
 

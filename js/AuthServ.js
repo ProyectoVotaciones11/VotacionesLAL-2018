@@ -39,21 +39,14 @@ angular.module('votacioneslive')
         loguear: function(datos){
             var defered = $q.defer();
             
-            var consulta_user = 'SELECT p.rowid, p.id, p.Nombres, p.Apellidos, p.Tipo, p.Username, p.Sexo, p.Grupo_id, p.Votacion_id, ' +
-                'v.Nombre as Nombre_votacion, v.alias, v.descripcion, v.Username as Username_votacion, v.Password '+
-            'FROM Participantes p '+
-            'LEFT JOIN Votaciones v ON v.rowid=p.Votacion_id '+
-            'WHERE  ';
-
-            ConexionServ.query(consulta_user+' p.username=? and p.password=? ', [datos.username, datos.password]).then(function(result){
+           $http.post('::login/login', {username: datos.username, password: datos.password}).then(function(result){
+                usuario                 = result.data
+                localStorage.logueado   = true
+                localStorage.xtoken     = usuario.remember_token;
+                delete usuario.remember_token;
+                localStorage.USER       = JSON.stringify(usuario);
+                defered.resolve('Logueado');
                 
-                if (result.length > 0) {
-                    localStorage.logueado   = true
-                    localStorage.USER       = JSON.stringify(result[0]);
-                    defered.resolve(result[0]);
-                }else{
-                    defered.reject('DATOS INVÁLIDOS')
-                }
                 
             }, function(){
                 console.log('Error logueando');

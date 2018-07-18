@@ -1,37 +1,43 @@
 angular.module('votacioneslive')
 
-.controller('ParticipantesCtrl', function($scope,ConexionServ,$filter){
+.controller('ParticipantesCtrl', function($scope,$filter, $http){
 
 	$scope.Mostrar_Participantes = false;
 	$scope.Participante_nuevo = {};
 	$scope.Mostrar_tabla_crear = false;
 
-	ConexionServ.createTables();
+	
 
 	$scope.Tabla_Participantes = function(){
 
-		ConexionServ.query("SELECT P.*, P.rowid, V.Nombre, V.Alias from Participantes P INNER JOIN votaciones V ON P.Votacion_id = V.rowid", []).then(function(result){
-
-			$scope.Participantes = result;
 		
-
-		}, function(tx){
-			console.log('error', tx);
-		});
+		$http.get('::usuarios').then (function(result){
+			$scope.Participantes = result.data ;
 	
-}
+		}, function(error){
+			console.log('No se pudo traer los datos', error);
+
+		})
+			
+    };
+
+    $scope.Tabla_Votaciones = function(){
+
+			$http.get('::votaciones').then (function(result){
+			  $scope.votaciones = result.data ;
+					
+
+				}, function(tx){
+					toastr.error('Error trayendo votaciones');
+				});
+
+		}
+
+		$scope.Tabla_Votaciones();	
 	
 
 		$scope.Tabla_Participantes();
 
-		ConexionServ.query("SELECT rowid, id,  Nombre,  Alias, descripcion, Username, Password from votaciones", []).then(function(result){
-
-				$scope.votaciones = result;
-			
-
-			}, function(tx){
-				console.log('error', tx);
-			});
 
 	$scope.Insert_Participantes = function(crear){
 
@@ -44,9 +50,8 @@ angular.module('votacioneslive')
 			return;
 		}
 
-			ConexionServ.query("INSERT INTO Participantes( Nombres, Apellidos, Username, Password, Sexo, Grupo_id, Votacion_id, Tipo ) VALUES( ?, ?, ?, ?, ?, ?, ?, ?)", [crear.Nombres, crear.Apellidos, crear.Username, crear.Password, crear.Sexo, crear.Grupo_id, crear.Votacion_id, crear.Tipo]).then(function(result){
-			
-					
+			$http.get('::usuarios/insertar', {params: {Nombres: crear.Nombres, Apellidos: crear.Apellidos, Sexo: crear.Sexo, Username: crear.Username, Password: crear.Password, Tipo: crear.Tipo, Grupo_id: crear.Grupo_id, Votacion_id: crear.Votacion_id   }  }).then (function(result){
+	     
 
 					$scope.Mostrar_tabla_crear = false;
 
@@ -62,9 +67,9 @@ angular.module('votacioneslive')
 
 	$scope.Delete_Participantes = function(participantes){
 
-		ConexionServ.query("DELETE FROM Participantes WHERE rowid=? ", [participantes.rowid]).then(function(result){
-		
-				 $scope.Participantes = $filter('filter') ($scope.Participantes, {rowid: '!' + participantes.rowid})
+			$http.delete('::usuarios/eliminar', {params: { id: participantes.rowid} }).then (function(result){
+
+
 
 				 $scope.Tabla_Participantes();
 
@@ -79,9 +84,9 @@ angular.module('votacioneslive')
 		if(modificar.Mostrar_Participante == true){
 			modificar.Mostrar_Participante = false;
 
-			ConexionServ.query("UPDATE Participantes  SET  Nombres=? , Apellidos=? , Username=?, Password=?, Sexo=? , Grupo_id=? , Votacion_id=? , Tipo=? WHERE rowid=? ", [modificar.Nombres, modificar.Apellidos, modificar.Username, modificar.Password, modificar.Sexo, modificar.Grupo_id, modificar.Votacion_id, modificar.Tipo , modificar.rowid]).then(function(result){
-					
-					
+			$http.get('::usuarios/editar',  {params: { rowid: modificar.rowid, Nombres: modificar.Nombres, Apellidos: modificar.Apellidos, Sexo: modificar.Sexo, Username: modificar.Username, Password: modificar.Password , Grupo_id: modificar.Grupo_id, Votacion_id: modificar.Votacion_id, Tipo: modificar.Tipo } }).then (function(result){
+               
+              
 
 					$scope.Tabla_Participantes();
 

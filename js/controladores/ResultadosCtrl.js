@@ -1,10 +1,12 @@
 angular.module('votacioneslive')
 
-.controller('ResultadosCtrl', function($scope, ConexionServ, $uibModal, USER, AuthServ, toastr, $q){
+.controller('ResultadosCtrl', function($scope,  $uibModal, USER, AuthServ, toastr, $q, $http){
 
 	
-  ConexionServ.query("SELECT rowid, id,  aspiracion, descripcion  from Aspiraciones WHERE votacion_id=?", [$scope.USER.Votacion_id]).then(function(result){
-		$scope.Aspiraciones = result;
+  $http.get('::resultado',  {params: {Votacion_id: $scope.USER.Votacion_id}}).then(function(result){
+		$scope.Aspiraciones = result.data;
+
+		console.log($scope.Aspiraciones);
 		
 		$scope.Aspiraciones.forEach(function(aspiracion, indice){
 			$scope.cadidatos_de_aspiracion(aspiracion);
@@ -16,12 +18,10 @@ angular.module('votacioneslive')
 
 	$scope.cadidatos_de_aspiracion = function(aspiracion){
 		
-		consulta = "SELECT C.*, C.rowid, count(v.rowid) as cantidad from Candidatos C "+
-			"LEFT JOIN Votos v ON v.candidato_id = C.rowid "+
-			" WHERE C.aspiracion_id = ? GROUP BY C.rowid ";
-
-    	ConexionServ.query(consulta, [aspiracion.rowid]).then(function(result){
-			aspiracion.Candidatos = result;
+		console.log(aspiracion);
+		
+    	 $http.get('::resultado/CandidatoAspiracion',  {params: {id: aspiracion.rowid}}).then(function(result){
+			aspiracion.Candidatos = result.data;
 			console.log(' tabla Candidatos ', result);
 
 		}, function(tx){

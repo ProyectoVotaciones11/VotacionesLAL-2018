@@ -113,6 +113,12 @@ angular.module('votacioneslive', [
 		templateUrl: 'templates/Resultados.html',
 		controller:'ResultadosCtrl'
 	}
+	var Control = {
+		name: 'panel.Control',
+		url: '/Control',
+		templateUrl: 'templates/Control.html',
+		controller:'ControlCtrl'
+	}
 
   $stateProvider.state(panel);
   $stateProvider.state(Login);
@@ -124,6 +130,7 @@ angular.module('votacioneslive', [
   $stateProvider.state(Votos);
   $stateProvider.state(Configuraciones);
   $stateProvider.state(Resultados);
+  $stateProvider.state(Control);
  
 
    $urlRouterProvider.otherwise('/Login');

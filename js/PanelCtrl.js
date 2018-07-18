@@ -1,12 +1,28 @@
 angular.module('votacioneslive')
 
-.controller('PanelCtrl', function($scope, ConexionServ, $uibModal, USER, AuthServ, toastr, $state, MySocket){
+.controller('PanelCtrl', function($scope, $uibModal, USER, AuthServ, toastr, $state, MySocket, $http){
     
     $scope.USER = USER;
 
      $scope.Admin = false;
 
      $scope.Puestos = false;
+
+    /* $scope.traer_datos = function(){
+        $http.get('::Dashboard').then (function(result){
+            $scope.pruebas= result.data ;
+            
+            console.log('Se trajo los datos con exito', result);
+        }, function(error){
+            console.log('No se pudo traer los datos', error);
+
+        })
+    };
+
+    $scope.traer_datos(); */  
+
+
+
 
      $scope.Mostrar_Puestos = function(){
 
@@ -26,8 +42,7 @@ angular.module('votacioneslive')
     })
     
     
-    ConexionServ.createTables();
-
+   
     $scope.Mostrar_solo_admin = function(){
 
         if (USER.Tipo == 'Admin') {

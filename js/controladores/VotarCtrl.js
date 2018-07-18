@@ -1,16 +1,14 @@
 angular.module('votacioneslive')
 
 
-.controller('VotarCtrl', function($scope, $state, ConexionServ, AuthServ, $q, toastr){
+.controller('VotarCtrl', function($scope, $state,  AuthServ, $q, toastr, $http){
 
 	$scope.Moatrar_Contralos = false; 
-	
-
     
-    ConexionServ.createTables();
+   
 
-    ConexionServ.query("SELECT rowid, id,  aspiracion, descripcion  from Aspiraciones WHERE votacion_id=?", [$scope.USER.Votacion_id]).then(function(result){
-		$scope.Aspiraciones = result;
+    $http.get('::votar', {params: {Votacion_id: $scope.USER.Votacion_id}}).then(function(result){
+		$scope.Aspiraciones = result.data;
 
 		$scope.completado 	= false;
 		$scope.contador 	= 0;
@@ -18,6 +16,9 @@ angular.module('votacioneslive')
 		$scope.Aspiraciones.forEach(function(aspiracion, indice){
 			
 			promesa = $scope.cadidatos_de_aspiracion(aspiracion);
+
+			
+
 			promesa.then(function(){
 
 				$scope.contador 	= $scope.contador + 1;
@@ -33,20 +34,27 @@ angular.module('votacioneslive')
 		})
 
 	}, function(tx){
-		console.log('error', tx);
+		console.log('error 1', tx);
 	});
 
 	
 
 	$scope.cadidatos_de_aspiracion = function(aspiracion){
+
+
+
 		var defered = $q.defer();
 
-    	ConexionServ.query("SELECT C.*, C.rowid from Candidatos C WHERE C.aspiracion_id = ? ", [aspiracion.rowid]).then(function(result){
-			aspiracion.Candidatos = result;
+
+    	$http.get('::votar/CandidatoAspiracion',  {params: {id: aspiracion.rowid}}).then(function(result){
+			aspiracion.Candidatos = result.data;
+
+			console.log(aspiracion.Candidatos);
+
 			defered.resolve(' ');
 		}, function(tx){
-			console.log('error', tx);
-			defered.reject('Error')
+			console.log('error 2', tx);
+			defered.reject('Error 4')
 		});
 
     	return defered.promise;
@@ -59,10 +67,10 @@ angular.module('votacioneslive')
 		if (res) {
 
 			console.log(numero+1, candidato);
-			consulta = "INSERT INTO Votos( Participante_id, candidato_id, aspiracion_id,  fecha_hora ) VALUES( ?, ?, ?, ?)";
+			
 			fecha = '12/04/2018 3:30pm';
 
-			ConexionServ.query(consulta, [ $scope.USER.rowid, candidato.rowid, candidato.aspiracion_id, fecha]).then(function(result){
+			$http.get('::votar/Cambiaractive', {params: { user_id: $scope.USER.rowid, id: candidato.rowid, aspiracion_id: candidato.aspiracion_id, fecha: fecha}}).then(function(result){
 					
 				console.log(result);
 
@@ -88,7 +96,7 @@ angular.module('votacioneslive')
 
 					
 				}, function(tx){
-					console.log('error', tx);
+					console.log('error 3', tx);
 					
 				});
 

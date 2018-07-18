@@ -1,6 +1,6 @@
 angular.module('votacioneslive')
 
-.controller('AspiracionesCtrl', function($scope,ConexionServ,$filter, $uibModal){
+.controller('AspiracionesCtrl', function($scope,ConexionServ,$filter, $uibModal, $http){
 
 	$scope.Mostrar_Aspiraciones = false;
 	$scope.nueva_Aspiraciones = {};
@@ -10,9 +10,8 @@ angular.module('votacioneslive')
 
 	$scope.Tabla_de_aspiraciones = function(){
 
-		ConexionServ.query("SELECT rowid, id,  aspiracion, descripcion  from Aspiraciones", []).then(function(result){
-			$scope.Aspiraciones = result;
-			console.log(' tabla Aspiraciones ', result);
+		$http.get('::aspiraciones').then (function(result){
+			  $scope.Aspiraciones = result.data ;
 
 		}, function(tx){
 			console.log('error', tx);
@@ -36,10 +35,9 @@ angular.module('votacioneslive')
 		}
 
 		
-		ConexionServ.query("INSERT INTO Aspiraciones( id, aspiracion, descripcion) VALUES( ?, ?, ?)", [crear.id, crear.aspiracion, crear.descripcion]).then(function(result){
+		$http.get('::aspiraciones/insertar',  {params: { votacion_id: crear.votacion_id ,aspiracion: crear.aspiracion, descripcion: crear.descripcion}}).then(function(result){
 		
-			console.log(' Aspiraciones creado ', result);
-
+	
 			$scope.Tabla_de_aspiraciones();
 
 			$scope.Mostrar_tabla_crear = false;
@@ -56,9 +54,7 @@ angular.module('votacioneslive')
 
 	$scope.Delete_Aspiraciones = function(aspiraciones){
 
-		ConexionServ.query("DELETE FROM Aspiraciones WHERE rowid=? ", [aspiraciones.rowid]).then(function(result){
-		
-					 $scope.Aspiraciones = $filter('filter') ($scope.Aspiraciones, {rowid: '!' + aspiraciones.rowid})
+		$http.delete('::aspiraciones/eliminar', {params: { id: aspiraciones.rowid} }).then (function(result){
 
 					 $scope.Tabla_de_aspiraciones();
 
@@ -72,8 +68,8 @@ angular.module('votacioneslive')
 		if(modificar.Mostrar_Aspiraciones == true){
 			modificar.Mostrar_Aspiraciones = false;
 
-			ConexionServ.query("UPDATE Aspiraciones  SET  id=? , aspiracion=? , descripcion=? WHERE rowid=? ", [modificar.id, modificar.aspiracion, modificar.descripcion, modificar.rowid]).then(function(result){
-					console.log("hola")
+				$http.get('::aspiraciones/editar',  {params: { id: modificar.id, aspiracion: modificar.aspiracion, descripcion: modificar.descripcion, rowid: modificar.rowid}}).then(function(result){
+				
 
 					$scope.Tabla_de_aspiraciones();
 

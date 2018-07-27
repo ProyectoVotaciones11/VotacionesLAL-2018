@@ -13,10 +13,9 @@ angular.module('votacioneslive')
 	}
 
 
-	console.log(dominio);
 
 	//url 		= 'ws://' + dominio + ':8787';
-	socket = io.connect(dominio + ':3000');
+	var socket = io.connect(dominio + ':3000');
 
 
 
@@ -60,7 +59,9 @@ angular.module('votacioneslive')
 					}
 				});
 			});
-		}
+		},
+
+
 	}
 
 	return methods

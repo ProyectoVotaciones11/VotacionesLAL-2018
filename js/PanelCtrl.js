@@ -8,6 +8,11 @@ angular.module('votacioneslive')
 
      $scope.Puestos = false;
 
+     
+    setTimeout(function() {
+        MySocket.emit('toma_mis_datos', {usuario: $scope.USER});  
+    }, 1000); 
+
     /* $scope.traer_datos = function(){
         $http.get('::Dashboard').then (function(result){
             $scope.pruebas= result.data ;

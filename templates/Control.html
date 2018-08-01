@@ -19,9 +19,14 @@
             
             <div class="row">
 
-                   <div class="col-sm-12">
+                   <div class="col-sm-6">
 
-                                
+                        <input class="btn btn-info" ng-repeat="punto in puntos" type="button" value="{{punto.nombre_punto}}" ng-click="Conectar()">
+
+                        <div ng-repeat="punto in puntos" >
+                            <h1>{{punto.user_data.Nombres}}</h1>
+                            <h2>{{punto.user_data.Apellidos}}</h2>
+                        </div>
                 
                   </div>
 

@@ -14,6 +14,8 @@ angular.module('votacioneslive')
 	MySocket.on('clientes_traidos', function(data){
 		
 		 console.log(data);
+ 
+		 $scope.puntos = data;
 
 	});	  
 

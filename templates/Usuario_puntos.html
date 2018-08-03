@@ -1,18 +1,17 @@
 <div class="modal-header">
-    <h3 class="modal-title" id="modal-title">Usuario</h3>
-</div>
+	    <h3 class="modal-title" id="modal-title"><label>Usuario</label> : {{punto.user_data.Username}}</h3>
+	</div>
 
-<div class="modal-body" id="modal-body">
+		<div class="modal-body" id="modal-body">
 
-     
+			 <label>Nombres</label>
+			 	<div> {{punto.user_data.Nombres}} </div>
+			 <label>Apellidos</label>
+			 	<div> {{punto.user_data.Apellidos}} </div>
+			 <LABEL>Tipo</LABEL>
+				 <div> {{punto.user_data.Tipo}} </div>
 
- <div> {{punto.user_data.Nombres}} </div>
- <div> {{punto.user_data.Apellidos}} </div>
- <div> {{punto.user_data.Tipo}} </div>
-
-</div>
-
-<div class="modal-footer">
-  
-    <button class="btn btn-default" type="button" ng-click="ok()">Cerrar</button>
+		</div>
+	<div class="modal-footer">
+	   <button class="btn btn-default " type="button" ng-click="ok()">Cerrar</button>
 </div>

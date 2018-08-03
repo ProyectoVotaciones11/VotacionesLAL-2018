@@ -6,7 +6,7 @@ angular.module('votacioneslive')
   $http.get('::resultado',  {params: {Votacion_id: $scope.USER.Votacion_id}}).then(function(result){
 		$scope.Aspiraciones = result.data;
 
-		console.log($scope.Aspiraciones);
+		
 		
 		$scope.Aspiraciones.forEach(function(aspiracion, indice){
 			$scope.cadidatos_de_aspiracion(aspiracion);
@@ -18,11 +18,11 @@ angular.module('votacioneslive')
 
 	$scope.cadidatos_de_aspiracion = function(aspiracion){
 		
-		console.log(aspiracion);
+		
 		
     	 $http.get('::resultado/CandidatoAspiracion',  {params: {id: aspiracion.rowid}}).then(function(result){
 			aspiracion.Candidatos = result.data;
-			console.log(' tabla Candidatos ', result);
+			
 
 		}, function(tx){
 			console.log('error', tx);

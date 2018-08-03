@@ -49,8 +49,6 @@ angular.module('votacioneslive')
     	$http.get('::votar/CandidatoAspiracion',  {params: {id: aspiracion.rowid}}).then(function(result){
 			aspiracion.Candidatos = result.data;
 
-			console.log(aspiracion.Candidatos);
-
 			defered.resolve(' ');
 		}, function(tx){
 			console.log('error 2', tx);
@@ -66,13 +64,11 @@ angular.module('votacioneslive')
 
 		if (res) {
 
-			console.log(numero+1, candidato);
+			
 			
 			fecha = '12/04/2018 3:30pm';
 
 			$http.get('::votar/Cambiaractive', {params: { user_id: $scope.USER.rowid, id: candidato.rowid, aspiracion_id: candidato.aspiracion_id, fecha: fecha}}).then(function(result){
-					
-				console.log(result);
 
 				if ((numero+1) == $scope.Aspiraciones.length) {
 
@@ -101,12 +97,6 @@ angular.module('votacioneslive')
 				});
 
 		}
-
-
 	}
-
-	
-
-
  
 });

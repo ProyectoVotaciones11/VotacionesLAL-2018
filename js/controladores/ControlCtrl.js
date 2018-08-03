@@ -12,8 +12,6 @@ angular.module('votacioneslive')
 
 	MySocket.on('clientes_traidos', function(data){
 		
-		 console.log(data);
- 
 		 $scope.puntos = data;
 
 	});	 
@@ -28,7 +26,7 @@ angular.module('votacioneslive')
 		        	return  punto;
 		        }
 		    },
-	        controller: 'Usuario_punto' // En LibroMesModales.js 
+	        controller: 'Usuario_punto'  
 	    });
 
 	    modalInstance.result.then(function (result) {
@@ -48,7 +46,7 @@ angular.module('votacioneslive')
 
     $scope.punto = punto;
 
-   console.log(punto);
+   
 
     $scope.ok = function () {
         $uibModalInstance.close('Cerrado');

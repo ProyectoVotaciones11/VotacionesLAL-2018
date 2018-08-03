@@ -13,6 +13,8 @@ angular.module('votacioneslive')
         MySocket.emit('toma_mis_datos', {usuario: $scope.USER});  
     }, 1000); 
 
+    MySocket.emit('Prueba', );  
+
     /* $scope.traer_datos = function(){
         $http.get('::Dashboard').then (function(result){
             $scope.pruebas= result.data ;
@@ -65,22 +67,6 @@ angular.module('votacioneslive')
     
     
     
-    $scope.seleccionarDistrito = function () {
-        var modal = $uibModal.open({
-            templateUrl: '../templates/Entidades/seleccionarDistritoModal.html',
-            size: 'lg',
-            resolve: {
-                USER: function () {
-                    return $scope.USER;
-                }
-            },
-            controller: 'SeleccionarDistritoModalCtrl'
-        });
-        
-        modal.result.then(function (usuario_new) {
-            $scope.USER = usuario_new;
-        });
-    }
     
     
     $scope.cerrar_sesion = function(){

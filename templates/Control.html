@@ -19,18 +19,19 @@
             
             <div class="row">
 
-                   <div class="col-sm-6">
+                   <div class="col-sm-12"> 
 
-                        <input class="btn btn-info" ng-repeat="punto in puntos" type="button" ng-click="Ver_Usuario(punto)" value="{{punto.nombre_punto}}" ng-click="Conectar()">
+                        <span class="btn btn-success" ng-repeat="punto in puntos" 
+                          ng-click="Ver_Usuario(punto)" >
+                          
+                          <div>{{punto.nombre_punto}}</div>
+                          <div>{{punto.user_data.Nombres}} {{punto.user_data.Apellidos}}</div>
 
-                        
+                        </span>
                 
                   </div>
-
             </div>
-
         </div>
-  
       </div>       
           
     </div>

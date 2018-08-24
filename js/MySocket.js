@@ -25,6 +25,28 @@ angular.module('votacioneslive')
 			localStorage.registered_boolean = false
 		}
 
+		if (localStorage.getItem('registered_boolean')) {
+			registered = localStorage.getItem('registered_boolean')
+		}else{
+			registered = false
+		}
+
+		if (registered=='false') {
+			registered = false;
+		}
+
+		
+
+		if (localStorage.USER){
+			usu = JSON.parse(localStorage.USER);
+
+			if (usu.rowid) {
+				console.log(socket);
+				socket.emit('loguear', {usuario: usu, registered: registered } )
+			}
+		}
+
+
 
 	});
 
@@ -33,6 +55,7 @@ angular.module('votacioneslive')
 		$rootScope.$emit('logueado:yo:agregado_a_arrays', data.yo)
 
 	});
+
 	
 
 	//on enter() #en LoginCtrl y PanelCtrl

@@ -4,6 +4,7 @@ angular.module('votacioneslive')
 .controller('ControlCtrl', function($scope, $state,  AuthServ, $q, toastr, $http, MySocket, $uibModal){
 
 
+
 	  MySocket.emit('traer_clientes');
 
 	MySocket.on('me_recibieron_logueo', function(data){
@@ -19,21 +20,15 @@ angular.module('votacioneslive')
 
 	MySocket.on('clientes_traidos', function(data){
 
-		
-		 $scope.puntos = data;		 
+		 
+		 data.nombre_punto  = "hola" ;	
 
+		 console.log( data);
+
+		 $scope.puntos = data;	 
 	});	
 
-	$scope.Guardar_Punto = function(Punto){
-
-		console.log(Punto);
-
-		$scope.N_Punto = Punto;
-
-		localStorage.Punto =  $scope.N_Punto.nombre_punto;
-	  
-	};
-
+	 
 
 	$scope.Ver_Usuario = function(punto){
 
@@ -54,15 +49,24 @@ angular.module('votacioneslive')
 	    });
 			
 	} 
-
-
 })
 
 .controller("Usuario_punto", function($uibModalInstance, $scope, punto, ConexionServ, toastr, $filter) {
 
-    $scope.punto = punto;  
+    $scope.punto = punto; 
+    $scope.Cambiar_Npunto = "";
 
-    localStorage.Punto = $scope.punto.nombre_punto;
+
+    $scope.Cambiar_Punto = function () {
+
+    	console.log($scope.Cambiar_Npunto );
+
+    	$scope.punto.nombre_punto = $scope.Cambiar_Npunto
+
+        localStorage.Punto = $scope.punto.nombre_punto;
+    };
+
+   
 
     $scope.ok = function () {
         $uibModalInstance.close('Cerrado');

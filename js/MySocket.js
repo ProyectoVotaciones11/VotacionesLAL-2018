@@ -41,7 +41,7 @@ angular.module('votacioneslive')
 			usu = JSON.parse(localStorage.USER);
 
 			if (usu.rowid) {
-				console.log(socket);
+				
 				socket.emit('loguear', {usuario: usu, registered: registered } )
 			}
 		}

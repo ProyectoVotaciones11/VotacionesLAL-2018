@@ -19,6 +19,7 @@
                                 <center class="m-t-30"> <img src="images/users/5.jpg" class="img-circle" width="150" />
                                     <h4 class="card-title m-t-10">{{USER.Nombres}}</h4>
                                     <h6 class="card-subtitle">{{USER.Apellidos}}</h6>
+                                    <h6 class="card-subtitle">{{USER.Password}}</h6>
                                     
                                 </center>
                             </div>
@@ -45,7 +46,7 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Sexo</label>
                                         <div class="col-md-12">
-                                            <input type="text" ng-model="USER.Sexo" class="form-control form-control-line">
+                                            <input type="text" ng-model="Participantes.Sexo" class="form-control form-control-line">
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -57,26 +58,11 @@
                                     <div class="form-group">
                                         <label class="col-md-12">Contraseña</label>
                                         <div class="col-md-12">
-                                            <input type="password" value="{{USER.Password}}" ng-model="USER.Password" class="form-control form-control-line">
+                                            <input type="Text" ng-model="Participantes.Password" class="form-control form-control-line">
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label class="col-md-12">Confirmar Contraseña</label>
-                                        <div class="col-md-12">
-                                            <input type="password" value="{{USER.Password}}" ng-model="USER.Password2" class="form-control form-control-line">
-                                        </div>
-                                    </div>
-
-                                <div class="row">
-                                      <div class="col-md-6">
-                                        <p class="input-group">
-                                          <input type="text" class="form-control" uib-datepicker-popup="{{format}}" ng-model="dt" is-open="popup1.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" alt-input-formats="altInputFormats" />
-                                          <span class="input-group-btn">
-                                            <button type="button" class="btn btn-default" ng-click="open1()"><i class="glyphicon glyphicon-calendar"></i></button>
-                                          </span>
-                                        </p>
-                                      </div>
+                                    
 
                                     <div class="form-group">
                                         <div class="col-sm-12">

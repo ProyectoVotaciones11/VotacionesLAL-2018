@@ -1,52 +1,58 @@
 angular.module('votacioneslive')
 
-.controller('ConfiguracionesCtrl', function($scope, ConexionServ, $uibModal, USER, AuthServ, toastr){
+.controller('ConfiguracionesCtrl', function($scope,  $uibModal, USER, AuthServ, toastr, $http){
 
-	ConexionServ.createTables()
+	console.log(USER);
+
 
 		$scope.Tabla_Participantes = function(){
 
-		ConexionServ.query("SELECT P.*, P.rowid, V.Nombre, V.Alias from Participantes P INNER JOIN votaciones V ON P.Votacion_id = V.rowid", []).then(function(result){
-
-			$scope.Participantes = result;
 		
+		$http.get('::usuarios').then (function(result){
+			$scope.Participantes = result.data ;
 
-		}, function(tx){
-			console.log('error', tx);
-		});
-
-
+			console.log($scope.Participantes);
 	
-}
+		}, function(error){
+			console.log('No se pudo traer los datos', error);
 
-			$scope.Tabla_Participantes()
+		})
+			
+    }
+
+    $scope.Tabla_Votaciones = function(){
+
+			$http.get('::votaciones').then (function(result){
+			  $scope.votaciones = result.data ;
+					
+
+				}, function(tx){
+					toastr.error('Error trayendo votaciones');
+				});
+
+		}
+
+		$scope.Tabla_Votaciones();	
+	
+
+		$scope.Tabla_Participantes();
+
 			    
-			    $scope.Modificar_perfil = function(crear){
+	  $scope.Modificar_perfil = function(modificar){
 
+		$scope.Tabla_Participantes();
 
-			    	ConexionServ.query("UPDATE Participantes  SET  Nombres=? , Apellidos=? , Username=?,  Sexo=? WHERE rowid=? ", [crear.Nombres, crear.Apellidos, crear.Username,  crear.Sexo, crear.rowid]).then(function(result){
+			$http.get('::configuraciones/editar',  {params: { rowid: modificar.rowid, Nombres: modificar.Nombres, Apellidos: modificar.Apellidos, Sexo: modificar.Sexo, Username: modificar.Username, Password: modificar.Password } }).then (function(result){
 
-				    		toastr.success('Has cambiado con exito tus datos');
+					console.log(result)
 
-								}, function(tx){
-									console.log('error', tx);
-								});
+				}, function(tx){
+					console.log('error', tx);
+				});
+			return
+			
 
-			    	if (crear.Password == crear.Password2 ) {
-
-				    		ConexionServ.query("UPDATE Participantes  SET  Password=? WHERE rowid=? ", [ crear.Password, crear.rowid]).then(function(result){
-
-				    		
-
-								}, function(tx){
-									console.log('error', tx);
-								});
-
-			    	}else{
-			    		toastr.info('Contraseñas no son iguales', 'hola');
-			    	}
-
-			    }
+	}
  
     
 })

@@ -27,7 +27,7 @@ angular.module('votacioneslive')
     $scope.entrar = function(user){
            
         AuthServ.loguear(user).then(function(){
-            $state.go('panel')
+            $state.go('panel.Votar')
         }, function(){
             alert('Datos incorrectos');
         })    

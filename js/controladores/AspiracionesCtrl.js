@@ -19,6 +19,21 @@ angular.module('votacioneslive')
 
 	}
 
+	$scope.Tabla_candidatos = function(){
+
+		$http.get('::votaciones').then (function(result){
+			$scope.votaciones = result.data ;
+	
+		}, function(error){
+			console.log('No se pudo traer los datos', error);
+
+		})
+			
+
+	}
+
+	$scope.Tabla_candidatos();
+
 	$scope.Tabla_de_aspiraciones();
 
 		

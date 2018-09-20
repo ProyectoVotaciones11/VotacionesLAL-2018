@@ -35,6 +35,7 @@
                                                                <tr>
                                                                     <th >#</th>
                                                                     <th style="min-width: 60px;">Aspiracion</th>
+                                                                    <th style="min-width: 60px;">Votacion</th>
                                                                     <th style="min-width: 60px;">Descripcion</th>
                                                                     <th style="min-width: 60px;">Modificar</th>
                                                                 </tr>
@@ -50,6 +51,11 @@
                                                                     
                                                                     <td ng-show="!aspi.Mostrar_Aspiraciones">
                                                                     {{aspi.aspiracion}}
+
+                                                                    </td>
+
+                                                                     <td ng-show="!aspi.Mostrar_Aspiraciones">
+                                                                    {{aspi.Nombre}}
 
                                                                     </td>
 
@@ -74,6 +80,21 @@
                                                                         <td ng-show="aspi.Mostrar_Aspiraciones"> 
                                                                          <input class="text-pequenio2" type="text" ng-model="aspi.aspiracion" name=""> 
                                                                         </td>
+
+                                                                        
+                                                                    <td ng-show="aspi.Mostrar_Aspiraciones">
+
+                                                                        <div  >
+                                                                                
+                                                                                <select ng-model="aspi.votacion_id"  >
+                                                                                      <option ng-repeat="vot in votaciones" value="{{vot.rowid}}">
+                                                                                      {{vot.Nombre}}
+                                                                                      </option>
+                                                                                </select>
+
+                                                                         </div>
+
+                                                                    </td>
 
                                                                         <td ng-show="aspi.Mostrar_Aspiraciones"> 
                                                                          <input class="text-Grande" type="text" ng-model="aspi.descripcion" name=""> 
@@ -101,7 +122,21 @@
                                                                             <input class="text-pequenio2" type="text" ng-value="aspiracion" ng-model="nueva_Aspiraciones.aspiracion" name=""> 
                                                                         </td>
 
-                                                                        <td > 
+                                                                        <td >
+
+                                                                        <div >
+                                                                                
+                                                                                <select ng-model="nueva_Aspiraciones.votacion_id"  >
+                                                                                      <option ng-repeat="vot in votaciones" value="{{vot.rowid}}">
+                                                                                      {{vot.Nombre}}
+                                                                                      </option>
+                                                                                </select>
+
+                                                                         </div>
+
+                                                                        </td>
+
+                                                                         <td > 
                                                                             <input class="text-Grande" type="text" ng-value="descripcion" ng-model="nueva_Aspiraciones.descripcion" name=""> 
                                                                         </td>
 

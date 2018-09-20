@@ -1,7 +1,7 @@
 angular.module('votacioneslive')
 
 
-.controller('VotarCtrl', function($scope, $state,  AuthServ, $q, toastr, $http){
+.controller('VotarCtrl', function($scope, $state,  AuthServ, $q, toastr, $http,$uibModal){
 
 	$scope.Moatrar_Contralos = false; 
     
@@ -60,7 +60,25 @@ angular.module('votacioneslive')
 
 	$scope.Cambiar_active = function(numero, candidato){
 
-		var res = confirm('Quieres votar por'+' '+ candidato.Nombres+' '+candidato.Apellidos );
+
+		var modalInstance = $uibModal.open({
+	        templateUrl: 'templates/Question_vot.html',
+	        resolve: {
+		        candidato: function () {
+		        	return  candidato;
+		        }
+		    },
+	        controller: 'Question_vot'  
+	    });
+
+	    modalInstance.result.then(function (result) {
+			console.log(result);
+	    }, function(r2){
+	    	$scope.traerDatos();
+	    });
+
+
+		$scope.Votado = function(res){	
 
 		if (res) {
 
@@ -97,6 +115,22 @@ angular.module('votacioneslive')
 				});
 
 		}
+	  }
 	}
+	
  
+})
+
+.controller("Question_vot", function($uibModalInstance, $scope, candidato, ConexionServ, toastr, $filter) {
+
+    $scope.candidato = candidato; 
+  
+
+   
+
+    $scope.ok = function () {
+        $uibModalInstance.close('Cerrado');
+    };
+
+    return ;
 });

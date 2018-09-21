@@ -73,14 +73,11 @@ angular.module('votacioneslive')
 
 	    modalInstance.result.then(function (result) {
 			console.log(result);
-	    }, function(r2){
-	    	$scope.traerDatos();
-	    });
+
+			$scope.Voto = result
 
 
-		$scope.Votado = function(res){	
-
-		if (res) {
+			if ($scope.Voto =='Voto') {
 
 			
 			
@@ -115,8 +112,14 @@ angular.module('votacioneslive')
 				});
 
 		}
-	  }
+
+
+	    }, function(r2){
+	    	console.log(r2);
+	    });
+
 	}
+
 	
  
 })
@@ -128,8 +131,12 @@ angular.module('votacioneslive')
 
    
 
-    $scope.ok = function () {
+    $scope.no = function () {
         $uibModalInstance.close('Cerrado');
+    };
+
+     $scope.ok = function () {
+        $uibModalInstance.close('Voto');
     };
 
     return ;

@@ -40,6 +40,8 @@ angular.module('votacioneslive')
 
 	$scope.Insert_Aspiraciones = function(crear){
 
+		console.log(crear.votacion_id);
+
 		if (crear.aspiracion == undefined) {
 			console.log("esta nulo");
 			return;
@@ -83,7 +85,7 @@ angular.module('votacioneslive')
 		if(modificar.Mostrar_Aspiraciones == true){
 			modificar.Mostrar_Aspiraciones = false;
 
-				$http.get('::aspiraciones/editar',  {params: { id: modificar.id, aspiracion: modificar.aspiracion, descripcion: modificar.descripcion, rowid: modificar.rowid}}).then(function(result){
+				$http.get('::aspiraciones/editar',  {params: { id: modificar.id, votacion_id: modificar.votacion_id,  aspiracion: modificar.aspiracion, descripcion: modificar.descripcion, rowid: modificar.rowid}}).then(function(result){
 				
 
 					$scope.Tabla_de_aspiraciones();

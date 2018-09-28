@@ -1,7 +1,17 @@
 angular.module('votacioneslive')
 
 
-.controller('LoginCtrl', function($scope, $state, ConexionServ, AuthServ,$http){
+.controller('LoginCtrl', function($scope, $state, ConexionServ, AuthServ, $http, MySocket, toastr){
+
+      MySocket.on('cliente_traido', function(data){
+
+        console.log(data);
+
+         toastr.success(data);
+        
+        
+
+      });  
     
     $scope.user ={};
     
@@ -34,6 +44,8 @@ angular.module('votacioneslive')
     }
     
     ConexionServ.createTables();
+
+
 	
 	
  

@@ -4,6 +4,8 @@ angular.module('votacioneslive')
     
     $scope.USER = USER;
 
+    console.log($scope.USER);
+
      $scope.Admin = false;
 
      $scope.Puestos = false;
@@ -36,35 +38,20 @@ angular.module('votacioneslive')
              $scope.id_recivido = r;
 
             console.log(r);
-
-               MySocket.emit('traer_cliente');
-
-                 MySocket.on('cliente_traido', function(r2){
-
-                 $scope.MI_id = r2;
-
-                 console.log(r2);
-                
-            }); 
-
-                 setTimeout(function() {
+     
                     
-                       if ($scope.id_recivido == $scope.MI_id) {
+               if ($scope.id_recivido == $scope.USER.rowid) {
 
-                                toastr.success('Tu sesion a caducado');
+                        toastr.success('Tu sesion a caducado');
 
-                                         localStorage.logueado   = false
-                                         
-                                         delete localStorage.USER;
+                             localStorage.logueado   = false
+                             
+                             delete localStorage.USER;
+     
+                         $state.go('Login');
+
+                    }else{ console.log("hola");}; 
                  
-                                 $state.go('Login');
-
-                            }else{ console.log("hola");}; 
-                  }, 1000); 
-
-
-                    
-
         
         }); 
 

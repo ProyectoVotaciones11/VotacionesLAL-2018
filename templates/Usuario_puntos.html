@@ -1,5 +1,7 @@
 <div class="modal-header">
-	    <h3 class="modal-title" id="modal-title"><label>Usuario</label> : {{punto.user_data.Username}}</h3>
+	    <h3 class="modal-title" id="modal-title"><label>Usuario</label> : {{punto.user_data.Username}}  
+
+	    	 </h3>
 	</div>
 
 		<div class="modal-body" id="modal-body">
@@ -10,12 +12,10 @@
 			 	<div> {{punto.user_data.Apellidos}} </div>
 			 <LABEL>Tipo</LABEL>
 				 <div> {{punto.user_data.Tipo}} </div>
-
-			<label>Cambiar nombre del punto</label>
-			<input type="text" ng-model="Cambiar_Npunto" name="">
-			<input type="button" Value="Cambiar" ng-click="Cambiar_Punto()" name="">
+			<LABEL>Botones</LABEL>
+				 <div><button class="btn btn-danger" ng-click="CErrar(punto.resourceId)">Cerrar Sesion</button> </div>
 
 		</div>
 	<div class="modal-footer">
-	   <button class="btn btn-default " type="button" ng-click="ok()">Cerrar</button>
+	   <button class="btn btn-success " type="button" ng-click="ok()">Cerrar</button>
 </div>

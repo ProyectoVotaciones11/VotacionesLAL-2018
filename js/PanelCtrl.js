@@ -26,9 +26,47 @@ angular.module('votacioneslive')
         })
     };
 
-    $scope.traer_datos(); */  
+        $scope.traer_datos(); */  
 
 
+      
+    
+         MySocket.on('Secion_cerrada', function(r){
+
+             $scope.id_recivido = r;
+
+            console.log(r);
+
+               MySocket.emit('traer_cliente');
+
+                 MySocket.on('cliente_traido', function(r2){
+
+                 $scope.MI_id = r2;
+
+                 console.log(r2);
+                
+            }); 
+
+                 setTimeout(function() {
+                    
+                       if ($scope.id_recivido == $scope.MI_id) {
+
+                                toastr.success('Tu sesion a caducado');
+
+                                         localStorage.logueado   = false
+                                         
+                                         delete localStorage.USER;
+                 
+                                 $state.go('Login');
+
+                            }else{ console.log("hola");}; 
+                  }, 1000); 
+
+
+                    
+
+        
+        }); 
 
 
      $scope.Mostrar_Puestos = function(){
@@ -41,6 +79,7 @@ angular.module('votacioneslive')
     $scope.traer_puestos = function(){
 
         MySocket.emit('necesito_puestos');  
+
 
     }
 
@@ -58,7 +97,7 @@ angular.module('votacioneslive')
 
         }else{
 
-            console.log('usted no es admin')
+            
         }
 
     }

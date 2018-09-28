@@ -13,6 +13,8 @@ angular.module('votacioneslive')
 
 	});	  
 
+	
+
 	MySocket.on('logueado:alguien', (data)=>{
 		MySocket.emit('traer_clientes');
 	});
@@ -23,10 +25,10 @@ angular.module('votacioneslive')
 		 
 		 data.nombre_punto  = "hola" ;	
 
-		 console.log( data);
-
 		 $scope.puntos = data;	 
 	});	
+
+	
 
 	 
 
@@ -43,7 +45,10 @@ angular.module('votacioneslive')
 	    });
 
 	    modalInstance.result.then(function (result) {
-			console.log(result);
+
+	    	 MySocket.emit('Cerrar_sesion', {id: result});
+
+			
 	    }, function(r2){
 	    	$scope.traerDatos();
 	    });
@@ -54,16 +59,14 @@ angular.module('votacioneslive')
 .controller("Usuario_punto", function($uibModalInstance, $scope, punto, ConexionServ, toastr, $filter) {
 
     $scope.punto = punto; 
-    $scope.Cambiar_Npunto = "";
+    
 
 
-    $scope.Cambiar_Punto = function () {
+    $scope.CErrar = function (Id) {
 
-    	console.log($scope.Cambiar_Npunto );
+    	$scope.id = Id;
 
-    	$scope.punto.nombre_punto = $scope.Cambiar_Npunto
-
-        localStorage.Punto = $scope.punto.nombre_punto;
+        $uibModalInstance.close($scope.id);
     };
 
    

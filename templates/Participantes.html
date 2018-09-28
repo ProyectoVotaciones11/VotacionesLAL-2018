@@ -18,8 +18,7 @@
         
         <div class="card" style="overflow: auto;">
             
-            <uib-tabset active="active" >
-                <uib-tab index="0" classes="profile-tab" heading="Votaciones">
+            
                     
                     <div class="card-block">
                         
@@ -124,11 +123,71 @@
                                                     </td>
 
                                                     <td ng-show="parti.Mostrar_Participante"> 
-                                                        <input class="text-pequenioe" type="text" ng-model="parti.Sexo" name=""> 
+                                                        <select class="text-pequenio3" ng-model="parti.Sexo" >
+
+                                                                    <option>
+                                                                      M
+                                                                     </option>
+
+                                                                     <option>
+                                                                      F
+                                                                     </option>
+
+                                                                     <option>
+                                                                      Goyo
+                                                                     </option>
+
+                                                            </select>
                                                     </td>
 
                                                     <td ng-show="parti.Mostrar_Participante">
-                                                        <input class="text-pequenioe" type="text" ng-model="parti.Grupo_id" name=""> 
+
+                                                         <select class="text-pequenio3" ng-model="parti.Grupo_id" >
+
+                                                                    <option>
+                                                                      1
+                                                                     </option>
+
+                                                                     <option>
+                                                                      2
+                                                                     </option>
+
+                                                                     <option>
+                                                                      3
+                                                                     </option>
+                                                                     <option>
+                                                                      4
+                                                                     </option>
+
+                                                                     <option>
+                                                                      5
+                                                                     </option>
+
+                                                                     <option>
+                                                                      6
+                                                                     </option>
+                                                                     <option>
+                                                                     7
+                                                                     </option>
+
+                                                                     <option>
+                                                                     8
+                                                                     </option>
+
+                                                                     <option>
+                                                                      9
+                                                                     </option>
+                                                                     <option>
+                                                                     10
+                                                                     </option>
+
+                                                                     <option>
+                                                                      11
+                                                                     </option>
+
+
+                                                            </select>
+
                                                     </td>
 
                                                     <td ng-show="parti.Mostrar_Participante">
@@ -146,7 +205,23 @@
                                                     </td>
 
                                                     <td ng-show="parti.Mostrar_Participante"> 
-                                                        <input class="text-pequenio2" type="text" ng-model="parti.Tipo" name=""> 
+
+                                                         <select class="text-pequenio3" ng-model="parti.Tipo" "  >
+
+                                                            <option>
+                                                              Participante
+                                                             </option>
+
+                                                             <option>
+                                                              Admin
+                                                             </option>
+
+                                                             <option>
+                                                              Cuidador
+                                                             </option>
+
+                                                            </select>
+
                                                     </td>
 
                                                     <td ng-show="parti.Mostrar_Participante">
@@ -182,12 +257,74 @@
                                                             <input class="text-pequenio2" type="text" ng-value="Password" ng-model="Participante_nuevo.Password"> 
                                                         </td>
 
-                                                        <td > 
-                                                            <input class="text-pequenioe" type="text" ng-value="" ng-model="Participante_nuevo.Sexo" > 
+                                                        <td >  
+
+                                                             <select class="text-pequenio3" ng-model="Participante_nuevo.Sexo" >
+
+                                                                    <option>
+                                                                      M
+                                                                     </option>
+
+                                                                     <option>
+                                                                      F
+                                                                     </option>
+
+                                                                     <option>
+                                                                      Goyo
+                                                                     </option>
+
+                                                            </select>
+
                                                         </td>
 
-                                                        <td > 
-                                                            <input class="text-pequenioe" type="text" ng-value="" ng-model="Participante_nuevo.Grupo_id" > 
+                                                        <td >  
+
+                                                             <select class="text-pequenio3" ng-model="Participante_nuevo.Grupo_id" >
+
+                                                                    <option>
+                                                                      1
+                                                                     </option>
+
+                                                                     <option>
+                                                                      2
+                                                                     </option>
+
+                                                                     <option>
+                                                                      3
+                                                                     </option>
+                                                                     <option>
+                                                                      4
+                                                                     </option>
+
+                                                                     <option>
+                                                                      5
+                                                                     </option>
+
+                                                                     <option>
+                                                                      6
+                                                                     </option>
+                                                                     <option>
+                                                                     7
+                                                                     </option>
+
+                                                                     <option>
+                                                                     8
+                                                                     </option>
+
+                                                                     <option>
+                                                                      9
+                                                                     </option>
+                                                                     <option>
+                                                                     10
+                                                                     </option>
+
+                                                                     <option>
+                                                                      11
+                                                                     </option>
+
+
+                                                            </select>
+
                                                         </td>
 
                                                         <td > 
@@ -207,7 +344,22 @@
                                                         </td>
 
                                                         <td> 
-                                                            <input class="text-pequenio2" type="text" ng-value="" ng-model="Participante_nuevo.Tipo" >  
+                                                             <select class="text-pequenio3" ng-model="Participante_nuevo.Tipo" >
+
+                                                                    <option>
+                                                                      Participante
+                                                                     </option>
+
+                                                                     <option>
+                                                                      Admin
+                                                                     </option>
+
+                                                                     <option>
+                                                                      Cuidador
+                                                                     </option>
+
+                                                            </select>
+
                                                         </td>
 
                                                         <td>
@@ -235,11 +387,7 @@
                         
                     </div>
                     
-              
-                        
-                        
-                    </uib-tab>
-            </uib-tabset>
+   
             
         </div>
         

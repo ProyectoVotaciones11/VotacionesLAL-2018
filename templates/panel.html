@@ -10,17 +10,21 @@
                         </b>
 
                         <!--End Logo icon -->   
-                        <span>
-                            <!-- Light Logo text -->    
-                            <img src="images/logo-light-text.png" class="light-logo">
-                        </span>
+                       
                 </div>
+
+                <div class="navbar-header">
+                    <span> 
+                        <img src="images/logo-light-text.png" class="light-logo">
+                    </span>
+                </div>
+
                 <!-- End Logo -->
                 <div class="navbar-collapse">
                     <!-- toggle and nav items -->
-                    <ul class="navbar-nav mr-auto mt-md-0">
+                    <ul class="navbar-nav mr-auto ">
                         <!-- This is  -->
-                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"><i class="mdi mdi-menu"></i></a> </li>
+                        <li class="nav-item"> <a class="nav-link nav-toggler hidden-md-up text-muted waves-effect waves-dark" href="javascript:void(0)"></a> </li>
                         
                     </ul>
                     <ul class="navbar-nav my-lg-0">
@@ -72,18 +76,30 @@
 
         <div class="page-wrapper">
 
-           <button ng-click="Mostrar_Puestos()" class="btn btn-info">Puestos</button>
-
-           <div ng-show="Puestos" >
-               <div class="btn-aspiracion">Primero</div>
-               <div class="btn-aspiracion">Segundo</div>
-               <div class="btn-aspiracion">Tercero</div>
-           </div>
+          
+           
 
             <div class="container-fluid" ui-view>
-                
+                    
+                <div class="col-md-12">
+                    
+                    <div class="row page-titles">
+                    <div class="col-md-5 col-8 align-self-center">
+                        <h3 class="text-themecolor">Participantes</h3>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
+                            <li class="breadcrumb-item active">Participantes</li>
+                        </ol>
+                    </div>
+
+                </div>
 
             </div>
+                    
+             </div>
+                
+
+
 
             <footer class="footer"> VotacionesLaL2018 kedaesva</footer>
             

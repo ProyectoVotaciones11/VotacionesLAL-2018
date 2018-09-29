@@ -46,7 +46,7 @@ angular.module('votacioneslive')
 
 	    modalInstance.result.then(function (result) {
 
-	    	 MySocket.emit('traer_cliente', {id: result});
+	    	 MySocket.emit('Cerrar_sesion', {id: result});
 
 			
 	    }, function(r2){

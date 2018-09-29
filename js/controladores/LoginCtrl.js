@@ -5,15 +5,25 @@ angular.module('votacioneslive')
 
       MySocket.on('cliente_traido', function(data){
 
-        console.log(data);
 
-         toastr.success(data);
+        $scope.Par_env = {};
         
-        
+        $scope.Par_env.password = data.user_data.Password;
 
+        $scope.Par_env.username= data.user_data.Username;
+
+
+        AuthServ.loguear($scope.Par_env).then(function(){
+            $state.go('panel.Votar')
+        }, function(){
+            alert('Datos incorrectos');
+        }) 
+ 
       });  
     
     $scope.user ={};
+
+    
     
     if (localStorage.servidor) {
     	$scope.servidor = localStorage.servidor
@@ -35,7 +45,7 @@ angular.module('votacioneslive')
 
 
     $scope.entrar = function(user){
-           
+     
         AuthServ.loguear(user).then(function(){
             $state.go('panel.Votar')
         }, function(){
@@ -43,10 +53,6 @@ angular.module('votacioneslive')
         })    
     }
     
-    ConexionServ.createTables();
-
-
-	
-	
+    ConexionServ.createTables();	
  
 })

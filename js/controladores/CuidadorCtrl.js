@@ -21,7 +21,9 @@ angular.module('votacioneslive')
 
 	MySocket.on('clientes_traidos', function(data){
 
-		 $scope.puntos = data;	 
+		 $scope.puntos = data;
+
+		 console.log( $scope.puntos);	 
 	});	
 	 
 
@@ -32,7 +34,6 @@ angular.module('votacioneslive')
 		$http.get('::usuarios').then (function(result){
 			$scope.Participantes = result.data ;
 
-		
 	
 		}, function(error){
 			console.log('No se pudo traer los datos', error);
@@ -44,19 +45,28 @@ angular.module('votacioneslive')
     $scope.Tabla_Participantes();
 
 
-    $scope.Ver_Control = function(){
+
+
+    $scope.Ver_Control = function(partc){
+
 
 	    var modalInstance = $uibModal.open({
 	        templateUrl: 'templates/Control_modal.html',
 	        resolve: {
 		        punto: function () {
 		        	return   $scope.puntos;
-		        }
+		        	 },
+		        part: function(){
+		        	return   partc;
+		          }
+		       
 		    },
 	        controller: 'Control'  
 	    });
 
 	    modalInstance.result.then(function (result) {
+
+	    	
 
 
 	    	MySocket.emit('traer_cliente', {id: result});
@@ -72,7 +82,7 @@ angular.module('votacioneslive')
 	
 })
 
-.controller("Control", function($uibModalInstance, $scope, punto, ConexionServ, toastr, $filter) {
+.controller("Control", function($uibModalInstance, $scope, punto, ConexionServ, toastr, $filter, part) {
 
 	$scope.puntos = punto; 
 
@@ -80,7 +90,9 @@ angular.module('votacioneslive')
 
 	$scope.Enviar_Usuario = function (Mens) {
 
-		
+		Mens.user_data = part;
+
+			console.log(Mens);
 
         $uibModalInstance.close(Mens);
     };

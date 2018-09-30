@@ -23,7 +23,7 @@ angular.module('votacioneslive')
 
 		 $scope.puntos = data;
 
-		 console.log( $scope.puntos);	 
+		  
 	});	
 	 
 
@@ -92,7 +92,7 @@ angular.module('votacioneslive')
 
 		Mens.user_data = part;
 
-			console.log(Mens);
+			
 
         $uibModalInstance.close(Mens);
     };

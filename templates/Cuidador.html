@@ -19,14 +19,15 @@
             
             <div class="row">
 
-                   <div class="col-sm-12"> 
+                   <div class="col-sm-12">
 
-                        <span class="col-sm-12" class="btn btn-success" ng-repeat="Participante in Participantes" 
+                   <h1>Participantes</h1> 
+
+                        <span class=" btn btn-success col-sm-3 " ng-repeat="Participante in Participantes" 
                           ng-click="Ver_Control(Participante)" >
-                          
-                          
-                          <div>{{Participante.Nombres}} {{Participante.Nombres}}</div>
-                         
+
+
+                              {{$index + 1 }}  {{Participante.Nombres}} {{Participante.Apellidos}}
 
                         </span>
                 

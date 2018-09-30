@@ -7,6 +7,8 @@ angular.module('votacioneslive')
     console.log($scope.USER);
 
      $scope.Admin = false;
+     $scope.Participante = false;
+     $scope.Cuidador = false;
 
      $scope.Puestos = false;
 
@@ -76,20 +78,29 @@ angular.module('votacioneslive')
     
     
    
-    $scope.Mostrar_solo_admin = function(){
+    $scope.Diferencia_de_Tipo = function(){
 
-        if (USER.Tipo == 'Admin') {
+        if (USER.Tipo == 'Participante') {
 
+            $scope.Participante = true;}
+
+             if (USER.Tipo == 'Cuidador') {
+
+            $scope.Participante = true;
+            $scope.Cuidador = true;}
+
+             if (USER.Tipo == 'Admin') {
+
+            $scope.Participante = true;
+            $scope.Cuidador = true;
             $scope.Admin = true;
 
-        }else{
+                        
+                    }
 
-            
-        }
+            }
 
-    }
-
-     $scope.Mostrar_solo_admin();
+     $scope.Diferencia_de_Tipo();
     
     
     
@@ -97,7 +108,7 @@ angular.module('votacioneslive')
     
     $scope.cerrar_sesion = function(){
 
-                     toastr.success('Has cerradi sesion con exito');
+                     toastr.success('Has cerrado sesion con exito');
 
                          localStorage.logueado   = false
                          

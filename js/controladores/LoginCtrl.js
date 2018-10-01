@@ -23,13 +23,10 @@ angular.module('votacioneslive')
 
 
       MySocket.emit('mis_datos');
-
+      
       MySocket.on('toma_datos', function(data){
-
          $scope.punto = data.nombre_punto;
-          
-
-  });   
+      });   
 
     $scope.user ={};
 

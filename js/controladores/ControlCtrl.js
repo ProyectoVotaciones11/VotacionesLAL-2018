@@ -4,8 +4,12 @@ angular.module('votacioneslive')
 .controller('ControlCtrl', function($scope, $state,  AuthServ, $q, toastr, $http, MySocket, $uibModal){
 
 
+	$scope.traer_clientes = () => {
+		MySocket.emit('traer_clientes');
+	}
 
-	  MySocket.emit('traer_clientes');
+
+	MySocket.emit('traer_clientes');
 
 	MySocket.on('me_recibieron_logueo', function(data){
 		

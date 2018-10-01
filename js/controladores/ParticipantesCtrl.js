@@ -50,20 +50,20 @@ angular.module('votacioneslive')
 			return;
 		}
 
-			$http.get('::usuarios/insertar', {params: {Nombres: crear.Nombres, Apellidos: crear.Apellidos, Sexo: crear.Sexo, Username: crear.Username, Password: crear.Password, Tipo: crear.Tipo, Grupo_id: crear.Grupo_id, Votacion_id: crear.Votacion_id   }  }).then (function(result){
+		$http.get('::usuarios/insertar', {params: {Nombres: crear.Nombres, Apellidos: crear.Apellidos, Sexo: crear.Sexo, Username: crear.Username, Password: crear.Password, Tipo: crear.Tipo, Grupo_id: crear.Grupo_id, Votacion_id: crear.Votacion_id   }  }).then (function(result){
 	     
 
-					$scope.Mostrar_tabla_crear = false;
+			$scope.Mostrar_tabla_crear = false;
 
-					$scope.Participante_nuevo = {};
+			$scope.Participante_nuevo = {};
 
-					$scope.Tabla_Participantes();
+			$scope.Tabla_Participantes();
 
-				}, function(tx){
-					console.log('error', tx);
-				});
+		}, function(tx){
+			console.log('error', tx);
+		});
 
-		}
+	}
 
 	$scope.Delete_Participantes = function(participantes){
 

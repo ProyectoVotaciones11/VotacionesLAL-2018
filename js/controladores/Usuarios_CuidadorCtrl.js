@@ -1,7 +1,7 @@
 angular.module('votacioneslive')
 
 
-.controller('CuidadorCtrl', function($scope, $state,  AuthServ, $q, toastr, $http, MySocket, $uibModal){
+.controller('Usuarios_CuidadorCtrl', function($scope, $state,  AuthServ, $q, toastr, $http, MySocket, $uibModal, $filter){
 
 
 	  MySocket.emit('traer_clientes');
@@ -32,9 +32,27 @@ angular.module('votacioneslive')
 
 		
 		$http.get('::usuarios').then (function(result){
-			$scope.Participantes = result.data ;
 
-			console.log($scope.Participantes);
+			console.log( result);
+
+			
+			for (let i = 0; i < result.data.length; i++) {
+
+		      if (result.data[i].Tipo == "Cuidador") {
+
+		      
+
+         			$scope.Usuarios = result.data[i] ;
+
+        
+			      }	
+
+			  }
+
+
+		   $scope.Participantes = $scope.Usuarios
+
+		   console.log( $scope.Participantes);
 
 	
 		}, function(error){

@@ -125,6 +125,12 @@ angular.module('votacioneslive', [
 		templateUrl: 'templates/Cuidador.html',
 		controller:'CuidadorCtrl'
 	}
+	var Usuarios_Cuidador = {
+		name: 'panel.Usuarios_Cuidador',
+		url: '/Usuarios_Cuidador',
+		templateUrl: 'templates/Usuarios_Cuidador.html',
+		controller:'Usuarios_CuidadorCtrl'
+	}
 
   $stateProvider.state(panel);
   $stateProvider.state(Login);
@@ -138,6 +144,7 @@ angular.module('votacioneslive', [
   $stateProvider.state(Resultados);
   $stateProvider.state(Control);
   $stateProvider.state(Cuidador);
+  $stateProvider.state(Usuarios_Cuidador);
  
 
    $urlRouterProvider.otherwise('/Login');

@@ -6,6 +6,8 @@ angular.module('votacioneslive')
 
 	  MySocket.emit('traer_clientes');
 
+	  $scope.Participantes = [];
+
 	MySocket.on('me_recibieron_logueo', function(data){
 		
 		MySocket.emit('traer_clientes');
@@ -32,9 +34,19 @@ angular.module('votacioneslive')
 
 		
 		$http.get('::usuarios').then (function(result){
-			$scope.Participantes = result.data ;
 
-			console.log($scope.Participantes);
+
+
+			for (let i = 0; i <	 result.data.length; i++) {
+
+		      if (result.data[i].Tipo == "Cuidador") {
+
+
+					$scope.Participantes.push(result.data[i]);
+ 
+			      }	
+
+			  }
 
 	
 		}, function(error){
@@ -88,7 +100,7 @@ angular.module('votacioneslive')
 
 	$scope.puntos = punto; 
 
-	
+	console.log($scope.puntos);
 
 	$scope.Enviar_Usuario = function (Mens) {
 

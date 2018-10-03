@@ -6,18 +6,19 @@ angular.module('votacioneslive')
 
 	  MySocket.emit('traer_clientes');
 
+	  	$scope.Participantes = [];
+
 	MySocket.on('me_recibieron_logueo', function(data){
 		
 		MySocket.emit('traer_clientes');
 
 	});	  
 
-	
 
+	
 	MySocket.on('logueado:alguien', (data)=>{
 		MySocket.emit('traer_clientes');
 	});
-
 
 	MySocket.on('clientes_traidos', function(data){
 
@@ -27,32 +28,27 @@ angular.module('votacioneslive')
 	});	
 	 
 
-
 	$scope.Tabla_Participantes = function(){
 
 		
 		$http.get('::usuarios').then (function(result){
 
-			console.log( result);
 
-			
-			for (let i = 0; i < result.data.length; i++) {
+
+			for (let i = 0; i <	 result.data.length; i++) {
 
 		      if (result.data[i].Tipo == "Cuidador") {
 
-		      
 
-         			$scope.Usuarios = result.data[i] ;
+					$scope.Participantes.push(result.data[i] );
+ 
+
+         			console.log($scope.Participantes);
 
         
 			      }	
 
 			  }
-
-
-		   $scope.Participantes = $scope.Usuarios
-
-		   console.log( $scope.Participantes);
 
 	
 		}, function(error){
@@ -63,8 +59,6 @@ angular.module('votacioneslive')
     };
 
     $scope.Tabla_Participantes();
-
-
 
 
     $scope.Ver_Control = function(partc){

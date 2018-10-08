@@ -23,11 +23,11 @@
 
                    <h1>Participantes</h1> 
 
-                        <span class=" btn btn-success col-sm-3 " ng-repeat="Participante in Participantes" 
+                        <span class=" btn btn-success col-sm-6 " ng-repeat="Participante in Participantes" 
                           ng-click="Ver_Control(Participante)" >
 
 
-                              {{$index + 1 }}  {{Participante}} 
+                              {{$index + 1 }}  {{Participante.Nombres}}  {{Participante.Apellidos}}  
 
                         </span>
                 

@@ -34,8 +34,7 @@ File: scss
 *******************/
 .topbar {
   background: #1e88e5; }
-  .topbar .navbar-header {
-    background: rgba(0, 0, 0, 0.05); }
+  
   .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
     display: none; }
   .topbar .top-navbar .navbar-header .navbar-brand .light-logo {

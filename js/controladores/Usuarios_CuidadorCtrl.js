@@ -6,6 +6,15 @@ angular.module('votacioneslive')
 
 	  MySocket.emit('traer_clientes');
 
+	  MySocket.on('Cuidador_enviado', function(data){
+
+	  	$scope.Grupo_enviado = [];
+
+	  	$scope.Grupo_enviado.push(data.cuidar_grupo.numeros);
+
+
+	});	
+
 	  	$scope.Participantes = [];
 
 	MySocket.on('me_recibieron_logueo', function(data){
@@ -15,7 +24,6 @@ angular.module('votacioneslive')
 	});	  
 
 
-	
 	MySocket.on('logueado:alguien', (data)=>{
 		MySocket.emit('traer_clientes');
 	});
@@ -33,24 +41,32 @@ angular.module('votacioneslive')
 		
 		$http.get('::usuarios').then (function(result){
 
+			$scope.Grupo_id = result.data;
+
+			 MySocket.on('Cuidador_enviado', function(data){
 
 
-			for (let i = 0; i <	 result.data.length; i++) {
+						$scope.Grupo_enviado = data.cuidar_grupo.numeros;
 
-		      if (result.data[i].Tipo == "Cuidador") {
+					for (let i = 0; i <	 result.data.length; i++) {
 
 
-					$scope.Participantes.push(result.data[i] );
- 
+					      if ($scope.Grupo_id[i].Grupo_id == $scope.Grupo_enviado) {
 
-         			console.log($scope.Participantes);
 
-        
-			      }	
+								$scope.Participantes.push($scope.Grupo_id[i]);
 
-			  }
+								console.log($scope.Participantes);
 
-	
+			        
+						}	
+
+					  }
+
+
+
+				});	
+
 		}, function(error){
 			console.log('No se pudo traer los datos', error);
 
@@ -96,26 +112,3 @@ angular.module('votacioneslive')
 	
 })
 
-.controller("Control", function($uibModalInstance, $scope, punto, ConexionServ, toastr, $filter, part) {
-
-	$scope.puntos = punto; 
-
-	
-
-	$scope.Enviar_Usuario = function (Mens) {
-
-		Mens.user_data = part;
-
-			
-
-        $uibModalInstance.close(Mens);
-    };
-
-	$scope.ok = function () {
-        $uibModalInstance.close('Cerrado');
-    };
-
-    return ;
-
-   
-})

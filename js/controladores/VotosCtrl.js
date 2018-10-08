@@ -1,6 +1,6 @@
 angular.module('votacioneslive')
 
-.controller('VotosCtrl', function($scope,ConexionServ,$filter, $http){
+.controller('VotosCtrl', function($scope,ConexionServ,$filter, $http, MySocket){
 
 	ConexionServ.createTables();
 
@@ -16,7 +16,6 @@ angular.module('votacioneslive')
 
 
 	}
-
 
 
 	$scope.Tabla_de_aspiraciones = function(){
@@ -75,6 +74,13 @@ angular.module('votacioneslive')
 			});
 
 		}
+
+
+	MySocket.on('Voto_enviado', function(data){
+		
+		$scope.Tabla_Votos();
+		
+	});	 
 
 	
 

@@ -7,6 +7,8 @@ angular.module('votacioneslive')
 
 
         $scope.Par_env = {};
+
+         $scope.Par_env.Tipo = data.user_data.Tipo
         
         $scope.Par_env.password = data.user_data.Password;
 
@@ -14,7 +16,13 @@ angular.module('votacioneslive')
 
 
         AuthServ.loguear($scope.Par_env).then(function(){
+
+          if ($scope.Par_env.Tipo == "Cuidador") {
+
+            $state.go('panel.Usuarios_Cuidador')  
+          }else{
             $state.go('panel.Votar')
+          }
         }, function(){
             alert('Datos incorrectos');
         }) 

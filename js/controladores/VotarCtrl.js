@@ -1,11 +1,9 @@
 angular.module('votacioneslive')
 
 
-.controller('VotarCtrl', function($scope, $state,  AuthServ, $q, toastr, $http,$uibModal){
+.controller('VotarCtrl', function($scope, $state,  AuthServ, $q, toastr, $http,$uibModal, MySocket){
 
 	$scope.Moatrar_Contralos = false; 
-    
-   
 
     $http.get('::votar', {params: {Votacion_id: $scope.USER.Votacion_id}}).then(function(result){
 		$scope.Aspiraciones = result.data;
@@ -76,14 +74,20 @@ angular.module('votacioneslive')
 
 			$scope.Voto = result
 
+			var fecha = new Date;
+
+
 
 			if ($scope.Voto =='Voto') {
 
+ 	
 			
-			
-			fecha = '12/04/2018 3:30pm';
+		 fecha_nac = '' + fecha.getFullYear() + '-' + (fecha.getMonth() + 1) + '-' + (fecha.getDate() + 1) + '/' + fecha.getHours() + ' :' +  fecha.getMinutes() + ' :' + fecha.getSeconds();
 
-			$http.get('::votar/Cambiaractive', {params: { user_id: $scope.USER.rowid, id: candidato.rowid, aspiracion_id: candidato.aspiracion_id, fecha: fecha}}).then(function(result){
+			$http.get('::votar/Cambiaractive', {params: { user_id: $scope.USER.rowid, id: candidato.rowid, aspiracion_id: candidato.aspiracion_id, fecha: fecha_nac }}).then(function(result){
+
+
+					MySocket.emit('Enviar_voto');	 
 
 				if ((numero+1) == $scope.Aspiraciones.length) {
 

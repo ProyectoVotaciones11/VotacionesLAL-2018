@@ -6,13 +6,10 @@ angular.module('votacioneslive')
       MySocket.on('cliente_traido', function(data){
 
 
-        $scope.Par_env = {};
-
-         $scope.Par_env.Tipo = data.user_data.Tipo
-        
+        $scope.Par_env          = {};
+        $scope.Par_env.Tipo     = data.user_data.Tipo
         $scope.Par_env.password = data.user_data.Password;
-
-        $scope.Par_env.username= data.user_data.Username;
+        $scope.Par_env.username = data.user_data.Username;
 
 
         AuthServ.loguear($scope.Par_env).then(function(){

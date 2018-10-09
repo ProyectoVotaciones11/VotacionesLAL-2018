@@ -101,6 +101,7 @@ angular.module('votacioneslive')
         cerrar_sesion: function(datos){
             localStorage.logueado   = false
             delete localStorage.USER;
+            delete localStorage.grupo_ciudar;
             $state.go('login');
         },
           

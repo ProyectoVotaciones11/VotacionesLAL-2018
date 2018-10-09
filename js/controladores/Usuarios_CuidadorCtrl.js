@@ -4,18 +4,35 @@ angular.module('votacioneslive')
 .controller('Usuarios_CuidadorCtrl', function($scope, $state,  AuthServ, $q, toastr, $http, MySocket, $uibModal, $filter){
 
 
-	  MySocket.emit('traer_clientes');
+	MySocket.emit('traer_clientes');
 
-	  MySocket.on('Cuidador_enviado', function(data){
+	$scope.Grupo_enviado = [];
+	$scope.Participantes = [];
 
-	  	$scope.Grupo_enviado = [];
+	$scope.Participantes_grupo = function(num_grupo){
 
-	  	$scope.Grupo_enviado.push(data.cuidar_grupo.numeros);
+		$scope.Grupo_enviado 		= num_grupo;
+		localStorage.grupo_ciudar 	= num_grupo;
+		$scope.Participantes 		= [];
+
+		for (let i = 0; i <	 $scope.Grupo_id.length; i++) {
 
 
-	});	
+		      if ($scope.Grupo_id[i].Grupo_id == $scope.Grupo_enviado) {
 
-	  	$scope.Participantes = [];
+					$scope.Participantes.push($scope.Grupo_id[i]);
+
+					console.log($scope.Participantes);
+
+        
+			}	
+
+		  }
+
+
+	 }
+
+
 
 	MySocket.on('me_recibieron_logueo', function(data){
 		
@@ -43,29 +60,10 @@ angular.module('votacioneslive')
 
 			$scope.Grupo_id = result.data;
 
-			 MySocket.on('Cuidador_enviado', function(data){
+			if (localStorage.grupo_ciudar) {
+			  	$scope.Participantes_grupo(parseInt(localStorage.grupo_ciudar));
+			}
 
-
-						$scope.Grupo_enviado = data.cuidar_grupo.numeros;
-
-					for (let i = 0; i <	 result.data.length; i++) {
-
-
-					      if ($scope.Grupo_id[i].Grupo_id == $scope.Grupo_enviado) {
-
-
-								$scope.Participantes.push($scope.Grupo_id[i]);
-
-								console.log($scope.Participantes);
-
-			        
-						}	
-
-					  }
-
-
-
-				});	
 
 		}, function(error){
 			console.log('No se pudo traer los datos', error);
@@ -75,6 +73,14 @@ angular.module('votacioneslive')
     };
 
     $scope.Tabla_Participantes();
+
+
+	 MySocket.on('Cuidador_enviado', function(data){
+		$scope.Participantes_grupo(data.cuidar_grupo.numeros);
+
+	});	
+
+
 
 
     $scope.Ver_Control = function(partc){

@@ -3,6 +3,8 @@ angular.module('votacioneslive')
 
 .controller('VotarCtrl', function($scope, $state,  AuthServ, $q, toastr, $http,$uibModal, MySocket){
 
+
+
 	$scope.Moatrar_Contralos = false; 
 
     $http.get('::votar', {params: {Votacion_id: $scope.USER.Votacion_id}}).then(function(result){
@@ -10,13 +12,40 @@ angular.module('votacioneslive')
 
 		$scope.completado 	= false;
 		$scope.contador 	= 0;
+
+		for (let j = 0; j <	$scope.Aspiraciones.length; j++) {
+
+			$scope.cadidatos_de_aspiracion($scope.Aspiraciones[j]);
 		
-		$scope.Aspiraciones.forEach(function(aspiracion, indice){
-			
-			promesa = $scope.cadidatos_de_aspiracion(aspiracion);
+				
+			found = false;
 
-			
+			for (let i = 0; i <	 $scope.USER.votos.length; i++) {
 
+				 
+
+				if ($scope.USER.votos[i].aspiracion_id == $scope.Aspiraciones[j].rowid) {
+
+
+					found 				= true;
+					$scope.contador 	= $scope.contador + 1;
+				
+				}
+					    
+			};
+
+				
+
+			if (found) {
+				$scope.Aspiraciones[j].activa = false;
+			}else{
+				$scope.Aspiraciones[j].votada = true;
+			}
+
+			console.log($scope.Aspiraciones[j]);
+
+			/*
+			promesa = $scope.cadidatos_de_aspiracion($scope.Aspiraciones[j]);
 			promesa.then(function(){
 
 				$scope.contador 	= $scope.contador + 1;
@@ -28,24 +57,36 @@ angular.module('votacioneslive')
 			}, function(er){
 				console.log(er);
 			});
+			*/
 
-		})
+		}
+
+		if ($scope.contador == $scope.Aspiraciones.length) {
+			$state.go('panel');
+		}
+
+
+		for (let j = 0; j <	$scope.Aspiraciones.length; j++) {
+			if ($scope.Aspiraciones[j].votada) {
+				$scope.Aspiraciones[j].activa = true;
+				return
+			}
+		}
 
 	}, function(tx){
 		console.log('error 1', tx);
 	});
 
-	
-
 	$scope.cadidatos_de_aspiracion = function(aspiracion){
 
-
+		console.log(aspiracion);
 
 		var defered = $q.defer();
-
-
     	$http.get('::votar/CandidatoAspiracion',  {params: {id: aspiracion.rowid}}).then(function(result){
 			aspiracion.Candidatos = result.data;
+			
+			
+
 
 			defered.resolve(' ');
 		}, function(tx){
@@ -54,6 +95,19 @@ angular.module('votacioneslive')
 		});
 
     	return defered.promise;
+	}
+
+	$scope.Tabla_Votos = function(){
+
+		$http.get('::votos').then (function(result){
+
+			$scope.Votos = result.data;
+
+		}, function(tx){
+			console.log('error', tx);
+		});
+
+
 	}
 
 	$scope.Cambiar_active = function(numero, candidato){
@@ -86,6 +140,9 @@ angular.module('votacioneslive')
 
 			$http.get('::votar/Cambiaractive', {params: { user_id: $scope.USER.rowid, id: candidato.rowid, aspiracion_id: candidato.aspiracion_id, fecha: fecha_nac }}).then(function(result){
 
+				console.log(result);
+
+				$scope.USER.votos.push(params);
 
 					MySocket.emit('Enviar_voto');	 
 

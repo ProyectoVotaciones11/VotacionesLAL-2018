@@ -42,7 +42,7 @@ angular.module('votacioneslive')
 				$scope.Aspiraciones[j].votada = true;
 			}
 
-			console.log($scope.Aspiraciones[j]);
+			
 
 			/*
 			promesa = $scope.cadidatos_de_aspiracion($scope.Aspiraciones[j]);
@@ -79,14 +79,11 @@ angular.module('votacioneslive')
 
 	$scope.cadidatos_de_aspiracion = function(aspiracion){
 
-		console.log(aspiracion);
+
 
 		var defered = $q.defer();
     	$http.get('::votar/CandidatoAspiracion',  {params: {id: aspiracion.rowid}}).then(function(result){
 			aspiracion.Candidatos = result.data;
-			
-			
-
 
 			defered.resolve(' ');
 		}, function(tx){
@@ -142,7 +139,11 @@ angular.module('votacioneslive')
 
 				console.log(result);
 
-				$scope.USER.votos.push(params);
+				$scope.USER.votos.push(result.config.params);
+
+				console.log($scope.USER.votos);
+
+				localStorage.USER = JSON.stringify($scope.USER);
 
 					MySocket.emit('Enviar_voto');	 
 

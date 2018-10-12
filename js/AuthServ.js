@@ -1,6 +1,6 @@
 angular.module('votacioneslive')
 
-.factory('AuthServ', function($q, $http, $timeout, ConexionServ, $state, MySocket) {
+.factory('AuthServ', function($q, $http, $timeout, ConexionServ, $state, MySocket, $rootScope) {
 
    var consulta_user = 'SELECT p.rowid, p.id, p.Nombres, p.Apellidos, p.Tipo, p.Username, p.Sexo, p.Grupo_id, p.Votacion_id, ' +
                 'v.Nombre as Nombre_votacion, v.alias, v.descripcion, v.Username as Username_votacion, v.Password '+
@@ -99,7 +99,8 @@ angular.module('votacioneslive')
         },
         
         cerrar_sesion: function(datos){
-            localStorage.logueado   = false
+            $rootScope.sesion_cerrada   = true
+            localStorage.logueado       = false
             delete localStorage.USER;
             delete localStorage.grupo_ciudar;
             $state.go('login');

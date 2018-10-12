@@ -1,11 +1,14 @@
 angular.module('votacioneslive')
 
 
-.controller('LoginCtrl', function($scope, $state, ConexionServ, AuthServ, $http, MySocket, toastr){
+.controller('LoginCtrl', function($scope, $state, ConexionServ, AuthServ, $http, MySocket, toastr, $rootScope){
 
       MySocket.on('cliente_traido', function(data){
 
-
+      if ($rootScope.sesion_cerrada) {
+        MySocket.emit('me_desconecte');
+        location.reload();
+      }
         $scope.Par_env          = {};
         $scope.Par_env.Tipo     = data.user_data.Tipo
         $scope.Par_env.password = data.user_data.Password;

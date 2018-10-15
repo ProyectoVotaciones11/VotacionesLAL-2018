@@ -20,6 +20,7 @@ angular.module('votacioneslive')
 
 
         AuthServ.loguear($scope.Par_env).then(function(){
+          MySocket.loguear();
 
           if ($scope.Par_env.Tipo == "Cuidador") {
 

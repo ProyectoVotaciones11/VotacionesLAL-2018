@@ -2,12 +2,10 @@ angular.module('votacioneslive')
 
 .controller('CuidadorCtrl', function($scope, $state,  AuthServ, $q, toastr, $http, MySocket, $uibModal, $filter){
 
-
-
 	$scope.Participantes = [];
 
 	$scope.puntos = [];
-MySocket.emit('traer_clientes');
+	MySocket.emit('traer_clientes');
 
 	MySocket.on('conectado:alguien', (data)=>{
 			MySocket.emit('traer_clientes');
@@ -19,45 +17,44 @@ MySocket.emit('traer_clientes');
 
 		 });
 
-	
-
-	
-	 
 	$scope.Tabla_Participantes = function(){
 
-		
-		$http.get('::usuarios').then (function(result){
+			$scope.Participantes = [];
 			
-					for (let i = 0; i <	 result.data.length; i++) {
+		$http.get('::usuarios').then (function(result){
+		
+			for (let i = 0; i <	 result.data.length; i++) {
 
-				      if (result.data[i].Tipo == "Cuidador") {
+		      if (result.data[i].Tipo == "Cuidador") {
 
-				      	console.log($scope.puntos);
-				      	$scope.Participantes.push(result.data[i] );
+		      	console.log($scope.puntos);
+		      	$scope.Participantes.push(result.data[i] );
 
-						      for (let h = 0; h <	$scope.puntos.length; h++) {
+			      for (let h = 0; h <	$scope.puntos.length; h++) {						      		
 
-						      		
+			      	if ($scope.puntos[h].user_data.Username == result.data[i].Username) {
 
-						      	if ($scope.puntos[h].user_data.Username == result.data[i].Username) {
-
-						      		$scope.Participantes.pop (result.data[i] );
-
-						      			}
-									
-							     }	
-					  }
-
-
-			  }	
-
-
+			      		$scope.Participantes.pop (result.data[i] );
+				  }							
+			    }	
+			  }
+			}	
 		}, function(error){
 			console.log('No se pudo traer los datos', error);
 		})			
     };
 
-   
+  	 MySocket.on('Alguien_desconect', function(data){
+		
+
+		setTimeout(function() {
+
+			MySocket.emit('traer_clientes');
+        	
+		$scope.Tabla_Participantes();
+    }, 1000); 
+    	
+		});	
 
     $scope.Tabla_Participantes();
 
@@ -78,10 +75,9 @@ MySocket.emit('traer_clientes');
 	    	if(result == "Cerrado"){
 
 	    	}else{
-	    		$scope.cuidador = result
-	    		
-	    			MySocket.emit('traer_cliente', {id: result});
-	    	$scope.Segundo_modal($scope.cuidador);	
+    			$scope.cuidador = result
+    			MySocket.emit('traer_cliente', {id: result});
+    			$scope.Segundo_modal($scope.cuidador);	
 	    	};
 
 	    		
@@ -103,7 +99,9 @@ MySocket.emit('traer_clientes');
 		    },
 	        controller: 'Control2'  
 	    });
-	    modalInstance.result.then(function (result) {	    	
+	    modalInstance.result.then(function (result) {
+
+	    $scope.Tabla_Participantes();	    	
 	    				
 	    	MySocket.emit('Enviar_cuidador', {id: result});
 	    }, function(r2){
@@ -115,47 +113,28 @@ MySocket.emit('traer_clientes');
 .controller("Control", function($uibModalInstance, $scope,  ConexionServ, toastr, $filter, part, MySocket) {
 
 	MySocket.emit('traer_clientes');
-
-		MySocket.on('me_recibieron_logueo', function(data){
-			
+		MySocket.on('me_recibieron_logueo', function(data){	
 			MySocket.emit('traer_clientes');
-
 		});	  
 
-
-		MySocket.on('Alguien_desconect', function(data){
-			
+		MySocket.on('Alguien_desconect', function(data){	
 			MySocket.emit('traer_clientes');
-
 		});	  
-
-		
 
 		MySocket.on('conectado:alguien', (data)=>{
 			MySocket.emit('traer_clientes');
 		});
 
-
 		MySocket.on('clientes_traidos', function(data){
-
-
-
 			$scope.puntos = [];
 
 				for (let i = 0; i <	data.length; i++) {
 
-				    if (data[i].user_data.Username) {
-
-
-					    }else{
+				    if (data[i].user_data.Username) {}else{
 
 					$scope.puntos.push(data[i]);	
-					    }	
-
+			}	
 		 }
-			
-
-
 		});	
 
 		//if (localStorage.Grupo_cuidador) {
@@ -184,8 +163,6 @@ MySocket.emit('traer_clientes');
 
 .controller("Control2", function($uibModalInstance, $scope, ConexionServ, toastr, $filter, Cuidador) {
 
-
-
 	$scope.Grupos_Mostrar = false; 
 
 	$scope.grupos = [ {numeros: 1 }, {numeros: 2}, {numeros: 3 }, {numeros: 4}, 
@@ -199,7 +176,6 @@ MySocket.emit('traer_clientes');
 		$scope.usuario.cuidar_grupo = grup;
 		$uibModalInstance.close($scope.usuario);	       
     };
-
 
 	$scope.ok = function () {
         $uibModalInstance.close('Cerrado');

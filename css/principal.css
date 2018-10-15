@@ -132,3 +132,8 @@ a.nav-link{
 .opcion-candidato>div:hover{
     background-color: #01ffcf;
 }
+@media (min-width: 1200px) {
+    .hidden-xs-up{
+        display: none !important;
+    }
+}

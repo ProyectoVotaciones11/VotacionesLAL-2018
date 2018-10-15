@@ -18,9 +18,8 @@ angular.module('votacioneslive')
 	var socket = io.connect(dominio + ':3000');
 
 
-
-	socket.on('te_conectaste', function(data){
-
+	loguear = function(){
+			
 		if (!localStorage.getItem('registered_boolean')){
 			localStorage.registered_boolean = false
 		}
@@ -35,7 +34,6 @@ angular.module('votacioneslive')
 			registered = false;
 		}
 
-	
        if (localStorage.USER){
 			usu = JSON.parse(localStorage.USER);
 
@@ -44,13 +42,14 @@ angular.module('votacioneslive')
 				socket.emit('loguear', {usuario: usu, registered: registered } )
 			}
 		} 
-    
 
-		
+	}
 
-
-
+	socket.on('te_conectaste', function(data){
+		loguear();
 	});
+
+
 
 	socket.on('logueado:yo', function(data){
 		
@@ -86,6 +85,7 @@ angular.module('votacioneslive')
 			});
 		},
 
+		loguear: loguear
 
 	}
 

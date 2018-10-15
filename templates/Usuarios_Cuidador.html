@@ -21,13 +21,14 @@
 
                    <div class="col-sm-12">
 
-                   <h1>Participantes</h1> 
+                   <h1 class="col-sm-12">Participantes</h1> 
 
-                        <span class=" btn btn-success col-sm-6 " ng-repeat="Participante in Participantes" 
+                        <span class="card col-sm-4" ng-repeat="Participante in Participantes" 
                           ng-click="Ver_Control(Participante)" >
 
-
-                              {{$index + 1 }}  {{Participante.Nombres}}  {{Participante.Apellidos}}  
+                          <span class="card-block">
+                            <div>{{$index + 1 }}  {{Participante.Nombres}}  {{Participante.Apellidos}}  </div>
+                          </span>
 
                         </span>
                 

@@ -1,8 +1,10 @@
 angular.module('votacioneslive')
 
-.controller('PanelCtrl', function($scope, $uibModal, USER, AuthServ, toastr, $state, MySocket, $http){
+.controller('PanelCtrl', function($scope, $uibModal, USER, AuthServ, toastr, $state, MySocket, $http, $rootScope){
     
     $scope.USER = USER;
+
+ 
 
     console.log($scope.USER);
 
@@ -17,7 +19,7 @@ angular.module('votacioneslive')
         MySocket.emit('toma_mis_datos', {usuario: $scope.USER});  
     }, 1000); 
 
-    MySocket.emit('Prueba', );  
+  
 
     /* $scope.traer_datos = function(){
         $http.get('::Dashboard').then (function(result){
@@ -44,13 +46,10 @@ angular.module('votacioneslive')
                     
                if ($scope.id_recivido == $scope.USER.rowid) {
 
-                        toastr.success('Tu sesion a caducado');
+                            AuthServ.cerrar_sesion();
 
-                             localStorage.logueado   = false
                              
-                             delete localStorage.USER;
-     
-                         $state.go('Login');
+                                       $state.go('Login');
 
                     }else{ console.log("hola");}; 
                  
@@ -104,20 +103,16 @@ angular.module('votacioneslive')
     
     
     
-    
-    
     $scope.cerrar_sesion = function(){
 
-                     toastr.success('Has cerrado sesion con exito');
+         AuthServ.cerrar_sesion();
 
-                         localStorage.logueado   = false
-                         
-                         delete localStorage.USER;
  
-                 $state.go('Login');
+           $state.go('Login');
+
+        toastr.success('Has cerrado sesion con exito');
+
     }
-    
-    
-    
+        
 })
 

@@ -17,19 +17,25 @@
          
         <div class="card-block">
             
-            <div class="row">
+            <div class="row" class="col-sm-12">
 
-                   <div class="col-sm-12">
+                   <div class="col-sm-10">
 
                    <h1>Cuidadores</h1> 
 
-                        <span class=" btn btn-success col-sm-3 " ng-repeat="Participante in Participantes" 
-                          ng-click="Ver_Control(Participante)" >
+
+                      <span class="card col-sm-4" ng-repeat="Participante in Participantes track by $index" 
+                            ng-click="Ver_Control(Participante)" >
+                          
+                            <span class="card-block"  >
+
+                               <div>{{$index + 1 }} : {{Participante.Nombres}} {{Participante.Apellidos}}</div> 
+
+                          </span>
 
 
-                              {{$index + 1 }}  {{Participante.Nombres}} {{Participante.Apellidos}}
+                      </span>
 
-                        </span>
                 
                   </div>
             </div>

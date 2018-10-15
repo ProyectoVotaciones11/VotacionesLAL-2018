@@ -2,38 +2,62 @@ angular.module('votacioneslive')
 
 .controller('CuidadorCtrl', function($scope, $state,  AuthServ, $q, toastr, $http, MySocket, $uibModal, $filter){
 
-	MySocket.emit('traer_clientes');
+
 
 	$scope.Participantes = [];
 
-	MySocket.on('me_recibieron_logueo', function(data){	
-		MySocket.emit('traer_clientes');
-	});	  
+	$scope.puntos = [];
+MySocket.emit('traer_clientes');
 
-	MySocket.on('logueado:alguien', (data)=>{
-		MySocket.emit('traer_clientes');
-	});
+	MySocket.on('conectado:alguien', (data)=>{
+			MySocket.emit('traer_clientes');
+		});	 
 
-	MySocket.on('clientes_traidos', function(data){
-		 $scope.puntos = data;
-	});	
+		MySocket.on('clientes_traidos', function(data){
+
+			$scope.puntos = data;		    	
+
+		 });
+
+	
+
+	
 	 
 	$scope.Tabla_Participantes = function(){
 
 		
 		$http.get('::usuarios').then (function(result){
-			MySocket.on('Usuarios_cuidador', function(data){
-				 $scope.puntos = data;				  
-			});	
+			
 					for (let i = 0; i <	 result.data.length; i++) {
+
 				      if (result.data[i].Tipo == "Cuidador") {
-							$scope.Participantes.push(result.data[i] );
-					      }	
+
+				      	console.log($scope.puntos);
+				      	$scope.Participantes.push(result.data[i] );
+
+						      for (let h = 0; h <	$scope.puntos.length; h++) {
+
+						      		
+
+						      	if ($scope.puntos[h].user_data.Username == result.data[i].Username) {
+
+						      		$scope.Participantes.pop (result.data[i] );
+
+						      			}
+									
+							     }	
+					  }
+
+
 			  }	
+
+
 		}, function(error){
 			console.log('No se pudo traer los datos', error);
 		})			
     };
+
+   
 
     $scope.Tabla_Participantes();
 
@@ -42,9 +66,7 @@ angular.module('votacioneslive')
 	    var modalInstance = $uibModal.open({
 	        templateUrl: 'templates/Control_modal.html',
 	        resolve: {
-		        punto: function () {
-		        	return   $scope.puntos;
-		        	 },
+		       
 		        part: function(){
 		        	return   partc;
 		          }     
@@ -52,12 +74,19 @@ angular.module('votacioneslive')
 	        controller: 'Control'  
 	    })
 	    modalInstance.result.then(function (result) {
+
+	    	if(result == "Cerrado"){
+
+	    	}else{
 	    		$scope.cuidador = result
-	    			console.log(result);
-	    	MySocket.emit('traer_cliente', {id: result});
-	    	$scope.Segundo_modal($scope.cuidador);		
+	    		
+	    			MySocket.emit('traer_cliente', {id: result});
+	    	$scope.Segundo_modal($scope.cuidador);	
+	    	};
+
+	    		
 	    }, function(r2){
-	    	$scope.traerDatos();
+	    	
 	    });			
 	} 
 
@@ -75,17 +104,71 @@ angular.module('votacioneslive')
 	        controller: 'Control2'  
 	    });
 	    modalInstance.result.then(function (result) {	    	
-	    			console.log(result);	
+	    				
 	    	MySocket.emit('Enviar_cuidador', {id: result});
 	    }, function(r2){
-	    	$scope.traerDatos();
+	    	
 	    });		
 	} 
 })
 
-.controller("Control", function($uibModalInstance, $scope, punto, ConexionServ, toastr, $filter, part) {
+.controller("Control", function($uibModalInstance, $scope,  ConexionServ, toastr, $filter, part, MySocket) {
 
-	$scope.puntos = punto; 
+	MySocket.emit('traer_clientes');
+
+		MySocket.on('me_recibieron_logueo', function(data){
+			
+			MySocket.emit('traer_clientes');
+
+		});	  
+
+
+		MySocket.on('Alguien_desconect', function(data){
+			
+			MySocket.emit('traer_clientes');
+
+		});	  
+
+		
+
+		MySocket.on('conectado:alguien', (data)=>{
+			MySocket.emit('traer_clientes');
+		});
+
+
+		MySocket.on('clientes_traidos', function(data){
+
+
+
+			$scope.puntos = [];
+
+				for (let i = 0; i <	data.length; i++) {
+
+				    if (data[i].user_data.Username) {
+
+
+					    }else{
+
+					$scope.puntos.push(data[i]);	
+					    }	
+
+		 }
+			
+
+
+		});	
+
+		//if (localStorage.Grupo_cuidador) {
+
+			//for (let i = 0; i <	 $scope.puntos.length; i++) {
+				     // if ($scope.puntos[i].Tipo == "Cuidador") {
+						//	$scope.Participantes.push(result.data[i] );
+					   //   }	
+
+
+			 // }	
+			  
+		//}
 
 	$scope.Enviar_Cuidador = function (Mens) {
 		$scope.usuario = Mens;
@@ -99,9 +182,9 @@ angular.module('votacioneslive')
     return ;   
 })
 
-.controller("Control2", function($uibModalInstance, $scope, punto, ConexionServ, toastr, $filter, Cuidador) {
+.controller("Control2", function($uibModalInstance, $scope, ConexionServ, toastr, $filter, Cuidador) {
 
-	$scope.puntos = punto; 
+
 
 	$scope.Grupos_Mostrar = false; 
 
@@ -110,6 +193,8 @@ angular.module('votacioneslive')
 					  {numeros: 9 }, {numeros: 10}, {numeros: 11 }]; 
 
 	$scope.Enviar_Grupo = function (grup) {
+
+		localStorage.Grupo_cuidador = grup;
 		$scope.usuario = Cuidador;
 		$scope.usuario.cuidar_grupo = grup;
 		$uibModalInstance.close($scope.usuario);	       

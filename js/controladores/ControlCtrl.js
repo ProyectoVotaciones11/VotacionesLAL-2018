@@ -17,9 +17,16 @@ angular.module('votacioneslive')
 
 	});	  
 
+
+	MySocket.on('Alguien_desconect', function(data){
+		
+		MySocket.emit('traer_clientes');
+
+	});	  
+
 	
 
-	MySocket.on('logueado:alguien', (data)=>{
+	MySocket.on('conectado:alguien', (data)=>{
 		MySocket.emit('traer_clientes');
 	});
 

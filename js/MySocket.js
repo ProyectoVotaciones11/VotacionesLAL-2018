@@ -35,16 +35,18 @@ angular.module('votacioneslive')
 			registered = false;
 		}
 
-		
-
-		if (localStorage.USER){
+	
+       if (localStorage.USER){
 			usu = JSON.parse(localStorage.USER);
 
 			if (usu.rowid) {
 				
 				socket.emit('loguear', {usuario: usu, registered: registered } )
 			}
-		}
+		} 
+    
+
+		
 
 
 

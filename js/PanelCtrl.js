@@ -4,6 +4,34 @@ angular.module('votacioneslive')
     
     $scope.USER = USER;
 
+
+    $scope.descargarDatos = function(){
+
+       $http.get('http://192.168.100.31/5myvc/public/asistencias/datos-solo-alumnos', { year_id: 4 }).then(function(result){
+            grupos = result.data;
+            console.log(grupos);
+
+            $http.get('::usuarios/Subir_Datos', { grupos: grupos }).then(function(result){
+            /*
+            for (var i = 0; i < grupos.length; i++) {
+                 console.log(grupos[i].alumnos);
+
+                 for (var j = 0; j < grupos[j].alumnos.length; j++) {
+                     alumno = grupos[i].alumnos[j];
+
+                     consulta = 'INSERT invdfvlsdjf (alumno['nombres'], alumno.apellidos, grupos[i].abrev)
+                 }
+            }
+            */
+            
+        }, function(){
+            console.log('Error descargando datos');
+        });
+
+        });
+
+    }
+
  
 
     console.log($scope.USER);

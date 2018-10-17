@@ -96,11 +96,24 @@
                     
                     <div class="row page-titles">
                     <div class="col-md-5 col-8 align-self-center">
-                        <h3 class="text-themecolor">Participantes</h3>
+                        <h3 class="text-themecolor">Participantes  
+
+                        </h3> 
+
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="javascript:void(0)">Inicio</a></li>
                             <li class="breadcrumb-item active">Participantes</li>
                         </ol>
+                        <div ng-show="Admin">
+                             <select  class=" text-pequenio3" >
+                                    <option>Liceo Adventista Libertad</option>
+                                    <option>COAL Saravena</option>
+                            </select>
+
+                                    <button class="btn btn-info" ng-click="descargarDatos()">Descargar</button>
+                        </div>
+
+                           
                     </div>
 
                 </div>
@@ -108,9 +121,7 @@
             </div>
                     
              </div>
-                
-
-
+            
 
             <footer class="footer"> VotacionesLaL2018 kedaesva</footer>
             

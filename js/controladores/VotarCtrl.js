@@ -145,18 +145,22 @@ angular.module('votacioneslive')
 
 				localStorage.USER = JSON.stringify($scope.USER);
 
-					MySocket.emit('Enviar_voto');	 
+					MySocket.emit('Enviar_voto');	
+
+					console.log($scope.USER); 
 
 				if ((numero+1) == $scope.Aspiraciones.length) {
 
-					toastr.success('Gracias por tu voto');
+					if ($scope.USER.Tipo == "Participante") {
 
-					 localStorage.logueado   = false
-					 
-	   				 delete localStorage.USER;
+						 AuthServ.cerrar_sesion();                           
+                           $state.go('Login');
+					}else{
+						$state.go('Panel');
+					}
 
-					$state.go('Login');
-					return
+	
+
 				}
 
 				for (var i = 0; i < $scope.Aspiraciones.length; i++) {

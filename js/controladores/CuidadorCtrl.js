@@ -23,18 +23,18 @@ angular.module('votacioneslive')
 			
 		$http.get('::usuarios').then (function(result){
 		
-			for (let i = 0; i <	 result.data.length; i++) {
+			for (let i = 0; i <	 result.data.participantes.length; i++) {
 
-		      if (result.data[i].Tipo == "Cuidador") {
+		      if (result.data.participantes[i].Tipo == "Cuidador") {
 
 		      	console.log($scope.puntos);
-		      	$scope.Participantes.push(result.data[i] );
+		      	$scope.Participantes.push(result.data.participantes[i] );
 
 			      for (let h = 0; h <	$scope.puntos.length; h++) {						      		
 
-			      	if ($scope.puntos[h].user_data.Username == result.data[i].Username) {
+			      	if ($scope.puntos[h].user_data.Username == result.data.participantes[i].Username) {
 
-			      		$scope.Participantes.pop (result.data[i] );
+			      		$scope.Participantes.pop (result.data.participantes[i] );
 				  }							
 			    }	
 			  }

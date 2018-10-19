@@ -68,7 +68,7 @@ angular.module('votacioneslive')
 		
 		$http.get('::usuarios').then (function(result){
 
-			$scope.Grupo_id = result.data;
+			$scope.Grupo_id = result.data.participantes;
 
 			if (localStorage.grupo_ciudar) {
 			  	$scope.Participantes_grupo(parseInt(localStorage.grupo_ciudar));

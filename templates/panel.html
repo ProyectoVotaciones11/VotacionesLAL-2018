@@ -105,9 +105,9 @@
                             <li class="breadcrumb-item active">Participantes</li>
                         </ol>
                         <div ng-show="Admin">
-                             <select  class=" text-pequenio3" >
-                                    <option>Liceo Adventista Libertad</option>
-                                    <option>COAL Saravena</option>
+                             <select  class=" text-pequenio3" ng-model="sitio_colegio">
+                                    <option value="https://lalvirtual.edu.co">Liceo Adventista Libertad</option>
+                                    <option value="https://coab.micolevirtual.com">COAL Saravena</option>
                             </select>
 
                                     <button class="btn btn-info" ng-click="descargarDatos()">Descargar</button>

@@ -2,9 +2,10 @@ angular.module('votacioneslive')
 
 .controller('ParticipantesCtrl', function($scope,$filter, $http){
 
-	$scope.Mostrar_Participantes = false;
-	$scope.Participante_nuevo = {};
-	$scope.Mostrar_tabla_crear = false;
+	$scope.Mostrar_Participantes 		= false;
+	$scope.Participante_nuevo 			= {};
+	$scope.Mostrar_tabla_crear 			= false;
+	$scope.data 						= [];
 
 	
 
@@ -12,6 +13,27 @@ angular.module('votacioneslive')
 
 		
 		$http.get('::usuarios').then (function(result){
+			console.log(result)
+			$scope.Participantes 		= result.data.participantes ;
+			$scope.data.grupos 			= result.data.grupos ;
+
+			if ($scope.data.grupos.length>0) {
+				$scope.data.grupo_seleccionado 	= $scope.data.grupos[0];
+			}
+			
+	
+		}, function(error){
+			console.log('No se pudo traer los datos', error);
+
+		})
+			
+    };
+
+    $scope.traerAlumnos = function(grupo){
+    	console.log(grupo);
+
+		
+		$http.put('::usuarios/participantes-por-grupo', {Grupo_id: grupo}).then (function(result){
 			$scope.Participantes = result.data ;
 	
 		}, function(error){
@@ -68,8 +90,6 @@ angular.module('votacioneslive')
 	$scope.Delete_Participantes = function(participantes){
 
 			$http.delete('::usuarios/eliminar', {params: { id: participantes.rowid} }).then (function(result){
-
-
 
 				 $scope.Tabla_Participantes();
 

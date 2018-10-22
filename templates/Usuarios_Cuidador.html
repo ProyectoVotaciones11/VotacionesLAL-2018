@@ -16,23 +16,54 @@
     <div class="card" >
          
         <div class="card-block">
+
             
             <div class="row">
 
-                   <div class="col-sm-12">
+                   <div class="col-sm-4">
 
-                   <h1 class="col-sm-12">Participantes</h1> 
+                   <h1 class="col-sm-4">Personero</h1> 
 
-                        <span class="card col-sm-4" ng-repeat="Participante in Participantes" 
+                        <span ng-show="!Participante.V_Personer" class="card col-sm-12" ng-repeat="Participante in Participantes" 
+                          ng-click="Ver_Control(Participante)" >
+
+                          <span  class="card-block">
+                            <div>{{$index + 1 }}  {{Participante.Nombres}}  {{Participante.Apellidos}} : <strong>{{Participante.punto}}</strong> </div>             
+                          </span>
+                        </span>
+
+                  </div>
+
+                  <div class="col-sm-4">
+
+                   <h1 class="col-sm-4">Representante</h1> 
+
+                        <span ng-show="!Participante.V_Contralor" class="card col-sm-12" ng-repeat="Participante in Participantes" 
+                          ng-click="Ver_Control(Participante)" >
+
+                          <span  class="card-block">
+                            <div >{{$index + 1 }}  {{Participante.Nombres}}  {{Participante.Apellidos}} : <strong>{{Participante.punto}}</strong> </div>             
+                          </span>
+                        </span>
+
+                  </div>
+
+                  <div class="col-sm-4">
+
+                   <h1 class="col-sm-4">Controlar</h1> 
+
+                        <span ng-show="!Participante.V_Representante" class="card col-sm-12" ng-repeat="Participante in Participantes" 
                           ng-click="Ver_Control(Participante)" >
 
                           <span class="card-block">
-                            <div>{{$index + 1 }}  {{Participante.Nombres}}  {{Participante.Apellidos}} : <strong>{{Participante.punto}}</strong> </div>
+                            <div>{{$index + 1 }}  {{Participante.Nombres}}  {{Participante.Apellidos}} : <strong>{{Participante.punto}}</strong> </div>             
                           </span>
-
                         </span>
-                
+
                   </div>
+
+
+
             </div>
         </div>
       </div>       

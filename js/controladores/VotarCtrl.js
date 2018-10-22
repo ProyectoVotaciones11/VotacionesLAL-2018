@@ -3,8 +3,6 @@ angular.module('votacioneslive')
 
 .controller('VotarCtrl', function($scope, $state,  AuthServ, $q, toastr, $http,$uibModal, MySocket){
 
-
-
 	$scope.Moatrar_Contralos = false; 
 
     $http.get('::votar', {params: {Votacion_id: $scope.USER.Votacion_id}}).then(function(result){
@@ -17,24 +15,18 @@ angular.module('votacioneslive')
 
 			$scope.cadidatos_de_aspiracion($scope.Aspiraciones[j]);
 		
-				
 			found = false;
 
-			for (let i = 0; i <	 $scope.USER.votos.length; i++) {
-
-				 
+			for (let i = 0; i <	 $scope.USER.votos.length; i++) {			 
 
 				if ($scope.USER.votos[i].aspiracion_id == $scope.Aspiraciones[j].rowid) {
-
 
 					found 				= true;
 					$scope.contador 	= $scope.contador + 1;
 				
 				}
 					    
-			};
-
-				
+			};				
 
 			if (found) {
 				$scope.Aspiraciones[j].activa = false;
@@ -65,7 +57,6 @@ angular.module('votacioneslive')
 			$state.go('panel');
 		}
 
-
 		for (let j = 0; j <	$scope.Aspiraciones.length; j++) {
 			if ($scope.Aspiraciones[j].votada) {
 				$scope.Aspiraciones[j].activa = true;
@@ -78,8 +69,6 @@ angular.module('votacioneslive')
 	});
 
 	$scope.cadidatos_de_aspiracion = function(aspiracion){
-
-
 
 		var defered = $q.defer();
     	$http.get('::votar/CandidatoAspiracion',  {params: {id: aspiracion.rowid}}).then(function(result){
@@ -104,7 +93,6 @@ angular.module('votacioneslive')
 			console.log('error', tx);
 		});
 
-
 	}
 
 	$scope.Cambiar_active = function(numero, candidato){
@@ -127,11 +115,7 @@ angular.module('votacioneslive')
 
 			var fecha = new Date;
 
-
-
 			if ($scope.Voto =='Voto') {
-
- 	
 			
 		 fecha_nac = '' + fecha.getFullYear() + '-' + (fecha.getMonth() + 1) + '-' + (fecha.getDate() + 1) + '/' + fecha.getHours() + ' :' +  fecha.getMinutes() + ' :' + fecha.getSeconds();
 
@@ -158,20 +142,15 @@ angular.module('votacioneslive')
 					}else{
 						$state.go('Panel');
 					}
-
-	
-
 				}
 
 				for (var i = 0; i < $scope.Aspiraciones.length; i++) {
-
 					
 					$scope.Aspiraciones[i].activa = false;
 				}
 
 				$scope.Aspiraciones[numero + 1].activa  = true;
 
-					
 				}, function(tx){
 					console.log('error 3', tx);
 					
@@ -179,14 +158,11 @@ angular.module('votacioneslive')
 
 		}
 
-
 	    }, function(r2){
 	    	console.log(r2);
 	    });
 
-	}
-
-	
+	}	
  
 })
 

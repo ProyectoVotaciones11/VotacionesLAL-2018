@@ -3,6 +3,8 @@ angular.module('votacioneslive')
 
 .controller('Usuarios_CuidadorCtrl', function($scope, $state,  AuthServ, $q, toastr, $http, MySocket, $uibModal, $filter){
 
+	$scope.Gt = true;
+
 	MySocket.emit('traer_clientes');
 
 	$scope.Grupo_enviado = [];
@@ -11,8 +13,11 @@ angular.module('votacioneslive')
 	MySocket.on('clientes_traidos', function(data){
 
 		$scope.puntos= [];
-		 $scope.puntos = data;		  
+		 $scope.puntos = data;	
+
 	});	
+
+
 
 	$scope.Participantes_grupo = function(num_grupo){
 
@@ -20,26 +25,47 @@ angular.module('votacioneslive')
 		localStorage.grupo_ciudar 	= num_grupo;
 		$scope.Participantes 		= [];
 
-		for (let i = 0; i <	 $scope.Grupo_id.length; i++) {
+	for (let i = 0; i <	 $scope.Grupo_id.length; i++) {
 
 
-	      if ($scope.Grupo_id[i].Grupo_id == $scope.Grupo_enviado) {
+      if ($scope.Grupo_id[i].Grupo_id == $scope.Grupo_enviado) {
 
-				$scope.Participantes.push($scope.Grupo_id[i]);
+			$scope.Participantes.push($scope.Grupo_id[i]);
 
-				console.log($scope.puntos);
+		for (let h = 0; h <	$scope.puntos.length; h++) {						      		
 
-				for (let h = 0; h <	$scope.puntos.length; h++) {						      		
+	      	if ($scope.puntos[h].user_data.Username == $scope.Grupo_id[i].Username) {
 
-			      	if ($scope.puntos[h].user_data.Username == $scope.Grupo_id[i].Username) {
+	      		$scope.Grupo_id[i].punto = $scope.puntos[h].nombre_punto;
 
-			      		$scope.Grupo_id[i].punto = $scope.puntos[h].nombre_punto
+	      		$scope.Grupo_id[i].votos = $scope.puntos[h].user_data.votos;
 
-				  }							
-			    }	
+	      		if ($scope.Grupo_id[i].votos.length > 0) {
 
-			    
-			}	
+						$scope.Grupo_id[i].V_Personer = true;
+						$scope.Grupo_id[i].V_Contralor = false;
+
+						if ($scope.Grupo_id[i].votos.length > 1) {
+
+						$scope.Grupo_id[i].V_Contralor = true;
+						$scope.Grupo_id[i].V_Representante = false;
+
+
+							if ($scope.Grupo_id[i].votos.length > 2) {
+
+						$scope.Grupo_id[i].V_Representante = true;
+
+						$scope.Participantes.pop($scope.Grupo_id[i]);
+
+	      					}
+
+	      				}
+	      		}
+
+	      		console.log( $scope.puntos);
+			  }							
+		    }			    
+		  }	
 	 	}
 	 }
 
@@ -68,7 +94,20 @@ angular.module('votacioneslive')
 		
 		$http.get('::usuarios').then (function(result){
 
+				console.log(result.data.participantes);
+
 			$scope.Grupo_id = result.data.participantes;
+
+
+			for (var i = 0; i < $scope.Grupo_id.length; i++) {
+
+				$scope.Grupo_id[i].V_Personer = false;
+
+				$scope.Grupo_id[i].V_Representante = true;
+
+				$scope.Grupo_id[i].V_Contralor = true;
+			}
+
 
 			if (localStorage.grupo_ciudar) {
 			  	$scope.Participantes_grupo(parseInt(localStorage.grupo_ciudar));
@@ -113,6 +152,8 @@ angular.module('votacioneslive')
    		 }, 2000); 
     	
 		});	
+
+
 
 
 

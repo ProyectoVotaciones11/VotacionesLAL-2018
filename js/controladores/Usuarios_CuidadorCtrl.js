@@ -30,7 +30,7 @@ angular.module('votacioneslive')
 
       if ($scope.Grupo_id[i].Grupo_id == $scope.Grupo_enviado) {
 
-			$scope.Participantes.push($scope.Grupo_id[i]);
+		$scope.Participantes.push($scope.Grupo_id[i]);
 
 		for (let h = 0; h <	$scope.puntos.length; h++) {						      		
 
@@ -39,6 +39,8 @@ angular.module('votacioneslive')
 	      		$scope.Grupo_id[i].punto = $scope.puntos[h].nombre_punto;
 
 	      		$scope.Grupo_id[i].votos = $scope.puntos[h].user_data.votos;
+
+	      		console.log($scope.Grupo_id[i]);
 
 	      		if ($scope.Grupo_id[i].votos.length > 0) {
 
@@ -139,6 +141,20 @@ angular.module('votacioneslive')
 			MySocket.emit('traer_clientes');
 		});
 
+
+
+	MySocket.on('participante_en_aspiracion', (data)=>{
+
+		for (var i = 0; i < $scope.Participantes.length; i++) {
+			part = $scope.Participantes[i];
+
+			if (part.rowid == data.participante_id) {
+				part.votando_aspiracion_id = data.aspiracion_id
+			}
+		}
+		
+	});
+
 	MySocket.on('Alguien_desconect', function(data){
 		
 
@@ -192,4 +208,27 @@ angular.module('votacioneslive')
 
 	
 })
+
+
+
+.filter('participantesInAspiracion', [ function(){
+	function(participantes, aspiracion_id){
+
+		if(participantes && aspiracion_id){
+			this.resp = [];
+
+			angular.forEach(participantes, function (participante, key) {
+				
+				if(participante.votando_aspiracion_id == aspiracion_id){
+					this.resp.push(participante);
+				}
+			})
+
+			return this.resp
+
+		}else{
+			return participantes;
+		}
+	}
+}])
 

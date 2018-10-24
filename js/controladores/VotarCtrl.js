@@ -121,17 +121,12 @@ angular.module('votacioneslive')
 
 			$http.get('::votar/Cambiaractive', {params: { user_id: $scope.USER.rowid, id: candidato.rowid, aspiracion_id: candidato.aspiracion_id, fecha: fecha_nac }}).then(function(result){
 
-				console.log(result);
 
-				$scope.USER.votos.push(result.config.params);
+				MySocket.emit('Enviar_voto',{id:candidato.aspiracion_id, can: $scope.USER.rowid});
 
-				console.log($scope.USER.votos);
+				$scope.USER.votos.push(result.config.params);	
 
 				localStorage.USER = JSON.stringify($scope.USER);
-
-					MySocket.emit('Enviar_voto');	
-
-					console.log($scope.USER); 
 
 				if ((numero+1) == $scope.Aspiraciones.length) {
 

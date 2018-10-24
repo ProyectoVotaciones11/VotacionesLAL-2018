@@ -50,6 +50,9 @@ angular.module('votacioneslive')
 	        resolve: {
 		        punto: function () {
 		        	return  punto;
+		        },
+		        USER: function () {
+		        	return  $scope.USER;
 		        }
 		    },
 	        controller: 'Usuario_punto'  
@@ -57,7 +60,10 @@ angular.module('votacioneslive')
 
 	    modalInstance.result.then(function (result) {
 
+	    	
+
 	    	 MySocket.emit('Cerrar_sesion', {id: result});
+	    
 
 			
 	    }, function(r2){
@@ -67,15 +73,27 @@ angular.module('votacioneslive')
 	} 
 })
 
-.controller("Usuario_punto", function($uibModalInstance, $scope, punto, ConexionServ, toastr, $filter) {
+.controller("Usuario_punto", function($uibModalInstance, $scope, punto, ConexionServ, toastr, $filter, USER) {
 
     $scope.punto = punto; 
+
+    $scope.USER = USER;
     
 
+    $scope.CErrar = function (Id, punto) {
 
-    $scope.CErrar = function (Id) {
+    	console.log(punto);
 
-    	$scope.id = Id;
+    	if ( $scope.USER.Tipo == "Admin") {
+    		if (punto !== "Admin") {
+    			$scope.id = Id;
+    		};
+    		
+    	}else{
+    		if (punto == "Participante") {
+    			$scope.id = Id;
+    		}
+    	}	
 
         $uibModalInstance.close($scope.id);
     };

@@ -20,11 +20,11 @@
             
             <div class="row">
 
-                   <div class="col-sm-4" ng-repeat="aspiracion in aspiraciones">
+                    <div class="col-sm-3">
 
-                     <h1 class="col-sm-4">{{ aspiracion.nombre }}</h1> 
+                     <h1 class="col-sm-3">En ninguna</h1> 
 
-                      <span ng-show="!Participante.V_Personer" class="card col-sm-12" ng-repeat="Participante in Participantes | participantesInAspiracion:aspiracion.rowid " 
+                      <span class="card col-sm-12" ng-repeat="Participante in Participantes " 
                         ng-click="Ver_Control(Participante)" >
 
                         <span  class="card-block">
@@ -34,7 +34,19 @@
 
                   </div>
 
+                   <div class="col-sm-3" ng-repeat="aspiracion in aspiraciones">
 
+                     <h1 class="col-sm-3">{{ aspiracion.aspiracion }}</h1> 
+
+                      <span class="card col-sm-12" ng-repeat="Participante in Participantes | participantesInAspiracion:aspiracion.rowid " 
+                        ng-click="Ver_Control(Participante)" >
+
+                        <span  class="card-block">
+                          <div>{{$index + 1 }}  {{Participante.Nombres}}  {{Participante.Apellidos}} : <strong>{{Participante.punto}}</strong> </div>             
+                        </span>
+                    </span>
+
+                  </div>
 
 
             </div>

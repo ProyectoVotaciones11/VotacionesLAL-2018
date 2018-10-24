@@ -3,17 +3,26 @@ angular.module('votacioneslive')
 
 .controller('Usuarios_CuidadorCtrl', function($scope, $state,  AuthServ, $q, toastr, $http, MySocket, $uibModal, $filter){
 
-	$scope.Gt = true;
+	$scope.Gt 		= true;
+	$scope.puntos 	= [];
 
-	MySocket.emit('traer_clientes');
+
+	$http.get('::aspiraciones').then (function(result){
+		$scope.aspiraciones = result.data ;
+		MySocket.emit('traer_clientes');
+	}, function(tx){
+		console.log('error', tx);
+	});
+
+
+	
 
 	$scope.Grupo_enviado = [];
 	$scope.Participantes = [];
 
 	MySocket.on('clientes_traidos', function(data){
 
-		$scope.puntos= [];
-		 $scope.puntos = data;	
+		$scope.puntos = data;	
 
 	});	
 
@@ -21,55 +30,34 @@ angular.module('votacioneslive')
 
 	$scope.Participantes_grupo = function(num_grupo){
 
-		$scope.Grupo_enviado 		= num_grupo;
-		localStorage.grupo_ciudar 	= num_grupo;
+		$scope.Grupo_enviado 		= num_grupo;		
 		$scope.Participantes 		= [];
 
-	for (let i = 0; i <	 $scope.Grupo_id.length; i++) {
+		for (let i = 0; i <	 $scope.Grupo_id.length; i++) {
 
 
-      if ($scope.Grupo_id[i].Grupo_id == $scope.Grupo_enviado) {
+			if ($scope.Grupo_id[i].Grupo_id == $scope.Grupo_enviado) {
 
-		$scope.Participantes.push($scope.Grupo_id[i]);
+				$scope.Participantes.push($scope.Grupo_id[i]);
 
-		for (let h = 0; h <	$scope.puntos.length; h++) {						      		
+				if ($scope.puntos.length > 0) {
+					for (let h = 0; h <	$scope.puntos.length; h++) {						      		
 
-	      	if ($scope.puntos[h].user_data.Username == $scope.Grupo_id[i].Username) {
+				      	if ($scope.puntos[h].user_data.Username == $scope.Grupo_id[i].Username) {
 
-	      		$scope.Grupo_id[i].punto = $scope.puntos[h].nombre_punto;
+				      		$scope.Grupo_id[i].punto = $scope.puntos[h].nombre_punto;
 
-	      		$scope.Grupo_id[i].votos = $scope.puntos[h].user_data.votos;
+				      		$scope.Grupo_id[i].votos = $scope.puntos[h].user_data.votos;
 
-	      		console.log($scope.Grupo_id[i]);
-
-	      		if ($scope.Grupo_id[i].votos.length > 0) {
-
-						$scope.Grupo_id[i].V_Personer = true;
-						$scope.Grupo_id[i].V_Contralor = false;
-
-						if ($scope.Grupo_id[i].votos.length > 1) {
-
-						$scope.Grupo_id[i].V_Contralor = true;
-						$scope.Grupo_id[i].V_Representante = false;
-
-
-							if ($scope.Grupo_id[i].votos.length > 2) {
-
-						$scope.Grupo_id[i].V_Representante = true;
-
-						$scope.Participantes.pop($scope.Grupo_id[i]);
-
-	      					}
-
-	      				}
-	      		}
-
-	      		console.log( $scope.puntos);
-			  }							
-		    }			    
-		  }	
+				      		
+						}							
+				    }		
+				}
+					    
+			}	
 	 	}
-	 }
+	 	
+	}
 
 	MySocket.on('me_recibieron_logueo', function(data){
 		
@@ -96,19 +84,8 @@ angular.module('votacioneslive')
 		
 		$http.get('::usuarios').then (function(result){
 
-				console.log(result.data.participantes);
 
 			$scope.Grupo_id = result.data.participantes;
-
-
-			for (var i = 0; i < $scope.Grupo_id.length; i++) {
-
-				$scope.Grupo_id[i].V_Personer = false;
-
-				$scope.Grupo_id[i].V_Representante = true;
-
-				$scope.Grupo_id[i].V_Contralor = true;
-			}
 
 
 			if (localStorage.grupo_ciudar) {
@@ -123,12 +100,11 @@ angular.module('votacioneslive')
     };
 
 
-
-
     $scope.Tabla_Participantes();
 
 
 	 MySocket.on('Cuidador_enviado', function(data){
+	 	localStorage.grupo_ciudar 	= data.cuidar_grupo.numeros;
 		$scope.Participantes_grupo(data.cuidar_grupo.numeros);
 
 	});	
@@ -137,7 +113,6 @@ angular.module('votacioneslive')
 	MySocket.on('logueado:alguien', (data)=>{
 		$scope.Tabla_Participantes();
 
-
 			MySocket.emit('traer_clientes');
 		});
 
@@ -145,11 +120,14 @@ angular.module('votacioneslive')
 
 	MySocket.on('participante_en_aspiracion', (data)=>{
 
-		for (var i = 0; i < $scope.Participantes.length; i++) {
-			part = $scope.Participantes[i];
+		console.log(data);
 
-			if (part.rowid == data.participante_id) {
-				part.votando_aspiracion_id = data.aspiracion_id
+		for (var i = 0; i < $scope.Participantes.length; i++) {
+			parti = $scope.Participantes[i];
+
+			if (parti.rowid == data.can) {
+				parti.votando_aspiracion_id = data.id;
+				console.log(parti);
 			}
 		}
 		
@@ -167,11 +145,7 @@ angular.module('votacioneslive')
 		
    		 }, 2000); 
     	
-		});	
-
-
-
-
+	});	
 
     $scope.Ver_Control = function(partc){
 
@@ -199,10 +173,7 @@ angular.module('votacioneslive')
 	    }, function(r2){
 	    	$scope.traerDatos();
 	    });
-    	}
-
-
-	   
+    	}	   
 			
 	} 
 
@@ -212,7 +183,7 @@ angular.module('votacioneslive')
 
 
 .filter('participantesInAspiracion', [ function(){
-	function(participantes, aspiracion_id){
+	return function(participantes, aspiracion_id){
 
 		if(participantes && aspiracion_id){
 			this.resp = [];

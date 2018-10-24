@@ -18,11 +18,11 @@
         <div class="card-block">
 
             
-            <div class="row">
+            <div class="row col-sm-12" >
 
                     <div class="col-sm-3">
 
-                     <h1 class="col-sm-3">En ninguna</h1> 
+                     <h1 class="col-sm-4">En ninguna</h1> 
 
                       <span class="card col-sm-12" ng-repeat="Participante in Participantes " 
                         ng-click="Ver_Control(Participante)" >
@@ -36,7 +36,7 @@
 
                    <div class="col-sm-3" ng-repeat="aspiracion in aspiraciones">
 
-                     <h1 class="col-sm-3">{{ aspiracion.aspiracion }}</h1> 
+                     <h1 class="col-sm-4">{{ aspiracion.aspiracion }}</h1> 
 
                       <span class="card col-sm-12" ng-repeat="Participante in Participantes | participantesInAspiracion:aspiracion.rowid " 
                         ng-click="Ver_Control(Participante)" >
@@ -47,7 +47,6 @@
                     </span>
 
                   </div>
-
 
             </div>
         </div>

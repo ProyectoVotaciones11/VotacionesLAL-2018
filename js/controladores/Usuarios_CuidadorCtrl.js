@@ -127,7 +127,6 @@ angular.module('votacioneslive')
 
 			if (parti.rowid == data.can) {
 				parti.votando_aspiracion_id = data.id;
-				console.log(parti);
 			}
 		}
 		
